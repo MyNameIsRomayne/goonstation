@@ -706,6 +706,32 @@ ABSTRACT_TYPE(/obj/item/implant/revenge)
 			src.owner?.elecgib()
 		. = ..()
 
+/obj/item/implant/revenge/clown
+	name = "funny-looking implant" // literally
+	big_message = " starts- oh god AHAHAHAHA"
+	small_message = " starts looking a little funnier than usual"
+	power = 1
+	var/payload = /obj/item/balloon_animal/random
+
+	do_effect(power)
+		var/turf/T = get_turf(src)
+		var/mob/living/L = src.owner
+		var/amtAnimals = 10 + round(sqrt(power*10))
+		playsound(src.loc, 'sound/musical_instruments/Trombone_Failiure.ogg', 50, 1)
+		L?.make_jittery(1000)
+		if(isliving(src.owner))
+			if(L.can_bleed)
+				L.blood_id = "rainbow fluid"
+		SPAWN(20) // Throw a bunch of balloon animals around and die
+			if(T && isturf(T))
+				particleMaster.SpawnSystem(new /datum/particleSystem/confetti_scalable(T,32*sqrt(power),160*power))
+				for(var/i = 1; i <= amtAnimals; i++) // ripped from /obj/item/old_grenade/thing_thrower
+					var/atom/movable/thing = new payload(T)
+					var/turf/target = locate(T.x + rand(-4, 4), T.y + rand(-4, 4), T.z)
+					if(target)
+						thing.throw_at(target, rand(0, 10), rand(1, 4))
+			src.owner?.gib()
+		. = ..()
 
 /obj/item/implant/robotalk
 	name = "machine translator implant"
@@ -1647,6 +1673,14 @@ ABSTRACT_TYPE(/obj/item/implant/revenge)
 
 	New()
 		src.imp = new /obj/item/implant/revenge/zappy(src)
+		..()
+
+/obj/item/implanter/clown
+	name = "funny-looking implanter"
+	icon_state = "implanter1-g"
+
+	New()
+		src.imp = new /obj/item/implant/revenge/clown(src)
 		..()
 
 /* ================================================================ */

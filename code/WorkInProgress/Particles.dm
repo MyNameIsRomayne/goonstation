@@ -129,7 +129,7 @@ var/datum/particleMaster/particleMaster = new
 				P = null
 
 	//Spawns specified particle. If type can be recycled, do that - else create new. After time is over, move particle to recycling to avoid del and new calls.
-	proc/SpawnParticle(var/atom/location, var/particleTypeName, var/particleTime, var/particleColor, var/atom/target, var/particleSprite) //This should be the only thing you access from the outside.
+	proc/SpawnParticle(var/atom/location, var/particleTypeName, var/particleTime, var/particleColor, var/atom/target, var/particleSprite, var/radius=null) //This should be the only thing you access from the outside.
 		var/datum/particleType/pType = particleTypes[particleTypeName]
 
 		if (istype(pType))
@@ -141,7 +141,7 @@ var/datum/particleMaster/particleMaster = new
 				p.override_state = particleSprite
 			if (target)
 				p.target = get_turf(target)
-			pType.Apply(p)
+			pType.Apply(p,radius)
 
 			return p
 		else
@@ -405,6 +405,40 @@ var/matrix/MS0101 = matrix(0.1, 0, 0, 0, 0.1, 0)
 
 			if(!istype(par)) return
 			animate(par, transform = first, time = 4, pixel_y = rand(-32, 32) + par.pixel_y, pixel_x = rand(-32, 32) + par.pixel_x, easing = LINEAR_EASING)
+			animate(transform = second, time = 5, alpha = 0, pixel_y = par.pixel_y - 5, easing = LINEAR_EASING|EASE_OUT)
+
+			MatrixInit()
+
+/datum/particleType/farConfetti
+	name = "confetti"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "wpart"
+
+	MatrixInit()
+		first = matrix()
+		second = matrix()
+
+	Apply(var/obj/particle/par,var/radius=128)
+		if(..())
+			par.blend_mode = BLEND_ADD
+			var/r = 255
+			var/g = 255
+			var/b = 255
+			switch (rand(1, 3))
+				if (1)
+					r = rand(0, 150)
+				if (2)
+					g = rand(0, 150)
+				if (3)
+					b = rand(0, 150)
+			par.color = rgb(r, g, b)
+
+			first.Turn(rand(-90, 90))
+			first.Scale(0.5,0.5)
+			second.Turn(rand(-90, 90))
+
+			if(!istype(par)) return
+			animate(par, transform = first, time = 4, pixel_y = rand(-radius, radius) + par.pixel_y, pixel_x = rand(-radius, radius) + par.pixel_x, easing = LINEAR_EASING)
 			animate(transform = second, time = 5, alpha = 0, pixel_y = par.pixel_y - 5, easing = LINEAR_EASING|EASE_OUT)
 
 			MatrixInit()
@@ -1129,6 +1163,32 @@ var/matrix/MS0101 = matrix(0.1, 0, 0, 0, 0.1, 0)
 	Run()
 		if (..())
 			for(var/i=0, i<rand(60,80), i++)
+				SpawnParticle()
+			Die()
+
+/datum/particleSystem/confetti_scalable
+	var/confettiRadius
+	var/confettiAmount
+
+	New(var/atom/location = null, var/radius, var/amount)
+		confettiRadius = radius
+		confettiAmount = amount
+		..(location, "confetti", 35)
+
+	SpawnParticle()
+		. = 0
+		if (location && particleTypeName)
+			var/obj/particle/par = particleMaster.SpawnParticle(get_turf(location), particleTypeName, particleTime, particleColor, target, particleSprite, confettiRadius)
+			if (!istype(par))
+				Die()
+			else
+				. = par
+		else
+			Die()
+
+	Run()
+		if (..())
+			for(var/i=0, i<rand(confettiAmount), i++)
 				SpawnParticle()
 			Die()
 
