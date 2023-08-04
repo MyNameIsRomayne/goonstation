@@ -1804,6 +1804,7 @@ var/datum/preMapLoad/preMapLoad = new
 #include "code\obj\item\device\pda2\scanners.dm"
 #include "code\obj\item\device\pda2\smallprogs.dm"
 #include "code\obj\item\device\pda2\textfiles.dm"
+#include "code\obj\item\device\pda3\pda3.dm"
 #include "code\obj\item\device\radios\headsets.dm"
 #include "code\obj\item\device\radios\intercoms.dm"
 #include "code\obj\item\gun\ammo.dm"
@@ -2161,7 +2162,10 @@ var/datum/preMapLoad/preMapLoad = new
 #include "code\z_dmm_suite\reader.dm"
 #include "code\z_dmm_suite\writer.dm"
 #include "interface\skin.dmf"
+#include "maps\devtest.dm"
+#include "maps\config\devtest.dm"
 #include "maps\config\map.dm"
+#include "maps\unused\devtest.dm"
 // END_INCLUDE
 
 #ifdef SECRETS_ENABLED

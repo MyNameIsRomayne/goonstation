@@ -6024,6 +6024,12 @@ area/station/security/visitation
 	name = "Abandoned Mining Outpost Crew Quarters"
 	icon_state = "green"
 
+/area/devzone
+	name = "Super Radical Awesone Dev Area"
+	requires_power = FALSE
+	icon_state = "green"
+	ambient_light = "#FFFFE6"
+
 #define MAJOR_AST(num) area/pod_wars/asteroid/major/maj_##num/name = "" + "major asteroid " + #num
 
 area/pod_wars/asteroid/station_map_colour = MAPC_ASTEROID

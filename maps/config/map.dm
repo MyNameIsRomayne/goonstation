@@ -95,6 +95,9 @@
 #elif defined(GOTTA_GO_FAST_BUT_ZLEVELS_TOO_SLOW)
 #include "gottagofast.dm"
 
+#elif defined(MAP_OVERRIDE_DEVTEST)
+#include "devtest.dm"
+
 //Entry below is the "default" map
 #else
 #include "standard.dm"
