@@ -1848,6 +1848,7 @@ var/datum/preMapLoad/preMapLoad = new
 #include "code\obj\item\organs\stomach.dm"
 #include "code\obj\item\organs\tail.dm"
 #include "code\obj\item\organs\torso.dm"
+#include "code\obj\item\romayne\remote.dm"
 #include "code\obj\item\storage\ammo_pouches.dm"
 #include "code\obj\item\storage\backpack_belt_etc.dm"
 #include "code\obj\item\storage\bible.dm"

@@ -29,7 +29,7 @@ Contains:
 	stamina_crit_chance = 10
 
 	abilities = list(/obj/ability_button/tank_valve_toggle)
-
+	
 	/// This value is read by get_desc(), and is used by subtypes instead of copy-pasting the entire description with minor changes.
 	var/extra_desc = null
 	/// The air contents of this tank.
