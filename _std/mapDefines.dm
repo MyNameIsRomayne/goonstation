@@ -76,6 +76,8 @@
 
 #elif defined(MAP_OVERRIDE_GEHENNA)*/
 
+#elif defined (MAP_OVERRIDE_LESBOS)
+
 #else // the "default" map
 //#define UNDERWATER_MAP 1
 
