@@ -687,6 +687,37 @@
 
 		..()
 
+/obj/machinery/atmospherics/binary/nuclear_reactor/prefilled/awesome
+	// Edit to your heart's content granted you can understand it
+	// But to summarize, it's key-value pairs to a list of strings (for a 2D array) in the fashion of [rod type, rod material x7], x7
+	var/foo = /obj/item/reactor_component/fuel_rod
+	var/mat_keys = list("c"="cerenkite","b"="beewool")
+	var/reactor_map = list(
+		"xcobxcobxcobxc",
+		"obxcobxcobxcob",
+		"xcobxcobxcobxc",
+		"obxcobxcobxcob",
+		"xcobxcobxcobxc",
+		"obxcobxcobxcob",
+		"xcobxcobxcobxc",
+	)
+	New()
+		for(var/x=1 to REACTOR_GRID_WIDTH)
+			for(var/y=1 to REACTOR_GRID_HEIGHT)
+				var/rod_material = mat_keys[reactor_map[y][x*2]]
+				switch(reactor_map[y][x*2-1])
+					if("x")
+						src.component_grid[x][y] = new /obj/item/reactor_component/fuel_rod(rod_material)
+					if("o")
+						src.component_grid[x][y] = new /obj/item/reactor_component/gas_channel(rod_material)
+					if("+")
+						src.component_grid[x][y] = new /obj/item/reactor_component/heat_exchanger(rod_material)
+					if("=")
+						src.component_grid[x][y] = new /obj/item/reactor_component/control_rod(rod_material)
+					if(" ")
+						src.component_grid[x][y] = null
+		..()
+
 /obj/machinery/atmospherics/binary/nuclear_reactor/prefilled/random
 	New()
 		for(var/x=1 to REACTOR_GRID_WIDTH)

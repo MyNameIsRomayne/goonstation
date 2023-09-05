@@ -47,7 +47,8 @@ var/global/list/mapNames = list(
 	//"Gehenna" =			list("id" = "GEHENNA",		"settings" = "gehenna",			"playerPickable" = FALSE),
 	"blank" =				list("id" = "BLANK",		"settings" = "", 				"playerPickable" = FALSE),
 	"blank_underwater" =	list("id" = "BLANK_UNDERWATER", "settings" = "", 			"playerPickable" = FALSE),
-	"DevTest" =	list("id" = "DEVTEST",		"settings" = "devtest",			"playerPickable" = FALSE,	"MaxPlayersAllowed" = 69)
+	"DevTest" =	            list("id" = "DEVTEST",		"settings" = "devtest",			"playerPickable" = FALSE,	"MaxPlayersAllowed" = 69),
+	"Lesbos" =              list("id" = "LESBOS",		"settings" = "lesbos",			"playerPickable" = FALSE)
 )
 
 /obj/landmark/map
@@ -74,7 +75,7 @@ var/global/list/mapNames = list(
 				CRASH("A mapName entry for '[src.name]' wasn't found!")
 
 			setup_z_level_parallax_settings()
-		..()
+		..() // 5 mins to sort laundry
 
 //Setting maps to be underwater is handled in the map config file, aka [mapname].dm
 
@@ -730,6 +731,26 @@ var/global/list/mapNames = list(
 		"the aviary" = list(/area/station/garden/aviary),
 		"the quartermaster's storage room" = list(/area/station/quartermaster/storage))
 		//"the robotics lab" = list(/area/station/medical/robotics))
+
+/datum/map_settings/lesbos
+	name = "LESBOS"
+	display_name = "NSS Lesbos"
+	goonhub_map = "https://goonhub.com/maps/clarion"
+
+	walls = /turf/simulated/wall/auto/supernorn
+	rwalls = /turf/simulated/wall/auto/reinforced/supernorn
+
+	windows = /obj/window/auto
+	windows_thin = /obj/window/pyro
+	rwindows = /obj/window/auto/reinforced
+	rwindows_thin = /obj/window/reinforced/pyro
+	windows_crystal = /obj/window/auto/crystal
+	windows_rcrystal = /obj/window/auto/crystal/reinforced
+	window_layer_full = COG2_WINDOW_LAYER
+	window_layer_north = GRILLE_LAYER+0.1
+	window_layer_south = FLY_LAYER+1
+	auto_windows = TRUE
+
 
 /datum/map_settings/oshan
 	name = "OSHAN"
