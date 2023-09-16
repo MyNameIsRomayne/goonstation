@@ -1600,12 +1600,13 @@
 		..()
 		M = owner
 		if (!M.hasStatus("resting"))
-			M.setStatus("resting", INFINITE_STATUS)
-			var/mob/living/carbon/human/H = M
-			if (istype(H))
-				H.hud.update_resting()
+			boutput(M,"<span class='alert'><B>You have to stop and drop before you can roll!</B></span>")
+			interrupt(INTERRUPT_ALWAYS)
+			return
+		var/mob/living/carbon/human/H = M
+		if (istype(H))
 			for (var/mob/O in AIviewers(M))
-				O.show_message("<span class='alert'><B>[M] throws themselves onto the floor!</B></span>", 1, group = "resist")
+				O.show_message("<span class='alert'><B>[M] rolls around on the floor!</B></span>", 1, group = "resist")
 		else
 			for (var/mob/O in AIviewers(M))
 				O.show_message("<span class='alert'><B>[M] rolls around on the floor, trying to extinguish the flames.</B></span>", 1, group = "resist")
