@@ -2,16 +2,181 @@
 "a" = (
 /turf/unsimulated/grass,
 /area/space)
+"b" = (
+/obj/machinery/manufacturer/general,
+/turf/unsimulated/floor/plating,
+/area/space)
+"c" = (
+/obj/machinery/conveyor/WE,
+/turf/unsimulated/floor/plating,
+/area/space)
+"e" = (
+/obj/railing/orange/reinforced{
+	dir = 4
+	},
+/obj/railing/orange/reinforced{
+	dir = 1
+	},
+/turf/unsimulated/floor,
+/area/space)
+"g" = (
+/obj/railing/orange/reinforced{
+	dir = 8
+	},
+/turf/unsimulated/floor,
+/area/space)
 "h" = (
 /obj/landmark/map,
 /turf/unsimulated/grass,
+/area/space)
+"i" = (
+/obj/machinery/conveyor/WN,
+/turf/unsimulated/floor,
+/area/space)
+"k" = (
+/obj/machinery/conveyor/NW,
+/turf/unsimulated/floor/plating,
+/area/space)
+"l" = (
+/obj/machinery/conveyor/WS,
+/turf/unsimulated/floor/plating,
+/area/space)
+"m" = (
+/obj/machinery/conveyor/ES,
+/turf/unsimulated/floor/plating,
+/area/space)
+"o" = (
+/obj/machinery/crusher,
+/obj/machinery/conveyor/SN,
+/turf/unsimulated/floor/plating,
+/area/space)
+"p" = (
+/obj/machinery/conveyor/NE,
+/turf/unsimulated/floor,
+/area/space)
+"q" = (
+/obj/railing/orange/reinforced,
+/obj/railing/orange/reinforced{
+	dir = 4
+	},
+/turf/unsimulated/floor,
+/area/space)
+"r" = (
+/obj/machinery/conveyor/SE,
+/turf/unsimulated/floor,
+/area/space)
+"s" = (
+/obj/machinery/launcher_loader/east{
+	door_delay = 4
+	},
+/turf/unsimulated/floor/plating,
+/area/space)
+"u" = (
+/obj/machinery/conveyor/NE,
+/turf/unsimulated/floor/plating,
+/area/space)
+"v" = (
+/obj/railing/orange/reinforced,
+/obj/railing/orange/reinforced{
+	dir = 8
+	},
+/turf/unsimulated/floor,
+/area/space)
+"w" = (
+/obj/machinery/conveyor/SN,
+/turf/unsimulated/floor/plating,
+/area/space)
+"x" = (
+/obj/machinery/conveyor/SN,
+/turf/unsimulated/floor,
+/area/space)
+"y" = (
+/obj/machinery/conveyor/WE,
+/turf/unsimulated/floor,
 /area/space)
 "A" = (
 /obj/landmark/start,
 /turf/unsimulated/grass,
 /area/space)
+"B" = (
+/obj/machinery/conveyor/EW,
+/turf/unsimulated/floor/plating,
+/area/space)
+"C" = (
+/obj/railing/orange/reinforced{
+	dir = 1
+	},
+/turf/unsimulated/floor,
+/area/space)
+"E" = (
+/obj/machinery/mass_driver{
+	dir = 4;
+	drive_range = 10;
+	id = "cargo_out"
+	},
+/turf/unsimulated/floor/plating,
+/area/space)
+"F" = (
+/obj/machinery/conveyor/SE,
+/turf/unsimulated/floor/plating,
+/area/space)
+"G" = (
+/obj/machinery/conveyor/NS,
+/turf/unsimulated/floor,
+/area/space)
 "J" = (
 /obj/landmark/start/latejoin,
+/turf/unsimulated/grass,
+/area/space)
+"L" = (
+/obj/machinery/conveyor/EN,
+/turf/unsimulated/floor/plating,
+/area/space)
+"M" = (
+/obj/machinery/processor,
+/turf/unsimulated/floor/plating,
+/area/space)
+"N" = (
+/obj/machinery/conveyor/NS,
+/turf/unsimulated/floor/plating,
+/area/space)
+"O" = (
+/turf/unsimulated/floor,
+/area/space)
+"P" = (
+/obj/railing/orange/reinforced{
+	dir = 4
+	},
+/turf/unsimulated/floor,
+/area/space)
+"R" = (
+/turf/unsimulated/floor/plating,
+/area/space)
+"T" = (
+/obj/railing/orange/reinforced,
+/turf/unsimulated/floor,
+/area/space)
+"V" = (
+/obj/railing/orange/reinforced{
+	dir = 8
+	},
+/obj/railing/orange/reinforced{
+	dir = 1
+	},
+/turf/unsimulated/floor,
+/area/space)
+"W" = (
+/obj/machinery/conveyor/SW,
+/turf/unsimulated/floor/plating,
+/area/space)
+"Y" = (
+/obj/machinery/conveyor/WN,
+/turf/unsimulated/floor/plating,
+/area/space)
+"Z" = (
+/obj/lattice{
+	icon_state = "lattice-dir"
+	},
 /turf/unsimulated/grass,
 /area/space)
 
@@ -46062,24 +46227,24 @@ a
 a
 a
 a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+V
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+v
+Z
+Z
+Z
 a
 a
 a
@@ -46364,21 +46529,21 @@ a
 a
 a
 a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+C
+G
+G
+G
+G
+G
+G
+G
+G
+G
+M
+G
+G
+p
+T
 a
 a
 a
@@ -46666,21 +46831,21 @@ a
 a
 a
 a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+C
+O
+O
+O
+O
+O
+O
+O
+O
+O
+O
+O
+O
+y
+T
 a
 a
 a
@@ -46968,21 +47133,21 @@ a
 a
 a
 a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+C
+O
+O
+O
+O
+F
+w
+L
+R
+m
+N
+u
+O
+b
+T
 a
 a
 a
@@ -47270,21 +47435,21 @@ a
 a
 a
 a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+C
+O
+O
+O
+O
+c
+R
+B
+R
+B
+R
+c
+O
+y
+T
 a
 a
 a
@@ -47572,21 +47737,21 @@ a
 a
 a
 a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+C
+O
+O
+O
+O
+l
+N
+k
+R
+W
+w
+Y
+O
+y
+T
 a
 a
 a
@@ -47874,21 +48039,21 @@ a
 a
 a
 a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+C
+O
+O
+O
+O
+O
+O
+O
+O
+O
+O
+O
+O
+y
+T
 a
 a
 a
@@ -48176,21 +48341,21 @@ a
 a
 a
 a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+C
+O
+r
+x
+o
+x
+x
+x
+x
+x
+x
+x
+x
+i
+T
 a
 a
 a
@@ -48478,24 +48643,24 @@ a
 a
 a
 a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+C
+O
+y
+O
+P
+P
+P
+P
+P
+P
+P
+P
+P
+P
+q
+Z
+Z
+Z
 a
 a
 a
@@ -48780,10 +48945,10 @@ a
 a
 a
 a
-a
-a
-a
-a
+C
+O
+y
+T
 a
 a
 a
@@ -49082,10 +49247,10 @@ a
 a
 a
 a
-a
-a
-a
-a
+C
+O
+s
+T
 a
 a
 a
@@ -49384,13 +49549,13 @@ a
 a
 a
 a
-a
-a
-a
-a
-a
-a
-a
+e
+P
+E
+q
+Z
+Z
+Z
 a
 a
 a
