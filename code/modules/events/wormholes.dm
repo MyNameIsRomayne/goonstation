@@ -29,6 +29,7 @@ var/global/list/turf/random_floor_turfs = null
 	random_floor_turfs = list()
 	var/list/turf/station_z_turfs = block(locate(1, 1, Z_LEVEL_STATION), locate(world.maxx, world.maxy, Z_LEVEL_STATION))
 	var/rand_amt = rand(150, 250)
+	var/attempts_before_desperate = 1000 // How many times we try for random turfs before we take anything at all
 
 	#ifdef UNIT_TESTS
 	rand_amt = 10
@@ -36,6 +37,11 @@ var/global/list/turf/random_floor_turfs = null
 
 	while (rand_amt > length(random_floor_turfs))
 		var/turf/T = pick(station_z_turfs)
-		if(!IS_ARRIVALS(get_area(T)) && istype(T,/turf/simulated/floor) && !(locate(/obj/window) in T))
+		if(attempts_before_desperate <= 0 || (!IS_ARRIVALS(get_area(T)) && istype(T,/turf/simulated/floor) && !(locate(/obj/window) in T)))
 			random_floor_turfs += T
 			LAGCHECK(LAG_LOW)
+		attempts_before_desperate -= 1
+		
+	// temp shitcode because grass isnt simulated floor
+	if (attempts_before_desperate <= 0)
+		boutput(world, "WARNING: random floor turf list could not find valid simulated floors without windows before getting into desperate state.")
