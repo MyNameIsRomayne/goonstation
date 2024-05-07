@@ -48,7 +48,8 @@ var/global/list/mapNames = list(
 	//"Gehenna" =			list("id" = "GEHENNA",		"settings" = "gehenna",			"playerPickable" = FALSE),
 	"blank" =				list("id" = "BLANK",		"settings" = "", 				"playerPickable" = FALSE),
 	"blank_underwater" =	list("id" = "BLANK_UNDERWATER", "settings" = "", 			"playerPickable" = FALSE),
-	"DevTest" =				list("id" = "DEVTEST",		"settings" = "devtest",			"playerPickable" = FALSE,	"MaxPlayersAllowed" = 69)
+	"DevTest" =				list("id" = "DEVTEST",		"settings" = "devtest",			"playerPickable" = FALSE,	"MaxPlayersAllowed" = 69),
+	"Factory" =             list("id" = "FACTORY",      "settings" = "factory",         "playerPickable" = FALSE),
 )
 
 /obj/landmark/map
@@ -1208,6 +1209,15 @@ var/global/list/mapNames = list(
 	valid_nuke_targets = list("the developer zone" = list(/area/station/devzone),
 		"the test chamber or space" = list(/area/space))
 
+/datum/map_settings/factory
+	name = "FACTORY"
+	display_name = "Shitcode Factorio Simulator 13"
+	style = "factory"
+	arrivals_type = MAP_SPAWN_MISSILE
+
+	dir_fore = NORTH
+	escape_dir = SOUTH
+	
 
 /area/shuttle/merchant_shuttle/left_centcom
 	icon_state = "shuttle_merch_l"
