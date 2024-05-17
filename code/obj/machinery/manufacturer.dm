@@ -298,43 +298,20 @@ TYPEINFO(/obj/machinery/manufacturer)
 			should_update_static = FALSE
 			src.update_static_data(user)
 
-		// Send material data as tuples of material name, material id, material amount
-		var/resource_data = list()
-		for (var/obj/item/material_piece/P as anything in src.get_contents())
-			if (!P.material)
-				continue
-			resource_data += list(list("name" = P.material.getName(), "id" = P.material.getID(), "amount" = P.amount, "byondRef" = "\ref[P]", "satisfies" = src.material_patterns_by_id[P.material.getID()]))
-
-		// Package additional information into each queued item for the badges so that it can lookup its already sent information
-		var/queue_data = list()
-		for (var/datum/manufacture/M in src.queue)
-			queue_data += list(list("name" = M.name, "category" = M.category, "type" = src.get_blueprint_type(M)))
-
-		// This calculates the percentage progress of a blueprint by the time that already elapsed before a pause (0 if never paused)
-		// added to the current time that has been elapsed, divided by the total time to be elapsed.
-		// But we keep the pct a constant if we're paused, and just do time that was elapsed / time to elapse
-		var/progress_pct = null // TODO: use predicted end time to have clientside progress animation instead of sending percentage
-		if (length(src.queue))
-			if (src.mode != MODE_WORKING)
-				progress_pct = 1 - (src.time_left / src.original_duration)
-			else
-				progress_pct = ((src.original_duration - src.time_left) + (TIME - src.time_started)) / src.original_duration
-
 		return list(
 			"delete_allowed" = src.allowed(user),
-			"queue" = queue_data,
-			"progress_pct" = progress_pct,
+			"queue" = src.get_queue_information(),
+			"progress_pct" = src.get_progress_percentage_information(),
 			"panel_open" = src.panel_open,
 			"hacked" = src.hacked,
 			"malfunction" = src.malfunction,
 			"mode" = src.mode,
 			"wire_bitflags" = src.wires,
-			"card_balance" = (!isnull(src.scan) ? FindBankAccountByName(src.scan.registered)["current_money"] : null),
-			"card_owner" = (!isnull(src.scan) ? src.scan.registered : null),
+			"card" = src.get_card_information(),
 			"speed" = src.speed,
 			"repeat" = src.repeat,
 			"error" = src.error,
-			"resource_data" = resource_data,
+			"resource_data" = src.get_resource_data_as_list(),
 			"manudrive_uses_left" = src.get_drive_uses_left(),
 			"indicators" = list("electrified" = src.electrified,
 							    "malfunctioning" = src.malfunction,
@@ -347,10 +324,10 @@ TYPEINFO(/obj/machinery/manufacturer)
 		return list (
 			"fabricator_name" = src.name,
 			"all_categories" = src.categories,
-			"available_blueprints" = blueprints_as_list(src.available, user),
-			"hidden_blueprints" = blueprints_as_list(src.hidden, user),
-			"downloaded_blueprints" = blueprints_as_list(src.download, user),
-			"recipe_blueprints" = blueprints_as_list(src.drive_recipes, user),
+			"available_blueprints" = src.blueprints_as_list(src.available, user),
+			"hidden_blueprints" = src.blueprints_as_list(src.hidden, user),
+			"downloaded_blueprints" = src.blueprints_as_list(src.download, user),
+			"recipe_blueprints" = src.blueprints_as_list(src.drive_recipes, user),
 			"wires" = APCWireColorToIndex,
 			"rockboxes" = rockboxes_as_list(),
 			"manudrive" = list ("name" = "[src.manudrive]",
@@ -360,6 +337,40 @@ TYPEINFO(/obj/machinery/manufacturer)
 			"max_speed_normal" = MAX_SPEED,
 			"max_speed_hacked" = MAX_SPEED_HACKED,
 		)
+
+	/*
+	This calculates the percentage progress of a blueprint by the time that already elapsed before a pause (0 if never paused)
+	added to the current time that has been elapsed, divided by the total time to be elapsed.
+	But we keep the pct a constant if we're paused, and just do time that was elapsed / time to elapse
+	*/
+	proc/get_progress_percentage_information()
+		// TODO: use predicted end time to have clientside progress animation instead of sending percentage
+		if (length(src.queue))
+			if (src.mode != MODE_WORKING)
+				return (1 - (src.time_left / src.original_duration))
+			else
+				return (((src.original_duration - src.time_left) + (TIME - src.time_started)) / src.original_duration)
+
+	/// Package additional information into each queued item for the badges so that it can lookup its already sent information
+	proc/get_queue_information()
+		var/queue_data = list()
+		for (var/datum/manufacture/M in src.queue)
+			queue_data += list(list("name" = M.name, "category" = M.category, "type" = src.get_blueprint_type(M)))
+		return queue_data
+
+	/// Get information about the scanned card for the user interface
+	proc/get_card_information()
+		return list(
+			"card_balance" = (!isnull(src.scan) ? FindBankAccountByName(src.scan.registered)["current_money"] : null),
+			"card_owner" = (!isnull(src.scan) ? src.scan.registered : null),
+		)
+
+	/// Send material data as tuples of material name, material id, material amount
+	proc/get_resource_data_as_list()
+		var/list/L = list()
+		for (var/obj/item/material_piece/P as anything in src.get_contents())
+			L += list(list("name" = P.material.getName(), "id" = P.material.getID(), "amount" = P.amount, "byondRef" = "\ref[P]", "satisfies" = src.material_patterns_by_id[P.material.getID()]))
+		return L
 
 	/// Get whether a blueprint is available, hidden, downloaded, or a drive recipe. If in multiple print lists, picks the first result. Or null.
 	proc/get_blueprint_type(var/datum/manufacture/M)

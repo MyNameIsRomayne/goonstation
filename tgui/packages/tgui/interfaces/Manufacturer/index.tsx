@@ -225,8 +225,8 @@ export const Manufacturer = (_, context) => {
                 <CardInfo
                   actionCardLogin={actionCardLogin}
                   actionCardLogout={actionCardLogout}
-                  card_owner={data.card_owner}
-                  card_balance={data.card_balance}
+                  card_owner={data.card.card_owner}
+                  card_balance={data.card.card_balance}
                 />
               </Stack.Item>
               <Stack.Item>

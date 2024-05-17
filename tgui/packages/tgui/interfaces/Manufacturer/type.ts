@@ -10,7 +10,6 @@ import { BooleanLike } from "common/react";
 export type ManufacturerData = {
   all_categories:string[];
 
-  card_owner:string;
   error:string;
   fabricator_name:string;
   mode: 'working' | 'halt' | 'ready';
@@ -26,7 +25,6 @@ export type ManufacturerData = {
   panel_open:BooleanLike;
   repeat:BooleanLike;
 
-  card_balance:number;
   progress_pct:number;
   speed:number;
   manudrive_uses_left:number;
@@ -35,6 +33,7 @@ export type ManufacturerData = {
   max_speed_hacked:number;
   wire_bitflags:number;
 
+  card:Card;
   manudrive:Manudrive;
   indicators:WireIndicatorsData;
 
@@ -42,6 +41,11 @@ export type ManufacturerData = {
   rockboxes:RockboxData[];
   queue:QueueBlueprint[];
   wires:number[];
+}
+
+export type Card = {
+  card_balance:number;
+  card_owner:string;
 }
 
 export type Manudrive = {
