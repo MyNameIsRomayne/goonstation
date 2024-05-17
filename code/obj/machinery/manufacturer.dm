@@ -1685,6 +1685,7 @@ TYPEINFO(/obj/machinery/manufacturer)
 					return src.manudrive.fablimit - MD.num_working
 		return 0 // none loaded
 
+	/// Tries to start producting the frontmost item in the queue.
 	proc/begin_work(new_production = TRUE)
 		src.error = null
 		if (status & NOPOWER || status & BROKEN)
@@ -1756,7 +1757,7 @@ TYPEINFO(/obj/machinery/manufacturer)
 						src.error = "The inserted ManuDrive is unable to operate further."
 						src.visible_message(SPAN_ALERT("[src] emits an angry buzz!"))
 						src.queue = list()
-						return
+						return FALSE
 					else
 						MD.num_working++
 					manudrive_file = MD
@@ -2985,8 +2986,7 @@ TYPEINFO(/obj/machinery/manufacturer)
 		..()
 		MA.action_bar = null
 		if (src.completed && length(MA.queue))
-			SPAWN(0.1 SECONDS)
-				MA.begin_work(TRUE)
+			MA.begin_work(TRUE)
 
 /// Pre-build the icons for things manufacturers make
 /proc/build_manufacturer_icons()
