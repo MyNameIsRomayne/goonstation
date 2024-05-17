@@ -1688,7 +1688,7 @@ TYPEINFO(/obj/machinery/manufacturer)
 	/// Tries to start producting the frontmost item in the queue.
 	proc/begin_work(new_production = TRUE)
 		src.error = null
-		if (status & NOPOWER || status & BROKEN)
+		if (src.is_disabled())
 			return
 		if (!length(src.queue))
 			src.mode = MODE_READY
