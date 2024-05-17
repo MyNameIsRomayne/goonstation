@@ -59,7 +59,6 @@ TYPEINFO(/obj/machinery/manufacturer)
 	var/time_started = 0 //! time the last blueprint was queued
 	var/speed = DEFAULT_SPEED
 	var/repeat = FALSE
-	var/manual_stop = FALSE
 	var/output_cap = 20
 	var/list/queue = list()
 
@@ -208,7 +207,6 @@ TYPEINFO(/obj/machinery/manufacturer)
 				src.output_loop(src.queue[1])
 				SPAWN(0)
 					if (length(src.queue) < 1)
-						src.manual_stop = 0
 						playsound(src.loc, src.sound_happy, 50, 1)
 						src.visible_message(SPAN_NOTICE("[src] finishes its production queue."))
 						src.mode = MODE_READY
@@ -222,7 +220,6 @@ TYPEINFO(/obj/machinery/manufacturer)
 				src.queue -= src.queue[1]
 
 		if (length(src.queue) < 1)
-			src.manual_stop = 0
 			playsound(src.loc, src.sound_happy, 50, 1)
 			src.visible_message(SPAN_NOTICE("[src] finishes its production queue."))
 			src.mode = MODE_READY
@@ -1693,7 +1690,6 @@ TYPEINFO(/obj/machinery/manufacturer)
 		if (status & NOPOWER || status & BROKEN)
 			return
 		if (!length(src.queue))
-			src.manual_stop = 0
 			src.mode = MODE_READY
 			src.build_icon()
 			return
@@ -2963,7 +2959,6 @@ TYPEINFO(/obj/machinery/manufacturer)
 	onInterrupt()
 		..()
 		MA.time_left = src.duration - (TIME - src.started)
-		MA.manual_stop = FALSE
 		MA.error = null
 		MA.mode = MODE_READY
 		MA.build_icon()
