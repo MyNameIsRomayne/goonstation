@@ -1634,6 +1634,16 @@ TYPEINFO(/obj/machinery/manufacturer)
 		playsound(src.loc, src.sound_grump, 50, 1)
 		src.build_icon()
 
+	/// Tell the manudrive that we queued up one of its recipes. Returns the computer file for the blueprint if successful, false otherwise.
+	proc/manudrive_add_working(var/datum/manufacture/M)
+		if (!src.manudrive)
+			return FALSE
+		for (var/datum/computer/file/manudrive/MD in src.manudrive.root.contents)
+			if (M in MD.drivestored)
+				MD.num_working++
+				return MD
+		return FALSE
+
 	/// Tries to start producing the first item in the queue.
 	proc/begin_work(var/new_production = TRUE)
 		// Ensure can produce the manufacture
@@ -1682,13 +1692,13 @@ TYPEINFO(/obj/machinery/manufacturer)
 			src.time_left /= src.speed
 			src.original_duration = src.time_left
 
-
-		if(src.manudrive && src.queue[1] in src.drive_recipes)
+		var/datum/computer/file/manudrive/manudrive_file = null
+		if(src.manudrive && (M in src.drive_recipes))
 			if (src.get_drive_uses_left() == 0)
 				src.grump_error("The inserted ManuDrive is unable to operate further.", MODE_READY)
 				src.clear_queue()
 				return
-			MD.num_working++
+			manudrive_file = src.manudrive_add_working(M)
 
 		playsound(src.loc, src.sound_beginwork, 50, 1, 0, 3)
 		src.mode = MODE_WORKING
