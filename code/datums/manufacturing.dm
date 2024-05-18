@@ -1,3 +1,7 @@
+#define ALL_ITEMS 0 //! produce everything each time
+#define RANDOM_ITEMS 1 //! choose a random one of our outputs each time we create a new thing
+#define FOCUS_ONE_RANDOM_ITEM 2 //! choose one of the outputs and produce as many of that as we should
+
 proc/get_nice_mat_name_for_manufacturers(mat)
 	if(mat in material_category_names)
 		return material_category_names[mat]
@@ -14,7 +18,7 @@ ABSTRACT_TYPE(/datum/manufacture)
 	var/list/item_names = list()   // Player-read name of each material
 	var/list/item_amounts = list() // How many of each material is needed
 	var/list/item_outputs = list() // What the schematic outputs
-	var/randomise_output = 0
+	var/output_method = ALL_ITEMS
 	// 0 - will create each item in the list once per loop (see manufacturer.dm Line 755)
 	// 1 - will pick() a random item in the list once per loop
 	// 2 - will pick() a random item before the loop begins then output one of the selected item each loop
@@ -3637,3 +3641,7 @@ ABSTRACT_TYPE(/datum/manufacture/pod/weapon)
 	time = 8 SECONDS
 	create = 1
 	category = "Tool"
+
+#undef ALL_ITEMS
+#undef RANDOM_ITEMS
+#undef FOCUS_ONE_RANDOM_ITEM

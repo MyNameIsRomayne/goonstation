@@ -14,6 +14,10 @@
 #define ALL_BLUEPRINTS (src.available + src.download + src.hidden + src.drive_recipes)
 #define AVAILABLE_BLUEPRINTS (src.available + src.download + src.drive_recipes + (src.hacked ? src.hidden : null))
 #define ORE_TAX(price) round(max(rockbox_globals.rockbox_client_fee_min,abs(price*rockbox_globals.rockbox_client_fee_pct/100)),0.01)
+// Manufacturer random output defines
+#define ALL_ITEMS 0 //! produce everything each time
+#define RANDOM_ITEMS 1 //! choose a random one of our outputs each time we create a new thing
+#define FOCUS_ONE_RANDOM_ITEM 2 //! choose one of the outputs and produce as many of that as we should
 
 TYPEINFO(/obj/machinery/manufacturer)
 	mats = 20
@@ -60,7 +64,7 @@ TYPEINFO(/obj/machinery/manufacturer)
 	var/time_started = 0 //! time the last blueprint was queued
 	var/speed = DEFAULT_SPEED
 	var/repeat = FALSE
-	var/output_cap = 20
+	var/output_cap = 20 //! maximum amount of things we can make at once
 	var/list/queue = list()
 
 	// Resources/materials
@@ -207,10 +211,12 @@ TYPEINFO(/obj/machinery/manufacturer)
 
 	proc/finish_work()
 		if(length(src.queue))
-			output_loop(src.queue[1])
+			try_output_product(src.queue[1])
 			if (!src.repeat)
 				src.queue -= src.queue[1]
 
+		//if (src.completed && length(MA.queue))
+		//	MA.begin_work(TRUE)
 		if (length(src.queue) < 1)
 			playsound(src.loc, src.sound_happy, 50, 1)
 			src.visible_message(SPAN_NOTICE("[src] finishes its production queue."))
@@ -1627,7 +1633,7 @@ TYPEINFO(/obj/machinery/manufacturer)
 		return 0 // none loaded
 
 	// Lower the amount of fabrications allowed, for when we produce something with a manudrive
-	proc/claim_use_manudrive(var/datum/computer/file/manudrive/manudrive_file/MF)
+	proc/claim_use_manudrive(var/datum/computer/file/manudrive/MF)
 		if(!MF)
 			return
 		MF.num_working--
@@ -1639,11 +1645,11 @@ TYPEINFO(/obj/machinery/manufacturer)
 			MF.fablimit--
 
 	/// Clear a reserved slot on the manudrive file, for when we stop producing something that uses a manudrive charge
-	proc/free_manudrive_usage(var/datum/computer/file/manudrive/manudrive_file/MF)
+	proc/free_manudrive_usage(var/datum/computer/file/manudrive/MF)
 		if(!MF)
 			return
-		src.manudrive_file.num_working--
-		if(src.manudrive_file.num_working < 0)
+		MF.num_working--
+		if(MF.num_working < 0)
 			CRASH("Manudrive num_working negative.")
 
 	/// Handle erroring for issues which are causes without any immediate user
@@ -1722,41 +1728,32 @@ TYPEINFO(/obj/machinery/manufacturer)
 		actions.start_and_wait(src.action_bar, src)
 
 
-	proc/output_loop(datum/manufacture/M)
-
+	proc/try_output_product(datum/manufacture/M)
 		if (!istype(M,/datum/manufacture/))
 			return
-
 		if (length(M.item_outputs) <= 0)
 			return
-		var/mcheck = check_enough_materials(M)
-		if(mcheck)
-			var/make = clamp(M.create, 0, src.output_cap)
-			switch(M.randomise_output)
-				if(1) // pick a new item each loop
-					while (make > 0)
-						src.dispense_product(pick(M.item_outputs),M)
-						make--
-				if(2) // get a random item from the list and produce it
-					var/to_make = pick(M.item_outputs)
-					while (make > 0)
-						src.dispense_product(to_make,M)
-						make--
-				else // produce every item in the list once per loop
-					while (make > 0)
-						for (var/X in M.item_outputs)
-							src.dispense_product(X,M)
-						make--
+		if(!check_enough_materials(M))
+			src.grump_error("Insufficient usable materials to continue queue production.")
+			return
 
-			src.remove_materials(M)
-		else
-			src.mode = MODE_HALT
-			src.error = "Insufficient usable materials to continue queue production."
-			src.visible_message(SPAN_ALERT("[src] emits an angry buzz!"))
-			playsound(src.loc, src.sound_grump, 50, 1)
-			src.build_icon()
-
-		return
+		var/make = clamp(M.create, 0, src.output_cap)
+		switch(M.output_method)
+			if(ALL_ITEMS)
+				while (make > 0)
+					for (var/X in M.item_outputs)
+						src.dispense_product(X,M)
+					make--
+			if(RANDOM_ITEMS)
+				while (make > 0)
+					src.dispense_product(pick(M.item_outputs),M)
+					make--
+			if(FOCUS_ONE_RANDOM_ITEM)
+				var/to_make = pick(M.item_outputs)
+				while (make > 0)
+					src.dispense_product(to_make,M)
+					make--
+		src.remove_materials(M)
 
 	proc/dispense_product(product,datum/manufacture/M)
 		if (ispath(product))
@@ -2923,8 +2920,6 @@ TYPEINFO(/obj/machinery/manufacturer)
 		src.completed = TRUE
 		MA.claim_use_manudrive(manudrive_file)
 		MA.finish_work()
-		if (src.completed && length(MA.queue))
-			MA.begin_work(TRUE)
 
 	onDelete()
 		..()
@@ -2964,3 +2959,6 @@ TYPEINFO(/obj/machinery/manufacturer)
 #undef ALL_BLUEPRINTS
 #undef AVAILABLE_BLUEPRINTS
 #undef ORE_TAX
+#undef ALL_ITEMS
+#undef RANDOM_ITEMS
+#undef FOCUS_ONE_RANDOM_ITEM
