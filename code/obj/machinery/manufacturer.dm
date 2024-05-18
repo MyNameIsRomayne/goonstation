@@ -1651,13 +1651,9 @@ TYPEINFO(/obj/machinery/manufacturer)
 			src.mode = MODE_READY
 			src.build_icon()
 			return
-		if (!istype(src.queue[1],/datum/manufacture/))
-			src.grump_error("Corrupted entry purged from production queue.")
-			src.queue -= src.queue[1]
-			return
 		var/datum/manufacture/M = src.queue[1]
 		//Wire: Fix for href exploit creating arbitrary items
-		if (!(M in AVAILABLE_BLUEPRINTS))
+		if (!istype(src.queue[1], /datum/manufacture/) || !(M in AVAILABLE_BLUEPRINTS))
 			src.grump_error("Corrupted entry purged from production queue.")
 			src.queue -= src.queue[1]
 			return
