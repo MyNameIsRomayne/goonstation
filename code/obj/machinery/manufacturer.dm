@@ -1646,12 +1646,6 @@ TYPEINFO(/obj/machinery/manufacturer)
 
 	/// Tries to start producing the first item in the queue.
 	proc/begin_work(var/new_production = TRUE)
-		// Ensure can produce the manufacture
-		// Ensure no href exploit by checking if it is in list
-		// Flip out
-		// Handle new production
-		// Handle manudrive
-		// Handle starting fabrication
 		src.error = null
 		if (src.is_disabled())
 			boutput(world, "is_disabled hit")
