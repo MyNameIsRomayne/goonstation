@@ -487,9 +487,8 @@ TYPEINFO(/obj/machinery/manufacturer)
 			return TRUE
 
 	/// Clear src.queue but not the current working print if it exists
+	/// This is currently overhead but may have use in the future if queue behavior ever needs conditions or changing
 	proc/clear_queue()
-		if (!length(src.queue))
-			return
 		src.queue = list()
 
 	/// Try to shock the target if the machine is electrified, returns whether or not the target got shocked
@@ -1628,8 +1627,8 @@ TYPEINFO(/obj/machinery/manufacturer)
 		return 0 // none loaded
 
 	/// Handle erroring for issues which are causes without any immediate user
-	proc/grump_error(var/message)
-		src.mode = MODE_HALT
+	proc/grump_error(var/message, var/set_mode = MODE_HALT)
+		src.mode = set_mode
 		src.error = message
 		src.visible_message(SPAN_ALERT("[src] emits an angry buzz!"))
 		playsound(src.loc, src.sound_grump, 50, 1)
@@ -1687,21 +1686,13 @@ TYPEINFO(/obj/machinery/manufacturer)
 			src.time_left /= src.speed
 			src.original_duration = src.time_left
 
-		var/datum/computer/file/manudrive/manudrive_file = null
-		if(src.manudrive)
-			if(src.queue[1] in src.drive_recipes)
-				var/obj/item/disk/data/floppy/manudrive/ManuD = src.manudrive
-				for (var/datum/computer/file/manudrive/MD in ManuD.root.contents)
-					if(MD.fablimit != -1 && MD.fablimit - MD.num_working <= 0)
-						src.mode = MODE_READY
-						playsound(src.loc, src.sound_grump, 50, 1)
-						src.error = "The inserted ManuDrive is unable to operate further."
-						src.visible_message(SPAN_ALERT("[src] emits an angry buzz!"))
-						src.queue = list()
-						return FALSE
-					else
-						MD.num_working++
-					manudrive_file = MD
+
+		if(src.manudrive && src.queue[1] in src.drive_recipes)
+			if (src.get_drive_uses_left() == 0)
+				src.grump_error("The inserted ManuDrive is unable to operate further.", MODE_READY)
+				src.clear_queue()
+				return
+			MD.num_working++
 
 		playsound(src.loc, src.sound_beginwork, 50, 1, 0, 3)
 		src.mode = MODE_WORKING
