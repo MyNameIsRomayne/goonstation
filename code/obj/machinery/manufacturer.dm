@@ -12,6 +12,7 @@
 #define MAX_SPEED_HACKED 5 //! maximum speed manufacturers which are hacked (WIRE_EXTEND has been pulsed) can be set to
 #define MAX_SPEED_DAMAGED 8 //! maximum speed that fabricators which flip_out() can be set to, randomly.
 #define ALL_BLUEPRINTS (src.available + src.download + src.hidden + src.drive_recipes)
+#define AVAILABLE_BLUEPRINTS (src.available + src.download + src.drive_recipes + (src.hacked ? src.hidden : null))
 #define ORE_TAX(price) round(max(rockbox_globals.rockbox_client_fee_min,abs(price*rockbox_globals.rockbox_client_fee_pct/100)),0.01)
 
 TYPEINFO(/obj/machinery/manufacturer)
@@ -98,11 +99,17 @@ TYPEINFO(/obj/machinery/manufacturer)
 	var/static/list/text_bad_output_adjective = list("janky","crooked","warped","shoddy","shabby","lousy","crappy","shitty")
 	var/datum/action/action_bar = null
 
+	// Performance stuff
+	var/list/speed_power_consumption = list() //! 750 * (src.speed ** 2) list generated in New() corresponding to this formula
+
 	New()
 		START_TRACKING
 		..()
 		MAKE_SENDER_RADIO_PACKET_COMPONENT(src.net_id, null, src.frequency)
 		src.net_id = generate_net_id(src)
+
+		for (var/i in MIN_SPEED to MAX_SPEED_DAMAGED)
+			speed_power_consumption[i] = 750 * (i ** 2)
 
 		if(!src.link)
 			var/turf/T = get_turf(src)
@@ -1620,48 +1627,50 @@ TYPEINFO(/obj/machinery/manufacturer)
 					return src.manudrive.fablimit - MD.num_working
 		return 0 // none loaded
 
-	/// Tries to start producting the frontmost item in the queue.
-	proc/begin_work(new_production = TRUE)
+	/// Handle erroring for issues which are causes without any immediate user
+	proc/grump_error(var/message)
+		src.mode = MODE_HALT
+		src.error = message
+		src.visible_message(SPAN_ALERT("[src] emits an angry buzz!"))
+		playsound(src.loc, src.sound_grump, 50, 1)
+		src.build_icon()
+
+	/// Tries to start producing the first item in the queue.
+	proc/begin_work(var/new_production = TRUE)
+		// Ensure can produce the manufacture
+		// Ensure no href exploit by checking if it is in list
+		// Flip out
+		// Handle new production
+		// Handle manudrive
+		// Handle starting fabrication
 		src.error = null
 		if (src.is_disabled())
+			boutput(world, "is_disabled hit")
 			return
 		if (!length(src.queue))
+			boutput(world, "!length(src.queue) hit")
 			src.mode = MODE_READY
 			src.build_icon()
 			return
 		if (!istype(src.queue[1],/datum/manufacture/))
-			src.mode = MODE_HALT
-			src.error = "Corrupted entry purged from production queue."
+			src.grump_error("Corrupted entry purged from production queue.")
 			src.queue -= src.queue[1]
-			src.visible_message(SPAN_ALERT("[src] emits an angry buzz!"))
-			playsound(src.loc, src.sound_grump, 50, 1)
-			src.build_icon()
 			return
 		var/datum/manufacture/M = src.queue[1]
 		//Wire: Fix for href exploit creating arbitrary items
-		if (!(M in ALL_BLUEPRINTS) || (!src.hacked && (M in src.hidden)))
-			src.mode = MODE_HALT
-			src.error = "Corrupted entry purged from production queue."
+		if (!(M in AVAILABLE_BLUEPRINTS))
+			src.grump_error("Corrupted entry purged from production queue.")
 			src.queue -= src.queue[1]
-			src.visible_message(SPAN_ALERT("[src] emits an angry buzz!"))
-			playsound(src.loc, src.sound_grump, 50, 1)
-			src.build_icon()
 			return
-
 		if (src.malfunction && prob(40))
 			src.flip_out()
 		if (new_production)
 			var/list/mats_used = check_enough_materials(M)
 			if (!mats_used)
-				src.mode = MODE_HALT
-				src.error = "Insufficient usable materials to continue queue production."
-				src.visible_message(SPAN_ALERT("[src] emits an angry buzz!"))
-				playsound(src.loc, src.sound_grump, 50, 1)
-				src.build_icon()
+				src.grump_error("Insufficient usable materials to continue queue production.")
 				return
 			else
 				src.materials_in_use = mats_used
-
 			/*  speed/power usage
 				spd   time    new     old (1500 * speed * 1.5)
 				1:    10.0s     750   2250
@@ -1669,17 +1678,15 @@ TYPEINFO(/obj/machinery/manufacturer)
 				3:     3.3s    6750   6750
 				4:     2.5s   12000   9000
 				5:     2.0s   18750  11250  */
-			src.active_power_consumption = 750 * (src.speed ** 2)
-			// new item began fabrication, setup time variables
-			if (new_production)
-				src.time_left = M.time
-				src.time_started = TIME
-				if (src.malfunction)
-					src.active_power_consumption += 3000
-					src.time_left += rand(2,6)
-					src.time_left *= 1.5
-				src.time_left /= src.speed
-				src.original_duration = src.time_left
+			src.active_power_consumption = src.speed_power_consumption[src.speed]
+			src.time_left = M.time
+			src.time_started = TIME
+			if (src.malfunction)
+				src.active_power_consumption += 3000
+				src.time_left += rand(2,6)
+				src.time_left *= 1.5
+			src.time_left /= src.speed
+			src.original_duration = src.time_left
 
 		var/datum/computer/file/manudrive/manudrive_file = null
 		if(src.manudrive)
