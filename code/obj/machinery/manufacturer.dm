@@ -109,7 +109,7 @@ TYPEINFO(/obj/machinery/manufacturer)
 		src.net_id = generate_net_id(src)
 
 		for (var/i in MIN_SPEED to MAX_SPEED_DAMAGED)
-			speed_power_consumption[i] = 750 * (i ** 2)
+			speed_power_consumption += 750 * (i ** 2)
 
 		if(!src.link)
 			var/turf/T = get_turf(src)
@@ -1271,7 +1271,7 @@ TYPEINFO(/obj/machinery/manufacturer)
 					return
 
 				var/datum/manufacture/item_bp
-				for (var/datum/manufacture/bp in src.available + src.download + src.drive_recipes + (src.hacked ? src.hidden : null))
+				for (var/datum/manufacture/bp in AVAILABLE_BLUEPRINTS)
 					if (bp.name == item_name)
 						item_bp = bp
 						break
@@ -1698,7 +1698,8 @@ TYPEINFO(/obj/machinery/manufacturer)
 		src.mode = MODE_WORKING
 		src.build_icon()
 
-		src.action_bar = actions.start(new/datum/action/bar/manufacturer(src, src.time_left, manudrive_file), src)
+		src.action_bar = new/datum/action/bar/manufacturer(src, src.time_left, manudrive_file)
+		actions.start_and_wait(src.action_bar, src)
 
 
 	proc/output_loop(datum/manufacture/M)
@@ -2952,4 +2953,5 @@ TYPEINFO(/obj/machinery/manufacturer)
 #undef MAX_SPEED_HACKED
 #undef MAX_SPEED_DAMAGED
 #undef ALL_BLUEPRINTS
+#undef AVAILABLE_BLUEPRINTS
 #undef ORE_TAX
