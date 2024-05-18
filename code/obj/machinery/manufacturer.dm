@@ -1672,12 +1672,12 @@ TYPEINFO(/obj/machinery/manufacturer)
 			else
 				src.materials_in_use = mats_used
 			/*  speed/power usage
-				spd   time    new     old (1500 * speed * 1.5)
-				1:    10.0s     750   2250
-				2:     5.0s    3000   4500
-				3:     3.3s    6750   6750
-				4:     2.5s   12000   9000
-				5:     2.0s   18750  11250  */
+				spd   time    power
+				1:    10.0s     750
+				2:     5.0s    3000
+				3:     3.3s    6750
+				4:     2.5s   12000
+				5:     2.0s   18750  */
 			src.active_power_consumption = src.speed_power_consumption[src.speed]
 			src.time_left = M.time
 			src.time_started = TIME
