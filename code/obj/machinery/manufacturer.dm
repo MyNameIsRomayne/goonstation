@@ -1626,6 +1626,26 @@ TYPEINFO(/obj/machinery/manufacturer)
 					return src.manudrive.fablimit - MD.num_working
 		return 0 // none loaded
 
+	// Lower the amount of fabrications allowed, for when we produce something with a manudrive
+	proc/claim_use_manudrive(var/datum/computer/file/manudrive/manudrive_file/MF)
+		if(!MF)
+			return
+		MF.num_working--
+		if(MF.num_working < 0)
+			CRASH("Manudrive num_working negative.")
+		if(MF.fablimit == 0)
+			CRASH("Manudrive fablimit 0.")
+		else if(MF.fablimit > 0)
+			MF.fablimit--
+
+	/// Clear a reserved slot on the manudrive file, for when we stop producing something that uses a manudrive charge
+	proc/free_manudrive_usage(var/datum/computer/file/manudrive/manudrive_file/MF)
+		if(!MF)
+			return
+		src.manudrive_file.num_working--
+		if(src.manudrive_file.num_working < 0)
+			CRASH("Manudrive num_working negative.")
+
 	/// Handle erroring for issues which are causes without any immediate user
 	proc/grump_error(var/message, var/set_mode = MODE_HALT)
 		src.mode = set_mode
@@ -2896,30 +2916,19 @@ TYPEINFO(/obj/machinery/manufacturer)
 		MA.error = null
 		MA.mode = MODE_READY
 		MA.build_icon()
-		if(src.manudrive_file)
-			src.manudrive_file.num_working--
-			if(src.manudrive_file.num_working < 0)
-				CRASH("Manudrive num_working negative.")
+		MA.free_manudrive_usage(manudrive_file)
 
 	onEnd()
 		..()
 		src.completed = TRUE
-		if(src.manudrive_file)
-			src.manudrive_file.num_working--
-			if(src.manudrive_file.num_working < 0)
-				CRASH("Manudrive num_working negative.")
-			if(src.manudrive_file.fablimit == 0)
-				CRASH("Manudrive fablimit 0.")
-			else if(src.manudrive_file.fablimit > 0)
-				src.manudrive_file.fablimit--
+		MA.claim_use_manudrive(manudrive_file)
 		MA.finish_work()
-		// call dispense
+		if (src.completed && length(MA.queue))
+			MA.begin_work(TRUE)
 
 	onDelete()
 		..()
 		MA.action_bar = null
-		if (src.completed && length(MA.queue))
-			MA.begin_work(TRUE)
 
 /// Pre-build the icons for things manufacturers make
 /proc/build_manufacturer_icons()
