@@ -1662,14 +1662,14 @@ TYPEINFO(/obj/machinery/manufacturer)
 			else
 				src.materials_in_use = mats_used
 
-			// speed/power usage
-			// spd   time    new     old (1500 * speed * 1.5)
-			// 1:    10.0s     750   2250
-			// 2:     5.0s    3000   4500
-			// 3:     3.3s    6750   6750
-			// 4:     2.5s   12000   9000
-			// 5:     2.0s   18750  11250
-			src.active_power_consumption = 750 * src.speed ** 2
+			/*  speed/power usage
+				spd   time    new     old (1500 * speed * 1.5)
+				1:    10.0s     750   2250
+				2:     5.0s    3000   4500
+				3:     3.3s    6750   6750
+				4:     2.5s   12000   9000
+				5:     2.0s   18750  11250  */
+			src.active_power_consumption = 750 * (src.speed ** 2)
 			// new item began fabrication, setup time variables
 			if (new_production)
 				src.time_left = M.time
