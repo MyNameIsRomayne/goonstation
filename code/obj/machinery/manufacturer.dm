@@ -653,9 +653,11 @@ TYPEINFO(/obj/machinery/manufacturer)
 						return
 					if (!check_enough_materials(src.queue[1]))
 						src.grump_message(usr, "ERROR: Insufficient usable materials to manufacture first item in queue.", sound = TRUE)
-					else
-						src.begin_work( new_production = TRUE )
-						src.time_started = TIME
+						return
+					actions.start(src.action_bar, src)
+					src.time_started = TIME
+					src.mode = MODE_WORKING
+					src.build_icon()
 					return TRUE
 				else if (params["action"] == "pause")
 					src.mode = MODE_HALT
@@ -1726,6 +1728,8 @@ TYPEINFO(/obj/machinery/manufacturer)
 
 		src.action_bar = new/datum/action/bar/manufacturer(src, src.time_left, manudrive_file)
 		if (actions.start_and_wait(src.action_bar, src))
+			qdel(src.action_bar)
+			boutput(world, "looping begin_work")
 			src.begin_work(new_production = TRUE)
 
 
@@ -2892,6 +2896,8 @@ TYPEINFO(/obj/machinery/manufacturer)
 	var/obj/machinery/manufacturer/MA
 	var/completed = FALSE
 	var/datum/computer/file/manudrive/manudrive_file
+	interrupt_flags = INTERRUPT_NONE
+	resumable = TRUE
 
 	New(machine, dur, datum/computer/file/manudrive/manudrive_file)
 		MA = machine
@@ -2908,13 +2914,18 @@ TYPEINFO(/obj/machinery/manufacturer)
 			interrupt(INTERRUPT_ALWAYS)
 			return
 
-	onInterrupt()
+	onInterrupt(_, var/can_resume = TRUE)
 		..()
 		MA.time_left = src.duration - (TIME - src.started)
 		MA.error = null
 		MA.mode = MODE_READY
 		MA.build_icon()
 		MA.free_manudrive_usage(manudrive_file)
+		if (can_resume)
+			src.state = ACTIONSTATE_INTERRUPTED
+
+	onResume()
+		..()
 
 	onEnd()
 		..()
