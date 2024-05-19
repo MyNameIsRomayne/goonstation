@@ -1676,6 +1676,8 @@ TYPEINFO(/obj/machinery/manufacturer)
 			src.mode = MODE_READY
 			src.build_icon()
 			return
+		if (!isnull(src.action_bar))
+			return
 		src.error = null
 		if (src.is_disabled())
 			return
