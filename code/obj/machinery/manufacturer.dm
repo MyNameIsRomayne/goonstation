@@ -1672,14 +1672,12 @@ TYPEINFO(/obj/machinery/manufacturer)
 
 	/// Tries to start producing the first item in the queue.
 	proc/begin_work(var/new_production = TRUE)
-		src.error = null
-		if (src.is_disabled())
-			boutput(world, "is_disabled hit")
-			return
 		if (!length(src.queue))
-			boutput(world, "!length(src.queue) hit")
 			src.mode = MODE_READY
 			src.build_icon()
+			return
+		src.error = null
+		if (src.is_disabled())
 			return
 		var/datum/manufacture/M = src.queue[1]
 		//Wire: Fix for href exploit creating arbitrary items
@@ -1725,7 +1723,8 @@ TYPEINFO(/obj/machinery/manufacturer)
 		src.build_icon()
 
 		src.action_bar = new/datum/action/bar/manufacturer(src, src.time_left, manudrive_file)
-		actions.start_and_wait(src.action_bar, src)
+		if (actions.start_and_wait(src.action_bar, src))
+			src.begin_work(new_production = TRUE)
 
 
 	proc/try_output_product(datum/manufacture/M)
