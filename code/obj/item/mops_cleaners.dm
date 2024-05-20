@@ -895,7 +895,7 @@ TRASH BAG
 // handheld vacuum
 
 TYPEINFO(/obj/item/handheld_vacuum)
-	mats = (manufacturing_requirement_cache["bamboo"]=3, /datum/manufacturing_requirement/metal=10)
+	mats = (/datum/manufacturing_requirement/exact_material/bamboo, /datum/manufacturing_requirement/metal=10)
 
 /obj/item/handheld_vacuum
 	name = "handheld vacuum"

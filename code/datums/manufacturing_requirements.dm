@@ -21,6 +21,7 @@ var/global/list/manufacturing_requirement_cache
 	return manufacturing_requirement_cache?[material_id]
 
 ABSTRACT_TYPE(/datum/manufacturing_requirement)
+ABSTRACT_TYPE(/datum/manufacturing_requirement/exact_material)
 /datum/manufacturing_requirement
 	/// Player-facing name of the requirement.
 	var/name = "Unknown"
@@ -69,113 +70,80 @@ ABSTRACT_TYPE(/datum/manufacturing_requirement)
 	   These are subtypes so only one instance is needed.
                     PLEASE ALPHABETIZE THANKS
 ***************************************************************/
-
 	exact_material
+		/// All you need to do is define the material id. we can take it from there ;P
+		New()
+			var/datum/material/M = getMaterial(src.id)
+			src.name = initial(M.name)
+			src.material_id = initial(src.id)
+		blob
+			id = "blob"
 
-		New(var/material_id)
-			var/datum/material/M = getMaterial(material_id)
-			name = initial(M.name)
-			material_id = initial(M.getID())
-			id = initial(M.getID())
-	blob
-		name = "Blob"
-		material_id = "blob"
-		id = "blob"
+		butt
+			id = "butt"
+		cardboard
+			id = "cardboard"
 
-	butt
-		name = "Butt"
-		material_id = "butt"
-		id = "butt"
-	cardboard
-		name = "Cardboard"
-		material_id = "cardboard"
-		id = "cardboard"
+		cerenkite
+			id = "cerenkite"
 
-	cerenkite
-		name = "Cerenkite"
-		material_id = "cerenkite"
-		id = "cerenkite"
+		char
+			id = "char"
 
-	char
-		name = "Char"
-		material_id = "char"
-		id = "char"
+		cobryl
+			id = "cobryl"
 
-	cobryl
-		name = "Cobryl"
-		material_id = "cobryl"
-		id = "cobryl"
+		ectoplasm
+			id = "ectoplasm"
 
-	ectoplasm
-		name = "Ectoplasm"
-		material_id = "ectoplasm"
-		id = "ectoplasm"
+		electrum
+			id = "electrum"
 
-	electrum
-		name = "Electrum"
-		material_id = "electrum"
+		erebite
+			id = "erebite"
 
-	erebite
-		name = "Erebite"
-		material_id = "erebite"
+		exoweave
+			id = "exoweave"
 
-	exoweave
-		name = "ExoWeave"
-		material_id = "exoweave"
+		gold
+			id = "gold"
 
-	gold
-		name = "Gold"
-		material_id = "gold"
+		honey
+			id = "honey"
 
-	honey
-		name = "Honey"
-		material_id = "honey"
+		ice
+			id = "ice"
 
-	ice
-		name = "Ice"
-		material_id = "ice"
+		koshmarite
+			id = "koshmarite"
 
-	koshmarite
-		name = "Koshmarite"
-		material_id = "koshmarite"
+		miracle
+			id = "miracle"
+		molitz
+			id = "molitz"
 
-	miracle
-		name = "Miracle Matter"
-		material_id = "miracle"
-	molitz
-		name = "Molitz"
-		material_id = "molitz"
+		neutronium
+			id = "neutronium"
 
-	neutronium
-		name = "Neutronium"
-		material_id = "neutronium"
+		pharosium
+			id = "pharosium"
 
-	pharosium
-		name = "Pharosium"
-		material_id = "pharosium"
+		plasmastone
+			id = "plasmastone"
 
-	plasmastone
-		name = "Plasmastone"
-		material_id = "plasmastone"
+		starstone
+			id = "starstone"
+		syreline
+			id = "Syreline"
 
-	starstone
-		name = "Starstone"
-		material_id = "starstone"
-	syreline
-		name = "Syreline"
-		material_id = "Syreline"
+		telecrystal
+			id = "telecrystal"
 
-	telecrystal
-		name = "Telecrystal"
-		material_id = "telecrystal"
+		uqill
+			id = "uqill"
 
-	uqill
-		name = "Uqill"
-		material_id = "uqill"
-
-	viscerite
-		name = "Viscerite"
-		material_id = "viscerite"
+		viscerite
+			id = "viscerite"
 
 /***************************************************************
                       MATERIAL PROPERTIES
