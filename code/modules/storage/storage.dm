@@ -352,7 +352,15 @@
 /datum/storage/proc/add_contents(obj/item/I, mob/user = null, visible = TRUE)
 	if (I in user?.equipped_list())
 		user.u_equip(I)
-	src.stored_items += I
+	// Check if we could stack this into some other item of the same type first
+	var/stacked = FALSE
+	for (var/obj/item/stored_item in src.stored_items)
+		if (stored_item.stack_item(I) != 0)
+			stacked = TRUE
+			I = stored_item
+			break
+	if (!stacked)
+		src.stored_items += I
 	I.set_loc(src.linked_item, FALSE)
 	src.hud.add_item(I, user)
 	I.stored = src
