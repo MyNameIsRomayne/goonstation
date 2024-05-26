@@ -2394,6 +2394,7 @@ var/datum/preMapLoad/preMapLoad = new
 #include "code\WorkInProgress\KingInYellow.dm"
 #include "code\WorkInProgress\kyle-nonsense.dm"
 #include "code\WorkInProgress\laundry.dm"
+#include "code\WorkInProgress\loader.dm"
 #include "code\WorkInProgress\mantaObjects.dm"
 #include "code\WorkInProgress\MarqStuff.dm"
 #include "code\WorkInProgress\missile_latejoin.dm"
