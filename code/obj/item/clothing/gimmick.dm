@@ -101,7 +101,7 @@
 			return 0
 		if (ishuman(user))
 			var/mob/living/carbon/human/H = user
-			if (istype(H.w_uniform, /obj/item/clothing/under/gimmick/owl) && !(user.stat || user.getStatusDuration("paralysis")))
+			if (istype(H.w_uniform, /obj/item/clothing/under/gimmick/owl) && !(user.stat || user.getStatusDuration("unconscious")))
 				user.visible_message(SPAN_ALERT("<b>[user] hoots loudly!</b>"))
 				user.owlgib()
 				return 1
@@ -262,7 +262,7 @@ TYPEINFO(/obj/item/clothing/under/gimmick/fake_waldo)
 	item_state = "headset" // lol
 
 /obj/item/clothing/under/gimmick/police
-	name = "police uniform"
+	name = "guard uniform"
 	desc = "Move along, nothing to see here."
 	icon_state = "police"
 	item_state = "police"

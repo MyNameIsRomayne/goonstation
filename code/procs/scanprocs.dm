@@ -552,7 +552,7 @@
 
 		if (!isnull(H.gloves))
 			var/obj/item/clothing/gloves/WG = H.gloves
-			if (WG.glove_ID)
+			if (WG.glove_ID && !(WG.no_prints))
 				glove_data += "[WG.glove_ID] ([SPAN_NOTICE("[H]'s worn [WG.name]")])"
 			if (!WG.hide_prints)
 				fingerprint_data += "<br>[SPAN_NOTICE("[H]'s fingerprints:")] [H.bioHolder.fingerprints]"
@@ -679,20 +679,10 @@
 			if (G.glove_ID)
 				glove_data += "[G.glove_ID] [G.material_prints ? "([G.material_prints])" : null]"
 
-		if (istype(A, /obj/item/casing/))
-			var/obj/item/casing/C = A
-			if(C.forensic_ID)
-				forensic_data += "<br>[SPAN_NOTICE("Forensic profile of [C]:")] [C.forensic_ID]"
-
-		if (istype(A, /obj/item/implant/projectile))
-			var/obj/item/implant/projectile/P = A
-			if(P.forensic_ID)
-				forensic_data += "<br>[SPAN_NOTICE("Forensic profile of [P]:")] [P.forensic_ID]"
-
-		if (istype(A, /obj/item/gun))
-			var/obj/item/gun/G = A
-			if(G.forensic_ID)
-				forensic_data += "<br>[SPAN_NOTICE("Forensic profile of [G]:")] [G.forensic_ID]"
+		if (istype(A, /obj))
+			var/obj/O = A
+			if(O.forensic_ID)
+				forensic_data += "<br>[SPAN_NOTICE("Forensic profile of [O]:")] [O.forensic_ID]"
 
 		if (istype(A, /turf/simulated/wall))
 			var/turf/simulated/wall/W = A

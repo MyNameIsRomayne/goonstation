@@ -85,10 +85,19 @@
 			src.add_topping(W, user, params)
 		return ..()
 
-	/// Used to pick the pizza up by click dragging a topping to you, in case the pizza is covered in toppings
-	proc/indirect_pickup(var/topping, mob/user, atom/over_object)
-		if (user == over_object && in_interact_range(src, user) && can_act(user))
+	MouseDrop_T(obj/item/W, mob/user, src_location, over_location, over_control, src_control, params)
+		if (isitem(W) && !isintangible(user) && in_interact_range(W, user) && in_interact_range(src, user))
+			return src.Attackby(W, user, params2list(params))
+		return ..()
+
+	/// Handles toppings being dragged around
+	proc/indirect_pickup(var/obj/item/topping, mob/user, atom/over_object)
+		if (!in_interact_range(src, user) || !can_act(user))
+			return
+		if (user == over_object)
 			src.Attackhand(user)
+		else if (over_object == src || isturf(over_object))
+			src.remove_topping(topping)
 
 	/// Adds a topping to the pizza
 	proc/add_topping(var/obj/item/topping, var/mob/user, var/list/params = null)
@@ -147,18 +156,18 @@
 	Eat(mob/M as mob, mob/user, by_matter_eater = TRUE)
 		if(!by_matter_eater)
 			return 0
-		var/obj/item/reagent_containers/food/snacks/pizza/unbaked_pizza = src.bake_pizza(TRUE)
+		var/obj/item/reagent_containers/food/snacks/pizza/bespoke/unbaked_pizza = src.bake_pizza(TRUE)
 		return unbaked_pizza.Eat(M, user, TRUE)
 
 	temperature_expose(datum/gas_mixture/air, temperature, volume)
 		if (temperature >= T0C+3200) // syndicate zippos and raging plasmafires, for laughs
-			var/obj/item/reagent_containers/food/snacks/pizza/baked_pizza = src.bake_pizza()
+			var/obj/item/reagent_containers/food/snacks/pizza/bespoke/baked_pizza = src.bake_pizza()
 			baked_pizza.visible_message(SPAN_NOTICE("\The [baked_pizza.name] roasts from heat!"))
 			baked_pizza.quality = 5
 		. = ..()
 
 	proc/bake_pizza(var/matter_eater_fake_bake = FALSE)
-		var/obj/item/reagent_containers/food/snacks/pizza/baked_pizza = new(src.loc)
+		var/obj/item/reagent_containers/food/snacks/pizza/bespoke/baked_pizza = new(src.loc)
 
 		//locate a potential chef
 		var/mob/living/carbon/human/baker
@@ -287,9 +296,10 @@
 
 		return baked_pizza
 
+ABSTRACT_TYPE(/obj/item/reagent_containers/food/snacks/pizza)
 /obj/item/reagent_containers/food/snacks/pizza
 	name = "pizza"
-	desc = "A sauceless, cheeseless pizza."
+	desc = "A sauceless, cheeseless pizza (you shouldn't see this)."
 	icon = 'icons/obj/foodNdrink/food_meals.dmi'
 	icon_state = "pizzacrust"
 	fill_amt = 1
@@ -356,9 +366,14 @@
 			pizza_slice.mat_changedesc = 1
 		..()
 
+/obj/item/reagent_containers/food/snacks/pizza/bespoke
+	desc = "A sauceless, cheeseless pizza."
+	slice_product = /obj/item/reagent_containers/food/snacks/pizzaslice/bespoke
+
+ABSTRACT_TYPE(/obj/item/reagent_containers/food/snacks/pizzaslice)
 /obj/item/reagent_containers/food/snacks/pizzaslice
 	name = "pizza slice"
-	desc = "A slice of cheeseless, sauceless pizza."
+	desc = "A slice of cheeseless, sauceless pizza (you shouldn't see this)."
 	icon = 'icons/obj/foodNdrink/food_meals.dmi'
 	icon_state = "pizzacrustslice"
 	fill_amt = 1
@@ -419,13 +434,17 @@
 				H.implant.Add(src)
 				src.visible_message(SPAN_ALERT("[src] gets embedded in [H]!"))
 				playsound(src.loc, 'sound/impact_sounds/Flesh_Cut_1.ogg', 100, 1)
-				H.changeStatus("weakened", 2 SECONDS)
+				H.changeStatus("knockdown", 2 SECONDS)
 				src.set_loc(H)
 				src.transfer_all_reagents(H)
 			random_brute_damage(hit_atom, 11)
 			take_bleeding_damage(hit_atom, null, 25, DAMAGE_STAB)
 		. = ..()
 
+/obj/item/reagent_containers/food/snacks/pizzaslice/bespoke
+	desc = "A slice of sauceless, cheeseless pizza."
+
+ABSTRACT_TYPE(/obj/item/reagent_containers/food/snacks/pizza/standard)
 /obj/item/reagent_containers/food/snacks/pizza/standard
 	name = "fresh basic pizza"
 	desc = "Base non-bespoke oven pizza (you shouldn't see this)."
@@ -464,6 +483,7 @@
 	initial_reagents = list("bread" = 10, "juice_tomato" = 10, "cheese" = 5, "space_fungus" = 20)
 	slice_product = /obj/item/reagent_containers/food/snacks/pizzaslice/standard/mushroom
 
+ABSTRACT_TYPE(/obj/item/reagent_containers/food/snacks/pizza/vendor)
 /obj/item/reagent_containers/food/snacks/pizza/vendor
 	name = "vendor pizza"
 	desc = "Base vendor pizza (you shouldn't see this)."
@@ -509,6 +529,7 @@
 	initial_reagents = list("bread" = 5, "juice_tomato" = 5, "cheese" = 5, "juice_pineapple" = 15, "badgrease" = 20)
 	slice_product = /obj/item/reagent_containers/food/snacks/pizzaslice/vendor/pineapple
 
+ABSTRACT_TYPE(/obj/item/reagent_containers/food/snacks/pizzaslice/standard)
 /obj/item/reagent_containers/food/snacks/pizzaslice/standard
 	name = "slice of fresh basic pizza"
 	desc = "A slice of base oven pizza (you shouldn't see this)."
@@ -537,8 +558,9 @@
 	desc = "A cheesy pizza slice topped with fresh picked mushrooms."
 	initial_reagents = list("bread" = 2, "juice_tomato" = 2, "cheese" = 1, "space_fungus" = 4)
 
-/obj/item/reagent_containers/food/snacks/pizzaslice/standard
-	name = "slice of fresh basic pizza"
+ABSTRACT_TYPE(/obj/item/reagent_containers/food/snacks/pizzaslice/vendor)
+/obj/item/reagent_containers/food/snacks/pizzaslice/vendor
+	name = "slice of basic pizza"
 	desc = "A slice of base vendor pizza (you shouldn't see this)."
 	fill_amt = 1
 	bites_left = 1
@@ -571,6 +593,7 @@
 	contraband = 1
 	initial_reagents = list("bread" = 1, "juice_tomato" = 1, "cheese" = 1, "juice_pineapple" = 3, "badgrease" = 4)
 
+ABSTRACT_TYPE(/obj/item/reagent_containers/food/snacks/pizza/cargo)
 /obj/item/reagent_containers/food/snacks/pizza/cargo
 	name = "soft serve base pizza"
 	desc = "A pizza shipped from god knows where straight to cargo."
