@@ -10,10 +10,6 @@
 /obj/machinery/conveyor/WE,
 /turf/unsimulated/floor/plating,
 /area/factory/outside)
-"d" = (
-/obj/ore_patch,
-/turf/unsimulated/grass,
-/area/factory/outside)
 "e" = (
 /obj/railing/orange/reinforced{
 	dir = 4
@@ -175,9 +171,19 @@
 /obj/machinery/conveyor/NS,
 /turf/unsimulated/floor/plating,
 /area/factory/outside)
+"O" = (
+/obj/machinery/loader,
+/turf/unsimulated/floor,
+/area/factory/outside)
 "P" = (
 /obj/railing/orange/reinforced{
 	dir = 4
+	},
+/turf/unsimulated/floor,
+/area/factory/outside)
+"Q" = (
+/obj/machinery/loader{
+	load_dir = 2
 	},
 /turf/unsimulated/floor,
 /area/factory/outside)
@@ -46270,9 +46276,9 @@ a
 a
 a
 a
-d
-d
-d
+a
+a
+a
 a
 V
 J
@@ -46572,9 +46578,9 @@ a
 a
 a
 a
-d
-d
-d
+a
+a
+a
 a
 C
 G
@@ -46585,7 +46591,7 @@ G
 G
 G
 G
-G
+Q
 M
 G
 G
@@ -46874,9 +46880,9 @@ a
 a
 a
 a
-d
-d
-d
+a
+a
+a
 a
 C
 S
@@ -46891,7 +46897,7 @@ X
 X
 X
 X
-y
+O
 T
 a
 a

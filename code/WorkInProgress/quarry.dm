@@ -4,7 +4,7 @@
 	name = "quarry"
 	desc = "description whenever you yell at 1-800-IMCODER"
 	icon = 'icons/obj/items/mining.dmi'
-	icon_state = "hedron-MtoW"
+	icon_state = "pickaxe"
 
 	/// List of resources this quarry will output. Should be generated from planet composition, but doesnt exist yet
 	/// TODO: Quarries generate mats from some factors based off seed/planet
@@ -49,7 +49,8 @@
 			CRASH("Somehow, the ores to output this tick for [src] is [integer_output]. bad!")
 		for (var/i in 1 to integer_output)
 			/// TODO: replace with weighted pick, or deterministic one-ore output system
-			var/obj/item/raw_mat = new pick(src.output_resources)
-			set_loc(raw_mat, src.output_turf)
+			var/ore_type = pick(src.output_resources)
+			var/obj/item/raw_mat = new ore_type
+			raw_mat.set_loc(src.output_turf)
 
 #undef MAX_ORES_PER_TICK
