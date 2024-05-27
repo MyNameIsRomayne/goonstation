@@ -352,7 +352,6 @@
 			break
 	if (!stacked)
 		src.stored_items += I
-	src.stored_items += I
 	I.set_loc(src.linked_item, FALSE)
 	src.hud.add_item(I, user)
 	I.stored = src

@@ -3562,6 +3562,14 @@ ABSTRACT_TYPE(/area/station/catwalk)
 	sound_environment = 13
 	do_not_irradiate = TRUE
 
+ABSTRACT_TYPE(/area/factory)
+/area/factory
+
+/area/factory/outside
+	name = "Outdoors factory"
+	icon_state = "park"
+	ambient_light = CENTCOM_LIGHT
+
 /area/station/routing/depot
  name = "Routing Depot"
 

@@ -5,7 +5,6 @@
 	name = "The very conceptulization of free rocks"
 	desc = "You shouldn't be seeing this! Report it to a coder."
 
-
 /obj/item/coder_button
 	name = "Var Detector 9000"
 	desc = "Use this to sniff out variables on anything!!!"
