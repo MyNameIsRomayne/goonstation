@@ -3568,8 +3568,9 @@ ABSTRACT_TYPE(/area/factory)
 /area/factory/outside
 	name = "Outdoors factory"
 	icon_state = "park"
-	ambient_light = CENTCOM_LIGHT
+	ambient_light = rgb(255, 255, 255)
 	requires_power = FALSE
+	filler_turf = "/turf/unsimulated/nicegrass/random"
 
 /area/station/routing/depot
  name = "Routing Depot"

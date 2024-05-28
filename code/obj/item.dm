@@ -671,9 +671,10 @@ ADMIN_INTERACT_PROCS(/obj/item, proc/admin_set_stack_amount)
 
 	return 1
 
-/obj/item/proc/split_stack(var/toRemove)
+/obj/item/proc/split_stack(var/toRemove, var/new_loc = null)
 	if(toRemove >= src.amount || toRemove < 1) return null
-	var/obj/item/P = new src.type(src.loc)
+	if (isnull(new_loc)) new_loc = src.loc
+	var/obj/item/P = new src.type(new_loc)
 
 	if(src.material)
 		P.setMaterial(src.material, mutable = src.material.isMutable())

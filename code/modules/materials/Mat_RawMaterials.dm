@@ -4,7 +4,7 @@
 	desc = "Some sort of processed material bar."
 	icon = 'icons/obj/materials.dmi'
 	icon_state = "bar"
-	max_stack = INFINITY
+	max_stack = 1
 	stack_type = /obj/item/material_piece
 	/// used for prefab bars
 	default_material = null

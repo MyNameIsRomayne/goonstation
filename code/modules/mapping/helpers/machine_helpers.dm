@@ -17,6 +17,7 @@ ABSTRACT_TYPE(/obj/mapping_helper/machine_output)
 			if (istype(M, /obj/machinery/conveyor/loader))
 				var/obj/machinery/conveyor/loader/load = M
 				load.load_dir = src.output_dir
+				load.dir = src.output_dir
 				load.get_load_target()
 				load.UpdateIcon()
 		..()
