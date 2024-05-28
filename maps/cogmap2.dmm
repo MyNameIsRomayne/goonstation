@@ -2987,7 +2987,7 @@
 /turf/simulated/floor/airless/plating/damaged3,
 /area/station/solar/small_backup2)
 "ajA" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/plating/airless,
 /area/station/solar/small_backup2)
 "ajC" = (
@@ -4813,7 +4813,7 @@
 /turf/simulated/floor/engine,
 /area/station/hallway/secondary/construction)
 "apt" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/plating/scorched,
 /area/station/hallway/secondary/construction)
 "apu" = (
@@ -9749,7 +9749,7 @@
 /turf/simulated/floor/yellow/side,
 /area/station/storage/primary)
 "aCG" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/yellow/side{
 	dir = 6
 	},
@@ -25899,7 +25899,7 @@
 /turf/simulated/floor/blue/corner,
 /area/station/medical/medbay/surgery/storage)
 "byF" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/shuttlebay,
 /area/station/hangar/main)
 "byG" = (
@@ -35614,7 +35614,7 @@
 /turf/simulated/floor/grime,
 /area/station/routing/engine)
 "bYp" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/disposalpipe/segment/mail/vertical,
 /turf/simulated/floor/grime,
 /area/station/routing/engine)
@@ -40644,7 +40644,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/light_switch/east,
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/plating,
 /area/station/science/construction)
 "cot" = (
@@ -42346,7 +42346,7 @@
 	},
 /area/station/medical/robotics)
 "ctx" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/plating,
 /area/station/medical/robotics)
 "cty" = (
@@ -42554,7 +42554,7 @@
 "ctU" = (
 /obj/disposalpipe/segment,
 /obj/machinery/light,
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/shuttlebay{
 	name = "reinforced plating"
 	},
@@ -43027,7 +43027,7 @@
 	},
 /area/station/janitor/office)
 "cvy" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/plating,
 /area/station/engine/elect)
 "cvz" = (
@@ -47693,7 +47693,7 @@
 /turf/simulated/floor/plating/damaged2,
 /area/station/quartermaster/office)
 "cKb" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/plating/scorched,
 /area/station/quartermaster/office)
 "cKd" = (
@@ -48605,7 +48605,7 @@
 /turf/simulated/floor,
 /area/station/mining/staff_room)
 "cNj" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/plating,
 /area/station/mining/staff_room)
 "cNk" = (
@@ -51448,7 +51448,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
 "cXi" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/airless/plating/damaged3,
 /area/station/mining/magnet)
 "cXj" = (
@@ -52901,7 +52901,7 @@
 	},
 /area/station/quartermaster/office)
 "dce" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/machinery/light_switch/east,
 /turf/simulated/floor/blueblack{
 	dir = 6
@@ -57048,7 +57048,7 @@
 	name = "Engineering Control Room"
 	})
 "eaR" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/machinery/light{
 	dir = 4;
 	layer = 9.1;
@@ -65999,7 +65999,7 @@
 /turf/simulated/floor/plating,
 /area/station/turret_protected/ai)
 "nnF" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/machinery/light{
 	dir = 1;
 	layer = 9.1;

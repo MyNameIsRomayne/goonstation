@@ -234,7 +234,7 @@
 	name = "GLOMAR Salvager"
 	})
 "G" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/plating/scorched,
 /area/evilreaver/storage/engineering{
 	name = "GLOMAR Salvager"

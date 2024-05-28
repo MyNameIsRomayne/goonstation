@@ -14,6 +14,16 @@
 #define ALL_BLUEPRINTS (src.available + src.download + src.hidden + src.drive_recipes)
 #define ORE_TAX(price) round(max(rockbox_globals.rockbox_client_fee_min,abs(price*rockbox_globals.rockbox_client_fee_pct/100)),0.01)
 
+/datum/storage/no_hud/manufacturer
+
+	add_contents(obj/item/I, mob/user, visible)
+		var/ref = "\ref[I]"
+		var/obj/machinery/manufacturer/M = src.linked_item
+		// checking material not null should always pass for material_piece subtypes
+		if (isnull(M.material_patterns_by_ref[ref]) || I.material.isMutable())
+			M.material_patterns_by_ref[ref] = M.get_patterns_material_satisfies(I.material)
+		. = ..()
+
 TYPEINFO(/obj/machinery/manufacturer)
 	mats = 20
 
@@ -74,6 +84,7 @@ TYPEINFO(/obj/machinery/manufacturer)
 	var/list/material_patterns_by_ref = list() //! Helper list which stores all the material patterns each loaded material satisfies, by ref to the piece
 
 	// Production options
+	var/shuts_up_about_some_error
 	var/search = null
 	var/category = null
 	var/list/categories = list("Tool", "Clothing", "Resource", "Component", "Machinery", "Medicine", "Miscellaneous", "Downloaded")
@@ -124,6 +135,9 @@ TYPEINFO(/obj/machinery/manufacturer)
 		src.work_display = image('icons/obj/manufacturer.dmi', "")
 		src.activity_display = image('icons/obj/manufacturer.dmi', "")
 		src.panel_sprite = image('icons/obj/manufacturer.dmi', "")
+
+		src.create_storage(/datum/storage/no_hud/manufacturer, can_hold=list(/obj/item/material_piece), slots=10)
+
 		SPAWN(0)
 			src.build_icon()
 
@@ -1954,8 +1968,6 @@ TYPEINFO(/obj/machinery/manufacturer)
 	/// Safely gets our storage contents. In case someone does something like load materials into the machine before we have initialized our storage
 	/// Also ejects things w/o material or that aren't pieces, to ensure safety
 	proc/get_contents()
-		if (isnull(src.storage))
-			src.create_storage(/datum/storage/no_hud, can_hold=list(/obj/item/material_piece))
 		var/list/storage_contents = src.storage.get_contents()
 		for (var/obj/item/I as anything in storage_contents)
 			if (!istype(I, /obj/item/material_piece) || isnull(I.material))
@@ -2120,6 +2132,26 @@ TYPEINFO(/obj/machinery/manufacturer)
 
 
 // Fabricator Defines
+/obj/machinery/manufacturer/factory
+	name = "factory manufacturer"
+	supplemental_desc = "the barebones."
+	repeat = TRUE
+	free_resources = list()
+	available = list(/datum/manufacture/metal,
+		/datum/manufacture/metalR,
+		/datum/manufacture/rods2,
+		/datum/manufacture/glass,
+		/datum/manufacture/glassR,
+	)
+
+	New()
+		..()
+		src.queue = list(src.available[1])
+
+	process()
+		if (src.mode != MODE_WORKING)
+			src.begin_work( new_production = TRUE )
+		..()
 
 /obj/machinery/manufacturer/general
 	name = "general manufacturer"

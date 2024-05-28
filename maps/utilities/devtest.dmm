@@ -919,7 +919,7 @@
 /turf/simulated/floor,
 /area/station/devzone)
 "mH" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/orangeblack,
 /area/station/devzone)
 "mM" = (
@@ -1237,7 +1237,7 @@
 /turf/simulated/floor,
 /area/station/devzone)
 "qm" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/bluewhite{
 	dir = 5
 	},
@@ -3130,7 +3130,7 @@
 /turf/simulated/floor,
 /area/station/devzone)
 "OM" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor,
 /area/station/devzone)
 "OO" = (

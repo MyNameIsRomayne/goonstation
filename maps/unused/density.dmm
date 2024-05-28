@@ -1984,7 +1984,7 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/cold{
 	dir = 10
 	},
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/engine,
 /area/station/engine/elect)
 "eW" = (
@@ -4954,7 +4954,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/central)
 "lB" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/white,
 /area/station/medical/research)
 "lC" = (

@@ -2863,7 +2863,7 @@
 /turf/space/fluid/noexplosion/nospawn,
 /area/dank_trench)
 "it" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/decal/cleanable/dirt/jen,
 /turf/unsimulated/floor/plating,
 /area/dank_trench)

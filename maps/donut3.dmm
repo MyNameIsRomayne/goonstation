@@ -5147,7 +5147,7 @@
 /turf/simulated/floor/plating/jen,
 /area/station/maintenance/inner/sw)
 "buG" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/decal/stripe_caution,
 /obj/disposalpipe/segment/mail{
 	dir = 4
@@ -7667,7 +7667,7 @@
 	pixel_x = 23;
 	pixel_y = 11
 	},
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor,
 /area/station/quartermaster/office)
 "chq" = (
@@ -17625,7 +17625,7 @@
 /turf/simulated/floor,
 /area/station/quartermaster/office)
 "fjS" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/decal/mule/beacon,
 /turf/simulated/floor,
 /area/station/hangar/main)
@@ -24844,7 +24844,7 @@
 /turf/simulated/floor/plating/jen,
 /area/station/crew_quarters/arcade/dungeon)
 "hsU" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/decal/stripe_caution,
 /obj/machinery/light_switch/north{
 	pixel_x = -4
@@ -25117,7 +25117,7 @@
 	dir = 1;
 	icon_state = "line1"
 	},
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/black,
 /area/station/mining/staff_room)
 "hvP" = (
@@ -43431,7 +43431,7 @@
 /turf/simulated/floor/grey,
 /area/station/science/lab)
 "ndN" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/black,
 /area/station/medical/robotics)
 "ndT" = (
@@ -65844,7 +65844,7 @@
 	},
 /area/station/medical/medbay/lobby)
 "tSo" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/decal/stripe_caution,
 /turf/simulated/floor/orangeblack,
 /area/station/engine/elect)
@@ -78522,7 +78522,7 @@
 /turf/simulated/wall/auto/reinforced/jen,
 /area/station/library/reading1)
 "xBV" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/decal/stripe_caution,
 /turf/simulated/floor/plating/jen,
 /area/station/science/gen_storage)

@@ -301,7 +301,7 @@ ADMIN_INTERACT_PROCS(/obj/whitehole, proc/admin_activate)
 			/obj/storage/crate/loot = 4,
 			/mob/living/carbon/human/normal/miner = 0.1,
 			/obj/item/raw_material/scrap_metal = 4,
-			/obj/machinery/portable_reclaimer = 1,
+			/obj/machinery/material_processor = 1,
 			/obj/item/mining_tool/powered/drill = 0.5,
 			/obj/item/mining_tool/powered/pickaxe = 0.5,
 			/obj/item/mining_tool/powered/shovel = 0.5,

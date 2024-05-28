@@ -10860,9 +10860,9 @@
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/station/crew_quarters/hor)
 "aFG" = (
-/obj/machinery/portable_reclaimer{
+/obj/machinery/material_processor{
 	desc = "A sophisticated piece of machinery that quickly processes minerals into bars. This one seems to be a bit cranky.";
-	name = "cranky old portable reclaimer"
+	name = "cranky old material processor"
 	},
 /turf/simulated/floor/plating/random,
 /area/station/maintenance/upperstarboard)
@@ -14443,7 +14443,7 @@
 	dir = 2;
 	icon_state = "pipe-c"
 	},
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor,
 /area/station/hangar/port)
 "aPQ" = (
@@ -21498,7 +21498,7 @@
 	dir = 8;
 	pixel_x = -24
 	},
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor,
 /area/station/hangar/starboard)
 "bjc" = (
@@ -28234,7 +28234,7 @@
 /turf/simulated/floor/industrial,
 /area/station/mining/refinery)
 "bBt" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/decal/cleanable/dirt/jen,
 /obj/decal/cleanable/dirt/dirt2,
 /turf/simulated/floor/industrial,
@@ -32276,7 +32276,7 @@
 /turf/simulated/floor/plating,
 /area/station/engine/power)
 "bNJ" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/plating/random,
 /area/station/maintenance/lowerport)
 "bNK" = (
@@ -33043,7 +33043,7 @@
 /turf/simulated/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen/therustykrab)
 "cVW" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor,
 /area/station/quartermaster/cargobay)
 "cYe" = (
@@ -34321,7 +34321,7 @@
 /turf/simulated/floor,
 /area/station/hallway/centralhallway)
 "fvY" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/machinery/light/incandescent/netural{
 	dir = 8;
 	nostick = 1;
@@ -39273,7 +39273,7 @@
 /turf/simulated/floor/orange,
 /area/station/mining/staff_room)
 "rdx" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/machinery/light/incandescent/netural{
 	dir = 8;
 	pixel_x = -10
@@ -42190,7 +42190,7 @@
 /turf/simulated/floor/longtile,
 /area/station/bridge)
 "yam" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/machinery/light/incandescent/cool{
 	dir = 1;
 	nostick = 1;

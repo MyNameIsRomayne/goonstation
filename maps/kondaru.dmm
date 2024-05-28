@@ -4299,7 +4299,7 @@
 	},
 /area/station/hangar/main)
 "apy" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/machinery/camera{
 	c_tag = "autotag";
 	dir = 10;
@@ -13777,7 +13777,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/east)
 "bdD" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/yellow/side,
 /area/station/engine/elect)
 "bdF" = (
@@ -19092,7 +19092,7 @@
 	},
 /area/station/hallway/primary/south)
 "bBc" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/grey,
 /area/station/mining/refinery)
 "bBd" = (
@@ -22715,7 +22715,7 @@
 /turf/simulated/floor,
 /area/station/quartermaster/office)
 "bNd" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/grey,
 /area/station/quartermaster/office)
 "bNe" = (
@@ -32269,7 +32269,7 @@
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/station/hangar/sec)
 "dPr" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/machinery/light_switch/east,
 /turf/simulated/floor/black,
 /area/station/medical/robotics)
@@ -33798,7 +33798,7 @@
 	layer = 9.1;
 	pixel_x = 10
 	},
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/orangeblack/side{
 	dir = 4
 	},

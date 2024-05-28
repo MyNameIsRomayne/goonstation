@@ -68037,7 +68037,7 @@
 /turf/unsimulated/floor/caution/north,
 /area/drone/office)
 "qfs" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/unsimulated/floor/plating,
 /area/hospital/underground)
 "qfG" = (

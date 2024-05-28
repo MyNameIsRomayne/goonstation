@@ -1,5 +1,5 @@
-/obj/machinery/portable_reclaimer
-	name = "reclaimer"
+/obj/machinery/material_processor
+	name = "material processor"
 	desc = "A sophisticated piece of machinery can process raw materials, scrap, and material sheets into bars."
 	icon = 'icons/obj/scrap.dmi'
 	icon_state = "reclaimer"
@@ -36,6 +36,10 @@
 		icon_state = "reclaimer"
 		src.visible_message("<b>[src]</b> finishes working and shuts down.")
 
+	process(var/mult)
+		if (length(src.storage.get_contents()) > 0)
+			src.smelt_contents()
+
 	proc/smelt_contents()
 		if (src.active)
 			return
@@ -60,8 +64,6 @@
 			else
 				src.output_bar_from_item(I, 1 / I.material_amt)
 				qdel(I)
-
-			sleep(smelt_interval)
 
 		src.active = FALSE
 		if (reject)
@@ -180,11 +182,11 @@
 
 		if(over_object == src)
 			output_location = null
-			boutput(usr, SPAN_NOTICE("You reset the reclaimer's output target."))
+			boutput(usr, SPAN_NOTICE("You reset the processor's output target."))
 			return
 
 		if(BOUNDS_DIST(over_object, src) > 0)
-			boutput(usr, SPAN_ALERT("The reclaimer is too far away from the target!"))
+			boutput(usr, SPAN_ALERT("The processor is too far away from the target!"))
 			return
 
 		if(BOUNDS_DIST(over_object, usr) > 0)
@@ -197,7 +199,7 @@
 				boutput(usr, SPAN_ALERT("You can't use a currently unopenable crate as an output target."))
 			else
 				src.output_location = over_object
-				boutput(usr, SPAN_NOTICE("You set the reclaimer to output to [over_object]!"))
+				boutput(usr, SPAN_NOTICE("You set the processor to output to [over_object]!"))
 
 		else if (istype(over_object,/obj/storage/cart/))
 			var/obj/storage/cart/C = over_object
@@ -205,7 +207,7 @@
 				boutput(usr, SPAN_ALERT("You can't use a currently unopenable cart as an output target."))
 			else
 				src.output_location = over_object
-				boutput(usr, SPAN_NOTICE("You set the reclaimer to output to [over_object]!"))
+				boutput(usr, SPAN_NOTICE("You set the processor to output to [over_object]!"))
 
 		else if (istype(over_object,/obj/machinery/manufacturer/))
 			var/obj/machinery/manufacturer/M = over_object
@@ -213,16 +215,16 @@
 				boutput(usr, SPAN_ALERT("You can't use a non-functioning manufacturer as an output target."))
 			else
 				src.output_location = M
-				boutput(usr, SPAN_NOTICE("You set the reclaimer to output to [over_object]!"))
+				boutput(usr, SPAN_NOTICE("You set the processor to output to [over_object]!"))
 
 		else if (istype(over_object,/obj/table/) && istype(over_object,/obj/rack/))
 			var/obj/O = over_object
 			src.output_location = O.loc
-			boutput(usr, SPAN_NOTICE("You set the reclaimer to output on top of [O]!"))
+			boutput(usr, SPAN_NOTICE("You set the processor to output on top of [O]!"))
 
 		else if (istype(over_object,/turf/simulated/floor/))
 			src.output_location = over_object
-			boutput(usr, SPAN_NOTICE("You set the reclaimer to output to [over_object]!"))
+			boutput(usr, SPAN_NOTICE("You set the processor to output to [over_object]!"))
 
 		else
 			boutput(usr, SPAN_ALERT("You can't use that as an output target."))
@@ -233,7 +235,7 @@
 			return
 
 		if(!isliving(user))
-			boutput(user, SPAN_ALERT("Only living mobs are able to use the reclaimer's quick-load feature."))
+			boutput(user, SPAN_ALERT("Only living mobs are able to use the processor's quick-load feature."))
 			return
 
 		if (!isobj(O))
@@ -320,6 +322,6 @@
 				return FALSE
 			var/accept = tgui_alert(user, "Possible intelligence detected. Are you sure you want to reclaim [I]?", "Incinerate brain?", list("Yes", "No")) == "Yes" && can_reach(user, src) && user.equipped() == I
 			if (accept)
-				logTheThing(LOG_COMBAT, user, "loads [brain] (owner's ckey [brain.owner ? brain.owner.ckey : null]) into a portable reclaimer.")
+				logTheThing(LOG_COMBAT, user, "loads [brain] (owner's ckey [brain.owner ? brain.owner.ckey : null]) into a material processor.")
 			return accept
 		return TRUE

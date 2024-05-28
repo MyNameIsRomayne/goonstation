@@ -3569,6 +3569,7 @@ ABSTRACT_TYPE(/area/factory)
 	name = "Outdoors factory"
 	icon_state = "park"
 	ambient_light = CENTCOM_LIGHT
+	requires_power = FALSE
 
 /area/station/routing/depot
  name = "Routing Depot"

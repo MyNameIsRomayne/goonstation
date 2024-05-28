@@ -343,7 +343,7 @@
 /turf/simulated/floor/neutral,
 /area/mining/miningoutpost)
 "bk" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/decal/cleanable/dirt,
 /turf/simulated/floor/neutral,
 /area/mining/miningoutpost)

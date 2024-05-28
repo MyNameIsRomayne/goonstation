@@ -2399,7 +2399,7 @@
 	},
 /area/mining/magnet)
 "fX" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/machinery/door_control{
 	id = "tene_crusher";
 	name = "Tenebrae Crusher Door";
@@ -3263,7 +3263,7 @@
 	},
 /area/station/quartermaster/office)
 "ia" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -3431,7 +3431,7 @@
 /turf/simulated/floor,
 /area/station/engine/elect)
 "it" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/yellow/side{
 	dir = 4
 	},
@@ -3932,7 +3932,7 @@
 /turf/simulated/floor/orangeblack,
 /area/station/mining/staff_room)
 "jH" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/orangeblack,
 /area/station/mining/staff_room)
 "jI" = (
@@ -5501,7 +5501,7 @@
 	name = "Maru Primary Zone"
 	})
 "na" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/machinery/door_control{
 	id = "maru_crusher";
 	name = "Maru Crusher Door";
@@ -6895,7 +6895,7 @@
 	name = "Hammer Primary Concourse"
 	})
 "pU" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/machinery/door_control{
 	id = "ham_crusher";
 	name = "Hammer Crusher Door";
@@ -9363,7 +9363,7 @@
 /turf/simulated/floor/grass,
 /area/station/hydroponics/bay)
 "vi" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor,
 /area/station/crew_quarters/cafeteria{
 	name = "Dionysus Primary Zone"
@@ -10712,7 +10712,7 @@
 	name = "Asclepius Primary Zone"
 	})
 "xV" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/machinery/door_control{
 	id = "asc_crusher";
 	name = "Asclepius Crusher Door";
@@ -14526,7 +14526,7 @@
 	name = "Meridian Primary Zone"
 	})
 "FY" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/machinery/light_switch/west,
 /turf/simulated/floor/plating,
 /area/station/maintenance/west{
@@ -20441,7 +20441,7 @@
 /turf/simulated/floor/specialroom/arcade,
 /area/station/science/chemistry)
 "Sl" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/machinery/door_control{
 	id = "erebus_crusher";
 	name = "Erebus Crusher Door";

@@ -21,7 +21,7 @@
 /turf/simulated/floor/plating/airless/asteroid/comet/iron,
 /area/prefab/mauxite_hideout)
 "eI" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/item/material_piece/mauxite,
 /obj/item/material_piece/mauxite,
 /turf/simulated/floor/airless/mauxite,

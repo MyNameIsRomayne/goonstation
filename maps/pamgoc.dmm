@@ -12749,7 +12749,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 9
 	},
@@ -31606,7 +31606,7 @@
 	name = "Storage Door Control";
 	pixel_x = 26
 	},
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
 	},
@@ -32006,7 +32006,7 @@
 /area/station/crew_quarters/hor)
 "bDB" = (
 /obj/machinery/firealarm/south,
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/plating,
 /area/station/storage/warehouse)
 "bDD" = (
@@ -33862,7 +33862,7 @@
 /turf/simulated/floor/carpet/grime,
 /area/station/crew_quarters/baroffice)
 "bIf" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
 	},
@@ -33923,7 +33923,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/disposalpipe/segment/morgue{
 	dir = 4;
 	icon_state = "pipe-c"
@@ -34652,7 +34652,7 @@
 	dir = 1;
 	pixel_y = 21
 	},
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/decal/stripe_delivery,
 /turf/simulated/floor,
 /area/station/mining/staff_room)
@@ -34854,7 +34854,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/yellow/side{
 	dir = 1
 	},
@@ -37052,7 +37052,7 @@
 /turf/simulated/floor/white,
 /area/station/science/lab)
 "bON" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -56641,7 +56641,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/southwest)
 "hor" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 8
 	},

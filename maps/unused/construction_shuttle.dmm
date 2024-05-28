@@ -135,7 +135,7 @@
 /turf/simulated/floor/shuttle,
 /area/shuttle/arrival/station)
 "aw" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/shuttle,
 /area/shuttle/arrival/station)
 "ax" = (

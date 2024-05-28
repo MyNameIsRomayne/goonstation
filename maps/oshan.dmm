@@ -2260,7 +2260,7 @@
 /turf/simulated/floor/black,
 /area/station/medical/robotics)
 "ahN" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/caution/west,
 /area/station/medical/robotics)
 "ahO" = (
@@ -11510,7 +11510,7 @@
 /area/station/hydroponics/bay)
 "aMJ" = (
 /obj/machinery/light/incandescent/warm,
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor,
 /area/station/hangar/main)
 "aML" = (
@@ -11990,7 +11990,7 @@
 /area/station/maintenance/east)
 "aOH" = (
 /obj/machinery/light/incandescent/small,
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/caution/north,
 /area/tech_outpost)
 "aOI" = (
@@ -12003,7 +12003,7 @@
 /turf/simulated/floor,
 /area/listeningpost)
 "aOJ" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor,
 /area/station/mining/staff_room)
 "aOK" = (
@@ -12014,7 +12014,7 @@
 /area/listeningpost)
 "aOL" = (
 /obj/machinery/light/incandescent/harsh,
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/shuttlebay{
 	name = "reinforced plating"
 	},
@@ -13541,7 +13541,7 @@
 /turf/space/fluid,
 /area/space)
 "aUa" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/space/fluid,
 /area/space)
 "aUb" = (
@@ -32086,7 +32086,7 @@
 /turf/simulated/floor/grime,
 /area/iss)
 "cDL" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/decal/stripe_caution,
 /obj/machinery/light_switch/north{
 	pixel_x = -4
@@ -45243,7 +45243,7 @@
 /turf/simulated/floor/purple,
 /area/station/science/lobby)
 "wgR" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/plating/random,
 /area/station/engine/elect)
 "whm" = (

@@ -3131,7 +3131,7 @@
 	pixel_y = 24
 	},
 /obj/machinery/light/incandescent,
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/caution/south,
 /area/station/quartermaster/office)
 "arX" = (
@@ -4048,7 +4048,7 @@
 /area/station/quartermaster/office)
 "awB" = (
 /obj/machinery/light/incandescent,
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/orangeblack/side{
 	dir = 8
 	},
@@ -14521,7 +14521,7 @@
 /turf/simulated/floor/yellow,
 /area/station/engine/elect)
 "bAH" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/yellow,
 /area/station/engine/elect)
 "bAI" = (
@@ -15762,7 +15762,7 @@
 /turf/simulated/floor/grime,
 /area/station/quartermaster/refinery)
 "bHt" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/plating/airless,
 /area/station/quartermaster/magnet)
 "bHw" = (
@@ -21047,7 +21047,7 @@
 /turf/simulated/floor/plating,
 /area/station/science/lab)
 "eKV" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor,
 /area/station/storage/tools)
 "eLs" = (
@@ -23823,7 +23823,7 @@
 	},
 /area/station/solar/south)
 "gFD" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/machinery/light/incandescent,
 /obj/decal/stripe_caution,
 /turf/simulated/floor,
@@ -31959,7 +31959,7 @@
 /turf/simulated/floor/specialroom/gym,
 /area/station/crew_quarters/fitness)
 "lQp" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/yellow/side,
 /area/station/engine/storage)
 "lQt" = (
@@ -36688,7 +36688,7 @@
 	},
 /area/station/science/lab)
 "oGb" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/item/device/radio/intercom/science{
 	dir = 4
 	},
@@ -36809,7 +36809,7 @@
 	},
 /area/station/security/checkpoint/arrivals)
 "oKu" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/grime,
 /area/station/quartermaster/refinery)
 "oKv" = (
@@ -49925,7 +49925,7 @@
 /turf/simulated/floor,
 /area/station/hangar/engine)
 "xbc" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/machinery/light/incandescent,
 /turf/simulated/floor/shuttlebay{
 	name = "reinforced plating"

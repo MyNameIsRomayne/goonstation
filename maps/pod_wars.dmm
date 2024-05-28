@@ -1019,7 +1019,7 @@
 /turf/simulated/floor/black,
 /area/pod_wars/spacejunk/reliant)
 "dm" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/yellow/side{
 	dir = 10
 	},
@@ -1304,7 +1304,7 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
 	},
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/unsimulated/floor{
 	icon_state = "floor"
 	},
@@ -3525,7 +3525,7 @@
 	},
 /area/space)
 "lV" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/unsimulated/floor/yellow/side{
 	dir = 9
 	},
@@ -3599,7 +3599,7 @@
 	},
 /area/pod_wars/team1/bridge)
 "mj" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/unsimulated/floor/yellow/side{
 	dir = 10
 	},
@@ -6264,7 +6264,7 @@
 /turf/unsimulated/floor/blue,
 /area/pod_wars/team1/bridge)
 "uE" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/machinery/light/incandescent/netural,
 /turf/unsimulated/floor/yellow/side{
 	dir = 8
@@ -6471,7 +6471,7 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 8
 	},
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/unsimulated/floor{
 	icon_state = "floor"
 	},
@@ -14089,7 +14089,7 @@
 /area/pod_wars/team2/hangar)
 "Vr" = (
 /obj/machinery/light/incandescent/netural,
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/unsimulated/floor/yellow/side,
 /area/pod_wars/team1/mining)
 "Vs" = (

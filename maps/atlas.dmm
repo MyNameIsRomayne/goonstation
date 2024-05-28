@@ -1602,7 +1602,7 @@
 	},
 /area/station/security/main)
 "afS" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/black,
 /area/station/storage/tools)
 "afT" = (
@@ -4249,7 +4249,7 @@
 /turf/simulated/floor,
 /area/station/hallway/primary/north)
 "arC" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/arrival{
 	dir = 4
 	},
@@ -8294,7 +8294,7 @@
 /area/station/mining/refinery)
 "aFG" = (
 /obj/machinery/light_switch/auto,
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/black,
 /area/station/medical/robotics)
 "aFH" = (
@@ -11402,7 +11402,7 @@
 	},
 /area/station/crew_quarters/heads)
 "aRM" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/grey/side{
 	dir = 4
 	},
@@ -17531,7 +17531,7 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
 	},
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/shuttlebay{
 	name = "reinforced plating"
 	},
@@ -20894,7 +20894,7 @@
 /area/station/crew_quarters/cafeteria)
 "wFl" = (
 /obj/machinery/firealarm/north,
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/stairs/wide{
 	dir = 4
 	},

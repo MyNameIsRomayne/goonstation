@@ -6745,7 +6745,7 @@
 /turf/simulated/floor/marble/black,
 /area/station/bridge)
 "Ss" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/plating/airless/asteroid,
 /area/station/quartermaster/magnet)
 "St" = (

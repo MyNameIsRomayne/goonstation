@@ -24,7 +24,7 @@
 /turf/simulated/floor/grime,
 /area/dmm_suite/clear_area)
 "C" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/grime,
 /area/dmm_suite/clear_area)
 "R" = (

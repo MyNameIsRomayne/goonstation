@@ -67,7 +67,7 @@
 	dir = 10
 	},
 /obj/decal/cleanable/dirt,
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/grime,
 /area/mining/refinery)
 "aT" = (
@@ -1029,7 +1029,7 @@
 /turf/simulated/floor/plating/damaged3,
 /area/noGenerate)
 "pT" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/caution/east,
 /area/tech_outpost)
 "qc" = (
@@ -6168,7 +6168,7 @@
 /turf/simulated/wall/auto/martian,
 /area/evilreaver/storage/tools)
 "Xs" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/yellow/side,
 /area/tech_outpost)
 "Xu" = (

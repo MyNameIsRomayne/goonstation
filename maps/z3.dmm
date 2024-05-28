@@ -8077,7 +8077,7 @@
 	},
 /area/derelict_ai_sat/solar)
 "aNR" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/cable{
 	icon_state = "4-8"
 	},

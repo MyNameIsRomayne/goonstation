@@ -585,7 +585,7 @@
 /turf/simulated/floor/shuttlebay,
 /area/shuttle/arrival/station)
 "yB" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/shuttle,
 /area/shuttle/arrival/station)
 "yL" = (

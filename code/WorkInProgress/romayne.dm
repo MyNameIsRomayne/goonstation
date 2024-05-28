@@ -71,7 +71,7 @@
 				else
 					used_vars[key] = parent_type
 
-				var/output_data = list(list("name"=key, "value"=value, "islist"=islist(value), "istype" = istype(path_vars[key], /datum)))
+				//var/output_data = list(list("name"=key, "value"=value, "islist"=islist(value), "istype" = istype(path_vars[key], /datum)))
 
 			qdel(path_instantiated)
 

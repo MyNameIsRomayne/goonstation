@@ -541,7 +541,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/disposalpipe/segment/transport{
 	dir = 4
 	},
@@ -2533,7 +2533,7 @@
 	},
 /area/russian/radiation)
 "aVJ" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/decal/cleanable/dirt,
 /turf/space,
 /area/russian/radiation)
@@ -3849,7 +3849,7 @@
 	},
 /area/russian/radiation)
 "bbW" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/disposalpipe/junction/left/east,
 /turf/simulated/floor/plating{
 	desc = " It is made of steel.";
@@ -6693,7 +6693,7 @@
 	},
 /area/station/mining/magnet)
 "bkX" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/disposalpipe/segment,
 /turf/simulated/floor/plating/airless/random{
 	broken = 1;
@@ -17087,7 +17087,7 @@
 	},
 /area/built_zone)
 "ciU" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/plating/random{
 	desc = " It is made of steel.";
 	name = "steel plating"
@@ -21017,7 +21017,7 @@
 	},
 /area/russian/radiation)
 "cyr" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/blueblack{
 	broken = 1;
 	desc = " It is made of steel.";
@@ -23229,7 +23229,7 @@
 	},
 /area/russian/radiation)
 "cFw" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/plating/random{
 	desc = " It is made of steel.";
 	name = "steel plating"
@@ -61051,7 +61051,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/decal/cleanable/dirt,
 /obj/disposalpipe/segment/mineral{
 	dir = 4
@@ -65198,7 +65198,7 @@
 /obj/cable{
 	icon_state = "0-4"
 	},
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/black{
 	desc = " It is made of steel.";
 	name = "steel floor"
@@ -66664,7 +66664,7 @@
 	},
 /area/russian/radiation)
 "sJZ" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/carpet/green/fancy/edge/ne{
 	broken = 1;
 	desc = " It is made of temp.";
@@ -67435,7 +67435,7 @@
 	},
 /area/russian/radiation)
 "tgD" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/space,
 /area/russian/radiation)
 "thr" = (

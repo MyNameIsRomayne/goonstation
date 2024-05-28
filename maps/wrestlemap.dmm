@@ -12750,7 +12750,7 @@
 	},
 /area/station/crew_quarters/jazz)
 "fEW" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/machinery/firealarm{
 	dir = 1;
 	layer = 3.5;
@@ -19592,7 +19592,7 @@
 	},
 /area/station/medical/medbay)
 "iGH" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/machinery/light/small/harsh,
 /turf/simulated/floor/shuttlebay,
 /area/station/quartermaster/refinery)
@@ -28946,7 +28946,7 @@
 	name = "Ringside Hallway"
 	})
 "mKX" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/blue,
 /area/station/medical/robotics)
 "mLg" = (
@@ -29361,7 +29361,7 @@
 	name = "Locker Room"
 	})
 "mVl" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor,
 /area/station/quartermaster/office)
 "mVt" = (
@@ -30493,7 +30493,7 @@
 	dir = 6;
 	icon_state = "bot2"
 	},
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/machinery/camera{
 	c_tag = "autotag";
 	dir = 9;
@@ -34525,7 +34525,7 @@
 	name = "Cargo Hallway"
 	})
 "pkv" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/disposalpipe/segment/horizontal,
 /turf/simulated/floor/orangeblack,
 /area/station/storage/warehouse)
@@ -36738,7 +36738,7 @@
 	name = "Corpse Tunnel"
 	})
 "qiq" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/shuttlebay,
 /area/station/quartermaster/refinery)
 "qiB" = (
@@ -40019,7 +40019,7 @@
 /turf/simulated/floor/specialroom/gym,
 /area/station/medical/medbay)
 "rFi" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/decal/tile_edge/stripe{
 	dir = 6;
 	icon_state = "bot2"
@@ -48840,7 +48840,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/east)
 "vyU" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/caution/south,
 /area/station/engine/elect)
 "vze" = (
@@ -52813,7 +52813,7 @@
 	pixel_y = 20;
 	tag = ""
 	},
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/shuttlebay,
 /area/station/hangar/escape)
 "xhY" = (

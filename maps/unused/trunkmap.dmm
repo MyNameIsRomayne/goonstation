@@ -1443,11 +1443,11 @@
 /turf/simulated/floor,
 /area/station/mining/staff_room)
 "aeb" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor,
 /area/station/mining/staff_room)
 "aec" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/plating,
 /area/station/mining/refinery)
 "aed" = (
@@ -7711,7 +7711,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor,
 /area/station/engine/elect)
 "azF" = (
@@ -14356,7 +14356,7 @@
 /turf/simulated/floor,
 /area/station/crew_quarters/locker)
 "aZh" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor,
 /area/station/hangar/engine)
 "aZj" = (
@@ -22831,7 +22831,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor,
 /area/station/quartermaster/office)
 "byk" = (
@@ -23821,7 +23821,7 @@
 /turf/simulated/floor,
 /area/station/atmos/highcap_storage)
 "bCJ" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor,
 /area/station/hangar/main)
 "bCK" = (

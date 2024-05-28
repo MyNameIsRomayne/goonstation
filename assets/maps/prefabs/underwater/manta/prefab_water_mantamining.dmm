@@ -501,7 +501,7 @@
 /turf/simulated/floor,
 /area/prefab/tunnelsnake)
 "bY" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/item/storage/wall/medical{
 	pixel_y = 32
 	},

@@ -1,28 +1,68 @@
-/obj/machinery/loader
-	name = "Loader"
-	desc = "A machine which loads items into the recipticale of other machines. Reciptical. Recieptible? fuck."
-	icon = 'icons/obj/factory.dmi'
-	icon_state = "loader"
+/obj/machinery/conveyor/loader
+	name = "Conveyor Loader"
+	desc = "A conveyor with a machine which loads items into the recipticale of other machines. Reciptical. Recieptible? fuck."
+
+	var/base_loader_icon = 'icons/obj/factory.dmi'
+	var/base_loader_iconstate = "loader-"
 
 	/// How many objects to try and load each process tick
 	var/objects_per_tick = 1
+
+	/// Direction the loader on top will face
+	var/load_dir = null
 
 	// Sounds
 	var/sound_grump = 'sound/machines/buzz-two.ogg'
 	var/sound_catastrophic_failure = 'sound/machines/pod_alarm.ogg'
 
-	/// Which direction are we loading into?
-	var/load_dir = NORTH
 	/// What machine have we decided to load into?
 	var/obj/machinery/target = null
 
 	New()
-		src.create_storage(/datum/storage/no_hud/internal, can_hold = list(/obj/item))
+		src.create_storage(/datum/storage/no_hud/loader, can_hold = list(/obj/item), slots = 1)
+		src.UpdateIcon()
+		src.get_load_target()
+		if (isnull(load_dir))
+			src.load_dir = src.dir_out
 		..()
 
 	disposing()
 		src.remove_storage()
 		..()
+
+	update_icon()
+		src.overlays = list()
+		var/overlay_iconstate = null
+		switch(src.dir)
+			if (NORTH)
+				overlay_iconstate = "[base_loader_iconstate]north"
+			if (EAST)
+				overlay_iconstate = "[base_loader_iconstate]east"
+			if (SOUTH)
+				overlay_iconstate = "[base_loader_iconstate]south"
+			if (WEST)
+				overlay_iconstate = "[base_loader_iconstate]west"
+		var/image/overlay = image(src.base_loader_icon, src, overlay_iconstate)
+		src.overlays += overlay
+		..()
+
+	attackby(obj/item/W, mob/user)
+		if (ispryingtool(W))
+			src.rotate()
+		..()
+
+	proc/rotate()
+		switch (src.dir)
+			if (NORTH)
+				src.dir = EAST
+			if (EAST)
+				src.dir = SOUTH
+			if (SOUTH)
+				src.dir = WEST
+			if (WEST)
+				src.dir = NORTH
+		src.UpdateIcon()
+		src.get_load_target()
 
 	Crossed(atom/movable/AM)
 		if (QDELETED(AM))
@@ -31,7 +71,7 @@
 			return
 		if (!isitem(AM))
 			return
-		if (src.storage.check_can_hold(AM))
+		if (src.storage.check_can_hold(AM) && !src.storage.is_full())
 			src.storage.add_contents(AM, visible = FALSE)
 		..()
 
@@ -54,14 +94,14 @@
 		if (isnull(src.target))
 			if (!src.get_load_target())
 				return FALSE
-		if (!target.storage.check_can_hold(I))
+		if (!target.storage.check_can_hold(I) || target.storage.is_full())
 			return FALSE
 		src.storage.transfer_stored_item(I, target, TRUE)
 		return TRUE
 
 	/// Gets the machinery we should be trying to load into.
 	proc/get_load_target()
-		var/turf/T = get_step(src, src.load_dir)
+		var/turf/T = get_step(src, src.dir)
 		for (var/obj/machinery/M in T.contents)
 			if (!isnull(M.storage))
 				src.target = M
@@ -106,9 +146,15 @@
 			blowthefuckup(1, TRUE)
 
 /// For things which are meant to be a part of a machine. No rustling, no interacting with by hand, etc. DONT!!!
-/datum/storage/no_hud/internal
+/datum/storage/no_hud/loader
 	sneaky = TRUE
 	move_triggered = FALSE
+	/// How many items in a stack we transfer to others
+	var/max_amount_to_others = 1
+	/// How many items in a stack we transfer to ourselves
+	var/max_amount_to_self = 1
+	/// Maximum amount of items this can hold at once
+	var/max_amount = 100
 
 	storage_item_attack_by()
 		return FALSE // bad
@@ -122,4 +168,29 @@
 	storage_item_after_attack()
 		return FALSE // please no
 
+	is_full()
+		var/total_amount = 0
+		for(var/obj/item/I in src.stored_items)
+			total_amount += I.amount
+			if (total_amount > src.max_amount)
+				return FALSE
+		return TRUE
 
+	/// Goes through items in our storage, stacks it with something if possible, otherwise tries to add it to an empty slot.
+	/// Fails that if we are at the slot limit
+	add_contents(obj/item/I, mob/user = null, visible = TRUE)
+		if (I in user?.equipped_list())
+			user.u_equip(I)
+		var/amt_stacked = 0
+		for (var/obj/item/stored_item in src.stored_items)
+			var/amt_stacked = stored_item.stack_item(I)
+			if (amt_stacked > 0)
+				I = stored_item
+				break
+		if (amt_stacked < I.amount)
+			src.stored_items += I
+		I.set_loc(src.linked_item, FALSE)
+		src.hud.add_item(I, user)
+		I.stored = src
+
+		src.add_contents_extra(I, user, visible)

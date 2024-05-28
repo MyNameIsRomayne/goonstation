@@ -957,7 +957,7 @@ ABSTRACT_TYPE(/datum/supply_packs)
 	name = "Reclaimed Reclaimer"
 	desc = "Jeez, be more careful with it next time!"
 	category = "Basic Materials"
-	contains = list(/obj/machinery/portable_reclaimer)
+	contains = list(/obj/machinery/material_processor)
 	cost = PAY_TRADESMAN*2
 	containertype = /obj/storage/crate/packing
 	containername = "Reclaimed Reclaimer"
@@ -1559,7 +1559,7 @@ ABSTRACT_TYPE(/datum/supply_packs/complex)
 					/obj/item/deconstructor)
 	frames = list(/obj/machinery/rkit,
 					/obj/machinery/manufacturer/mechanic,
-					/obj/machinery/portable_reclaimer)
+					/obj/machinery/material_processor)
 	cost = PAY_TRADESMAN*10
 	containertype = /obj/storage/crate
 	containername = "Mechanics Reconstruction Kit"
@@ -1601,7 +1601,7 @@ ABSTRACT_TYPE(/datum/supply_packs/complex)
 					/obj/machinery/manufacturer/science,
 					/obj/machinery/manufacturer/gas,
 					/obj/machinery/manufacturer/uniform,
-					/obj/machinery/portable_reclaimer)
+					/obj/machinery/material_processor)
 	cost = PAY_TRADESMAN*10
 	containertype = /obj/storage/crate
 	containername = "Manufacturer Kit"
@@ -1626,7 +1626,7 @@ ABSTRACT_TYPE(/datum/supply_packs/complex)
 	name = "Pod Production Kit"
 	desc = "Frames: 1x Ship Component Fabricator, 1x Reclaimer"
 	frames = list(/obj/machinery/manufacturer/hangar,
-					/obj/machinery/portable_reclaimer)
+					/obj/machinery/material_processor)
 	cost = PAY_TRADESMAN*10
 	containertype = /obj/storage/crate
 	containername = "Pod Production Kit"

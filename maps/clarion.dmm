@@ -659,7 +659,7 @@
 /turf/simulated/floor/plating,
 /area/station/crew_quarters/quarters_west)
 "abU" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/machinery/light{
 	dir = 1;
 	pixel_y = 21
@@ -5209,7 +5209,7 @@
 /area/station/storage/tools)
 "aJW" = (
 /obj/machinery/light,
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/orangeblack/side,
 /area/station/storage/tools)
 "aJX" = (
@@ -10474,7 +10474,7 @@
 /area/station/science/lobby)
 "bqy" = (
 /obj/disposalpipe/segment,
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/plating,
 /area/station/maintenance/southeast)
 "bqz" = (
@@ -22941,7 +22941,7 @@
 /turf/simulated/floor/plating,
 /area/station/science/lobby)
 "iYL" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/yellow,
 /area/station/engine/elect)
 "iYS" = (
@@ -26614,7 +26614,7 @@
 /obj/submachine/cargopad{
 	name = "Robotics Workshop Pad"
 	},
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/black,
 /area/station/medical/robotics)
 "lRb" = (
@@ -34309,7 +34309,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/apc/autoname_north,
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/orangeblack,
 /area/station/quartermaster/refinery)
 "rMk" = (
@@ -40115,7 +40115,7 @@
 	},
 /area/station/mining/staff_room)
 "wdo" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/decal/stripe_caution,
 /obj/machinery/light{
 	dir = 8;
@@ -41254,7 +41254,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/plating,
 /area/station/maintenance/east)
 "xcE" = (

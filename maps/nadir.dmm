@@ -776,7 +776,7 @@
 /turf/simulated/floor/plating,
 /area/station/hallway/primary/northwest)
 "aqm" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/machinery/light/emergency{
 	dir = 8;
 	pixel_x = -10
@@ -5855,7 +5855,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/north)
 "cHo" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/machinery/recharger/wall/sticky{
 	dir = 4;
 	pixel_x = 23
@@ -7734,7 +7734,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/disposal)
 "dyF" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/decal/cleanable/dirt,
 /obj/cable/blue{
 	icon_state = "4-8"
@@ -11975,7 +11975,7 @@
 /turf/simulated/floor/black,
 /area/station/turret_protected/Zeta)
 "fte" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/machinery/light_switch/east,
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -12819,7 +12819,7 @@
 /turf/simulated/floor/sanitary,
 /area/station/medical/crematorium)
 "fHt" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/yellowblack{
 	dir = 8
 	},
@@ -23624,7 +23624,7 @@
 /turf/simulated/floor/black,
 /area/station/engine/engineering)
 "jXe" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/machinery/power/apc/autoname_north,
 /obj/cable{
 	icon_state = "0-2"
@@ -32599,7 +32599,7 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/cold{
 	dir = 6
 	},
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/engine/caution/corner{
 	dir = 8
 	},
@@ -38086,7 +38086,7 @@
 	},
 /area/station/medical/medbay/treatment2)
 "pYn" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/black/grime,
 /area/station/storage/warehouse)
 "pYq" = (
@@ -52816,7 +52816,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/north)
 "wCb" = (
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /obj/disposalpipe/segment/bent/west,
 /turf/simulated/floor/plating,
 /area/pasiphae/maint)
@@ -56396,7 +56396,7 @@
 	})
 "ylh" = (
 /obj/machinery/light,
-/obj/machinery/portable_reclaimer,
+/obj/machinery/material_processor,
 /turf/simulated/floor/engine,
 /area/station/science/construction{
 	name = "Extraction Nexus"
