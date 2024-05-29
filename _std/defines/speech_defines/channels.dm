@@ -20,6 +20,7 @@
 #define SAY_CHANNEL_THRALL "thrall"
 #define SAY_CHANNEL_GLOBAL_THRALL "global_thrall"
 #define SAY_CHANNEL_KUDZU "kudzu"
+#define SAY_CHANNEL_MENTOR "mentor"
 
 //------------ Static Channel Prefixes ------------//
 /// A list of channel prefixes that will always correspond to a specific say channel regardless of context.
