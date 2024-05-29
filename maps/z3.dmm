@@ -8076,13 +8076,6 @@
 	tag = "icon-catwalk (WEST)"
 	},
 /area/derelict_ai_sat/solar)
-"aNR" = (
-/obj/machinery/material_processor,
-/obj/cable{
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/damaged5,
-/area/derelict_ai_sat)
 "aNS" = (
 /obj/cable{
 	icon_state = "2-8"
@@ -12390,10 +12383,6 @@
 /obj/landmark/spawner/artifact,
 /turf/simulated/floor/white/grime,
 /area/iss)
-"bbD" = (
-/obj/machinery/portable_atmospherics/canister/sleeping_agent,
-/turf/simulated/floor/white/grime,
-/area/iss)
 "bbE" = (
 /obj/item/tile/steel,
 /obj/decal/cleanable/machine_debris,
@@ -15267,6 +15256,13 @@
 	},
 /turf/space,
 /area/space)
+"bmZ" = (
+/obj/machinery/material_processor,
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/damaged5,
+/area/derelict_ai_sat)
 "bna" = (
 /obj/decal/cleanable/gangtag,
 /turf/unsimulated/wall/auto/adventure/shuttle/dark,
@@ -23370,6 +23366,10 @@
 	},
 /turf/simulated/floor/carpet/green/fancy/edge/north,
 /area/diner/motel/observatory)
+"wXx" = (
+/obj/item/tank/anesthetic,
+/turf/simulated/floor/white/grime,
+/area/iss)
 "wYG" = (
 /mob/living/critter/small_animal/cockroach,
 /turf/simulated/floor/shuttlebay,
@@ -66834,7 +66834,7 @@ bgZ
 bhf
 bhk
 bhp
-aNR
+bmZ
 amV
 aQv
 aPD
@@ -93479,7 +93479,7 @@ adF
 aTQ
 baJ
 bbi
-bbD
+wXx
 aTQ
 aaa
 aaa

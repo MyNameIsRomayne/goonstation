@@ -2259,10 +2259,6 @@
 /obj/machinery/light/incandescent/cool,
 /turf/simulated/floor/black,
 /area/station/medical/robotics)
-"ahN" = (
-/obj/machinery/material_processor,
-/turf/simulated/floor/caution/west,
-/area/station/medical/robotics)
 "ahO" = (
 /obj/machinery/door/airlock/pyro/external,
 /obj/machinery/light/small/floor/cool,
@@ -11508,11 +11504,6 @@
 /obj/critter/domestic_bee/sea,
 /turf/simulated/floor/grass,
 /area/station/hydroponics/bay)
-"aMJ" = (
-/obj/machinery/light/incandescent/warm,
-/obj/machinery/material_processor,
-/turf/simulated/floor,
-/area/station/hangar/main)
 "aML" = (
 /obj/disposalpipe/segment,
 /obj/disposalpipe/segment/mail{
@@ -11988,11 +11979,6 @@
 /obj/item/crowbar,
 /turf/simulated/floor/plating/random,
 /area/station/maintenance/east)
-"aOH" = (
-/obj/machinery/light/incandescent/small,
-/obj/machinery/material_processor,
-/turf/simulated/floor/caution/north,
-/area/tech_outpost)
 "aOI" = (
 /obj/table/glass/reinforced/auto,
 /obj/item/plate,
@@ -12002,23 +11988,12 @@
 	},
 /turf/simulated/floor,
 /area/listeningpost)
-"aOJ" = (
-/obj/machinery/material_processor,
-/turf/simulated/floor,
-/area/station/mining/staff_room)
 "aOK" = (
 /obj/machinery/door/airlock/pyro/glass{
 	dir = 4
 	},
 /turf/simulated/floor,
 /area/listeningpost)
-"aOL" = (
-/obj/machinery/light/incandescent/harsh,
-/obj/machinery/material_processor,
-/turf/simulated/floor/shuttlebay{
-	name = "reinforced plating"
-	},
-/area/station/quartermaster/refinery)
 "aOM" = (
 /turf/simulated/floor/grey/side{
 	dir = 4
@@ -13540,10 +13515,6 @@
 	},
 /turf/space/fluid,
 /area/space)
-"aUa" = (
-/obj/machinery/material_processor,
-/turf/space/fluid,
-/area/space)
 "aUb" = (
 /obj/machinery/manufacturer,
 /turf/space/fluid,
@@ -14329,6 +14300,11 @@
 	},
 /turf/simulated/floor/plating/damaged3,
 /area/evilreaver/atmospherics)
+"aYG" = (
+/obj/landmark/gps_waypoint,
+/obj/landmark/start/job/janitor,
+/turf/simulated/floor/specialroom/arcade,
+/area/station/janitor/office)
 "aYI" = (
 /obj/machinery/door/unpowered/martian,
 /obj/lattice,
@@ -25571,12 +25547,6 @@
 /obj/machinery/portable_atmospherics/scrubber,
 /turf/simulated/floor/plating/random,
 /area/station/storage/emergency2)
-"bOP" = (
-/obj/cable{
-	icon_state = "4-8"
-	},
-/turf/simulated/floor,
-/area/station/janitor/supply)
 "bOQ" = (
 /obj/submachine/chef_sink/chem_sink{
 	desc = "A water-filled unit intended for hand-washing purposes.";
@@ -32085,17 +32055,6 @@
 	},
 /turf/simulated/floor/grime,
 /area/iss)
-"cDL" = (
-/obj/machinery/material_processor,
-/obj/decal/stripe_caution,
-/obj/machinery/light_switch/north{
-	pixel_x = -4
-	},
-/obj/blind_switch/area/north{
-	pixel_x = 4
-	},
-/turf/simulated/floor/orangeblack,
-/area/station/quartermaster/office)
 "cFt" = (
 /obj/cable{
 	icon_state = "0-4"
@@ -32214,6 +32173,10 @@
 /obj/decal/stripe_delivery,
 /turf/simulated/floor,
 /area/station/hallway/primary/east)
+"cJE" = (
+/obj/machinery/material_processor,
+/turf/space/fluid,
+/area/space)
 "cKm" = (
 /obj/machinery/vending/standard,
 /turf/simulated/floor/engine,
@@ -33008,6 +32971,11 @@
 /obj/mapping_helper/firedoor_spawn,
 /turf/simulated/floor,
 /area/station/crew_quarters/ce)
+"dNa" = (
+/obj/machinery/light/incandescent/warm,
+/obj/machinery/material_processor,
+/turf/simulated/floor,
+/area/station/hangar/main)
 "dNf" = (
 /obj/machinery/vending/standard,
 /obj/item/device/radio/intercom/engineering,
@@ -38169,6 +38137,10 @@
 /obj/window_blinds/cog2/left,
 /turf/simulated/floor/green,
 /area/station/hydroponics/bay)
+"lsd" = (
+/obj/machinery/material_processor,
+/turf/simulated/floor/caution/west,
+/area/station/medical/robotics)
 "lte" = (
 /obj/mapping_helper/wingrille_spawn/auto/reinforced/crystal,
 /turf/simulated/floor,
@@ -39211,6 +39183,17 @@
 /obj/window_blinds/cog2/left,
 /turf/simulated/floor,
 /area/station/quartermaster/office)
+"mLm" = (
+/obj/machinery/material_processor,
+/obj/decal/stripe_caution,
+/obj/machinery/light_switch/north{
+	pixel_x = -4
+	},
+/obj/blind_switch/area/north{
+	pixel_x = 4
+	},
+/turf/simulated/floor/orangeblack,
+/area/station/quartermaster/office)
 "mLx" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -39921,6 +39904,13 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor/darkpurple,
 /area/station/ai_monitored/storage/eva)
+"nDz" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/landmark/start/job/janitor,
+/turf/simulated/floor,
+/area/station/janitor/supply)
 "nDS" = (
 /obj/table/auto,
 /obj/item/coin{
@@ -40083,6 +40073,10 @@
 /obj/lattice/flock,
 /turf/space/fluid,
 /area/space)
+"nLN" = (
+/obj/machinery/material_processor,
+/turf/simulated/floor,
+/area/station/mining/staff_room)
 "nMt" = (
 /obj/machinery/door/airlock/pyro/external{
 	dir = 4
@@ -40820,6 +40814,10 @@
 	},
 /turf/simulated/floor/purple/checker,
 /area/station/science/chemistry)
+"oRB" = (
+/obj/machinery/material_processor,
+/turf/simulated/floor/plating/random,
+/area/station/engine/elect)
 "oTi" = (
 /obj/machinery/plantpot,
 /obj/decal/tile_edge/line/black{
@@ -42692,10 +42690,6 @@
 	},
 /turf/simulated/floor/carpet/blue/fancy/innercorner/west,
 /area/station/bridge)
-"rIG" = (
-/obj/landmark/gps_waypoint,
-/turf/simulated/floor/specialroom/arcade,
-/area/station/janitor/office)
 "rJk" = (
 /obj/cable{
 	icon_state = "0-8"
@@ -43658,6 +43652,13 @@
 /obj/machinery/conveyor/SN/carousel,
 /turf/simulated/floor/plating/random,
 /area/station/maintenance/inner/central)
+"tpw" = (
+/obj/machinery/light/incandescent/harsh,
+/obj/machinery/material_processor,
+/turf/simulated/floor/shuttlebay{
+	name = "reinforced plating"
+	},
+/area/station/quartermaster/refinery)
 "trY" = (
 /obj/machinery/door/airlock/pyro/command/alt{
 	dir = 4;
@@ -45242,10 +45243,6 @@
 /obj/mapping_helper/access/security,
 /turf/simulated/floor/purple,
 /area/station/science/lobby)
-"wgR" = (
-/obj/machinery/material_processor,
-/turf/simulated/floor/plating/random,
-/area/station/engine/elect)
 "whm" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -46053,6 +46050,11 @@
 "xhP" = (
 /turf/simulated/wall/auto/reinforced/old,
 /area/evilreaver/storage/tools)
+"xil" = (
+/obj/machinery/light/incandescent/small,
+/obj/machinery/material_processor,
+/turf/simulated/floor/caution/north,
+/area/tech_outpost)
 "xir" = (
 /obj/table/wood/auto,
 /obj/item/storage/toolbox/emergency,
@@ -77753,7 +77755,7 @@ btX
 jTG
 btZ
 bJw
-cDL
+mLm
 bys
 bzo
 bAt
@@ -79378,7 +79380,7 @@ aTs
 aTs
 aTs
 aTs
-aUa
+cJE
 aUc
 aTs
 aqn
@@ -80732,7 +80734,7 @@ aCX
 aCX
 aHC
 aIe
-rIG
+aYG
 aIW
 aID
 aJS
@@ -83796,7 +83798,7 @@ bwd
 lyC
 bwd
 bwd
-aOJ
+nLN
 bwI
 uWO
 uWO
@@ -85923,7 +85925,7 @@ cgr
 bKD
 qur
 uJz
-aOL
+tpw
 bPs
 bLY
 bRt
@@ -95438,7 +95440,7 @@ ccv
 ccv
 ccv
 ccv
-aOH
+xil
 aml
 cdr
 cdx
@@ -96405,7 +96407,7 @@ afx
 bbA
 afB
 agX
-ahN
+lsd
 ahQ
 agA
 tuK
@@ -100995,7 +100997,7 @@ bnh
 bnR
 bnR
 bnR
-wgR
+oRB
 blB
 brn
 bsc
@@ -101325,7 +101327,7 @@ aud
 bLr
 bMA
 bNM
-bOP
+nDz
 bPO
 bMA
 bLs
@@ -102816,7 +102818,7 @@ btv
 btM
 bse
 bvi
-aMJ
+dNa
 bwu
 bxk
 byb
