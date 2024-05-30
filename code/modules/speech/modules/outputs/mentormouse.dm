@@ -16,6 +16,7 @@
 	if (istype(message.speaker, /mob/dead/target_observer/mentor_mouse_observer))
 		var/mob/dead/target_observer/mentor_mouse_observer/mentor_mouse = message.speaker
 		message.hear_sound = 'sound/misc/mentorhelp.ogg'
+		message.atom_listeners_override = list(mentor_mouse, mentor_mouse.mentee)
 		if (mentor_mouse.is_admin)
 			ooc_flavor = "adminooc"
 

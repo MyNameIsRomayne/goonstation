@@ -79,11 +79,7 @@
 		. = ..()
 		if(istype(A, /obj/machinery/computer3))
 			A.Attackhand(src)
-
-	say(message as text, flags = 0, list/message_params = null, list/atom/atom_listeners_override = null)
-		atom_listeners_override = list(src, mentee)
-		. = ..()
-
+		
 	emote(act, voluntary=0)
 		..()
 		src.my_mouse.emote(act, voluntary)
