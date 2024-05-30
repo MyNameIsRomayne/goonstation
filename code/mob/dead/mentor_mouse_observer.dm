@@ -82,6 +82,7 @@
 			A.Attackhand(src)
 
 	emote(act, voluntary=0)
+		..(act = "")
 		src.my_mouse.emote(act, voluntary)
 
 	stop_observing()
