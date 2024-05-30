@@ -4,6 +4,7 @@
 	is_respawnable = FALSE
 	locked = TRUE
 
+	start_listen_inputs = list(LISTEN_INPUT_EARS, LISTEN_INPUT_RADIO_GLOBAL, LISTEN_INPUT_MENTOR_MOUSE)
 	default_speech_output_channel = SPEECH_OUTPUT_MENTOR_MOUSE
 	start_speech_outputs = list(SPEECH_OUTPUT_MENTOR_MOUSE)
 	start_listen_languages = list(LANGUAGE_ALL)
@@ -82,7 +83,7 @@
 	say(message as text, flags = 0, list/message_params = null, list/atom/atom_listeners_override = null)
 		atom_listeners_override = list(src, mentee)
 		. = ..()
-		
+
 	emote(act, voluntary=0)
 		..()
 		src.my_mouse.emote(act, voluntary)
@@ -116,6 +117,5 @@
 		if(!get_turf(src))
 			src.my_mouse.gib()
 		src.my_mouse = null
-		src.listen_tree.RemoveInput(LISTEN_INPUT_MENTOR_MOUSE)
 		src.target.listen_tree.RemoveInput(LISTEN_INPUT_MENTOR_MOUSE)
 		qdel(src)
