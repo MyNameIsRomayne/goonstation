@@ -82,34 +82,7 @@
 	say(message as text, flags = 0, list/message_params = null, list/atom/atom_listeners_override = null)
 		atom_listeners_override = list(src, mentee)
 		. = ..()
-	/*
-		if(src.is_admin)
-			logTheThing(LOG_DIARY, src, "(ADMINMOUSE): [message]", "say")
-		else
-			logTheThing(LOG_DIARY, src, "(MENTORMOUSE): [message]", "say")
-
-		var/more_class = " mhelp"
-		if(src.is_admin)
-			more_class = " adminooc"
-		var/rendered = "<span class='game say[more_class]'><span class='name' data-ctx='\ref[src.mind]'>[src.name]</span> whispers, [SPAN_MESSAGE("\"[message]\"")]</span>"
-		var/rendered_admin = "<span class='game say[more_class]'><span class='name' data-ctx='\ref[src.mind]'>[src.name] ([src.ckey])</span> whispers, [SPAN_MESSAGE("\"[message]\"")]</span>"
-
-		//show message to admins
-		for (var/client/C)
-			if (!C.mob) continue
-			var/mob/M = C.mob
-			if(M == src || M == src.mentee)
-				continue
-			if (C.holder && !C.player_mode)
-				var/thisR = rendered
-				if ((istype(M, /mob/dead/observer)||C.holder) && src.mind)
-					thisR = "<span class='adminHearing' data-ctx='[M.client.chatOutput.getContextFlags()]'>[rendered_admin]</span>"
-				boutput(M, thisR)
-
-		boutput(src, rendered)
-		boutput(src.mentee, rendered)
-		src.mentee.playsound_local_not_inworld('sound/misc/mentorhelp.ogg', 60, flags = SOUND_IGNORE_SPACE | SOUND_SKIP_OBSERVERS, channel = VOLUME_CHANNEL_MENTORPM)
-	*/
+		
 	emote(act, voluntary=0)
 		..()
 		src.my_mouse.emote(act, voluntary)
