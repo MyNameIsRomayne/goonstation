@@ -13,12 +13,13 @@
 		var/mob/mob_speaker = message.speaker
 		mind_ref = "\ref[mob_speaker.mind]"
 
-	// We aren't *actually* whispering mechanically,
+	message.say_verb = "whispers"
 
-	// Handles class for admin mouse speech, since they are just rebranded mentor mice
+	// Handles mentor/admin mouse speech, since they are just rebranded mentor mice
 	var/ooc_flavor = "mhelp"
 	if (istype(message.speaker, /mob/dead/target_observer/mentor_mouse_observer))
 		var/mob/dead/target_observer/mentor_mouse_observer/mentor_mouse = message.speaker
+		message.hear_sound = 'sound/misc/mentorhelp.ogg'
 		if (mentor_mouse.is_admin)
 			ooc_flavor = "adminooc"
 
