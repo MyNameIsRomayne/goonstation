@@ -4,6 +4,8 @@
 	is_respawnable = FALSE
 	locked = TRUE
 
+	default_speech_output_channel = SPEECH_OUTPUT_MENTOR_MOUSE
+	start_speech_outputs = list(SPEECH_OUTPUT_MENTOR_MOUSE)
 	start_listen_languages = list(LANGUAGE_ALL)
 
 	var/image/ping
@@ -77,31 +79,14 @@
 		if(istype(A, /obj/machinery/computer3))
 			A.Attackhand(src)
 
-	say(var/message)
-#ifdef NEWSPEECH
-		if(message) //suppress unreachable code error
-			return ..()
-#endif
-		message = trimtext(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
-
-		if (!message)
-			return
-
-		if (dd_hasprefix(message, "*"))
-			return
-
+	say(message as text, flags = 0, list/message_params = null, list/atom/atom_listeners_override = null)
+		atom_listeners_override = list(src, the_guy)
+		. = ..()
+	/*
 		if(src.is_admin)
 			logTheThing(LOG_DIARY, src, "(ADMINMOUSE): [message]", "say")
 		else
 			logTheThing(LOG_DIARY, src, "(MENTORMOUSE): [message]", "say")
-
-		if (src.client && src.client.ismuted())
-			boutput(src, "You are currently muted and may not speak.")
-			return
-		SEND_SIGNAL(src, COMSIG_MOB_SAY, message)
-#ifdef DATALOGGER
-		game_stats.ScanText(message)
-#endif
 
 		var/more_class = " mhelp"
 		if(src.is_admin)
@@ -124,7 +109,7 @@
 		boutput(src, rendered)
 		boutput(src.the_guy, rendered)
 		src.the_guy.playsound_local_not_inworld('sound/misc/mentorhelp.ogg', 60, flags = SOUND_IGNORE_SPACE | SOUND_SKIP_OBSERVERS, channel = VOLUME_CHANNEL_MENTORPM)
-
+	*/
 	emote(act, voluntary=0)
 		..()
 		src.my_mouse.emote(act, voluntary)
@@ -158,4 +143,6 @@
 		if(!get_turf(src))
 			src.my_mouse.gib()
 		src.my_mouse = null
+		src.listen_tree.RemoveInput(LISTEN_INPUT_MENTOR_MOUSE)
+		src.target.listen_tree.RemoveInput(LISTEN_INPUT_MENTOR_MOUSE)
 		qdel(src)

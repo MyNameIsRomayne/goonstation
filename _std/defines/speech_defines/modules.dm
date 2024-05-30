@@ -31,6 +31,7 @@
 #define SPEECH_OUTPUT_THRALLCHAT_GLOBAL "global_thrallchat"
 #define SPEECH_OUTPUT_THRALLCHAT_THRALL "thrall_thrallchat"
 #define SPEECH_OUTPUT_THRALLCHAT_VAMPIRE "vampire_thrallchat"
+#define SPEECH_OUTPUT_MENTOR_MOUSE "mentor_mouse"
 
 //------------ Speech Modifiers ------------//
 #define SPEECH_MODIFIER_ACCENT_ADMIN_BAD "accent_badmin"
@@ -91,6 +92,7 @@
 #define LISTEN_INPUT_GHOSTLY_WHISPER "spooky"
 #define LISTEN_INPUT_THRALLCHAT "thrallchat"
 #define LISTEN_INPUT_THRALLCHAT_GLOBAL "global_thrallchat"
+#define LISTEN_INPUT_MENTOR_MOUSE "mentor_mouse"
 
 //------------ Listen Modifiers ------------//
 #define LISTEN_MODIFIER_ADMIN_HEARING "admin_hearing"
