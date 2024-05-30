@@ -8,7 +8,8 @@
 	default_speech_output_channel = SPEECH_OUTPUT_MENTOR_MOUSE
 	start_speech_outputs = list(SPEECH_OUTPUT_MENTOR_MOUSE)
 	start_listen_languages = list(LANGUAGE_ALL)
-
+	emote_allowed = FALSE
+	
 	var/image/ping
 	var/ping_id
 	var/mob/mentee
@@ -79,7 +80,7 @@
 		. = ..()
 		if(istype(A, /obj/machinery/computer3))
 			A.Attackhand(src)
-		
+
 	emote(act, voluntary=0)
 		..()
 		src.my_mouse.emote(act, voluntary)
