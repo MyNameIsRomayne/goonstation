@@ -1,8 +1,3 @@
-/datum/say_channel/mentor_mouse
-	suppress_speech_bubble = TRUE
-	suppress_say_sound = TRUE
-	channel_id = SAY_CHANNEL_MENTOR_MOUSE
-
 /datum/speech_module/output/mentor_mouse
 	id = SPEECH_OUTPUT_MENTOR_MOUSE
 	channel = SAY_CHANNEL_MENTOR_MOUSE
@@ -14,6 +9,7 @@
 		mind_ref = "\ref[mob_speaker.mind]"
 
 	message.say_verb = "whispers"
+	message.flags |= SAYFLAG_NO_MAPTEXT
 
 	// Handles mentor/admin mouse speech, since they are just rebranded mentor mice
 	var/ooc_flavor = "mhelp"
