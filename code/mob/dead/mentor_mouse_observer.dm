@@ -82,8 +82,10 @@
 			A.Attackhand(src)
 
 	emote(act, voluntary=0)
-		..(act = "")
-		src.my_mouse.emote(act, voluntary)
+		if (src.mentee)
+			src.my_mouse.emote(act, voluntary)
+		else
+			. = ..()
 
 	stop_observing()
 		boot()
