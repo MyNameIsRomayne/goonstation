@@ -14,13 +14,13 @@
 #define SAY_CHANNEL_LOOC "looc"
 #define SAY_CHANNEL_GLOBAL_LOOC "global_looc"
 #define SAY_CHANNEL_MARTIAN "martian"
+#define SAY_CHANNEL_MENTOR_MOUSE "mentor_mouse"
 #define SAY_CHANNEL_OOC "ooc"
 #define SAY_CHANNEL_GLOBAL_RADIO "global_radio"
 #define SAY_CHANNEL_SILICON "silicon"
 #define SAY_CHANNEL_THRALL "thrall"
 #define SAY_CHANNEL_GLOBAL_THRALL "global_thrall"
 #define SAY_CHANNEL_KUDZU "kudzu"
-#define SAY_CHANNEL_MENTOR_MOUSE "mentor_mouse"
 
 //------------ Static Channel Prefixes ------------//
 /// A list of channel prefixes that will always correspond to a specific say channel regardless of context.

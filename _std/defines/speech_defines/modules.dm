@@ -17,6 +17,7 @@
 #define SPEECH_OUTPUT_LOOC "looc"
 #define SPEECH_OUTPUT_MARTIAN "martian"
 #define SPEECH_OUTPUT_MARTIAN_LEADER "martian_leader"
+#define SPEECH_OUTPUT_MENTOR_MOUSE "mentor_mouse"
 #define SPEECH_OUTPUT_OOC "ooc"
 #define SPEECH_OUTPUT_RADIO_GLOBAL "global_radio"
 #define SPEECH_OUTPUT_SILICONCHAT "siliconchat"
@@ -31,7 +32,6 @@
 #define SPEECH_OUTPUT_THRALLCHAT_GLOBAL "global_thrallchat"
 #define SPEECH_OUTPUT_THRALLCHAT_THRALL "thrall_thrallchat"
 #define SPEECH_OUTPUT_THRALLCHAT_VAMPIRE "vampire_thrallchat"
-#define SPEECH_OUTPUT_MENTOR_MOUSE "mentor_mouse"
 
 //------------ Speech Modifiers ------------//
 #define SPEECH_MODIFIER_ACCENT_ADMIN_BAD "accent_badmin"
@@ -80,6 +80,7 @@
 #define LISTEN_INPUT_LOOC "looc"
 #define LISTEN_INPUT_LOOC_ADMIN "looc_admin"
 #define LISTEN_INPUT_MARTIAN "martian"
+#define LISTEN_INPUT_MENTOR_MOUSE "mentor_mouse"
 #define LISTEN_INPUT_OOC "ooc"
 #define LISTEN_INPUT_OOC_ADMIN "ooc_admin"
 #define LISTEN_INPUT_OUTLOUD "outloud"
@@ -92,7 +93,6 @@
 #define LISTEN_INPUT_GHOSTLY_WHISPER "spooky"
 #define LISTEN_INPUT_THRALLCHAT "thrallchat"
 #define LISTEN_INPUT_THRALLCHAT_GLOBAL "global_thrallchat"
-#define LISTEN_INPUT_MENTOR_MOUSE "mentor_mouse"
 
 //------------ Listen Modifiers ------------//
 #define LISTEN_MODIFIER_ADMIN_HEARING "admin_hearing"

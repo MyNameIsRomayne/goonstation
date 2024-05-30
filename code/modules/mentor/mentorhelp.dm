@@ -34,12 +34,12 @@
 		// provide temp access to speak on this channel if, somehow, we didn't have it before
 		var/channel_access = length(client.mob.say_tree.GetOutputByChannel(SAY_CHANNEL_MENTOR_MOUSE)) > 0
 		if (!channel_access)
-			client.mob.say_tree.AddOutput(SAY_CHANNEL_MENTOR_MOUSE)
-			client.mob.listen_tree.AddInput(SAY_CHANNEL_MENTOR_MOUSE)
+			client.mob.say_tree.AddOutput(SPEECH_OUTPUT_MENTOR_MOUSE)
+			client.mob.listen_tree.AddInput(LISTEN_INPUT_MENTOR_MOUSE)
 		client.mob.say(msg, message_params = list("output_module_channel" = SAY_CHANNEL_MENTOR_MOUSE), atom_listeners_override = list(client.mob, mmouse))
 		if (!channel_access)
-			client.mob.say_tree.RemoveOutput(SAY_CHANNEL_MENTOR_MOUSE)
-			client.mob.listen_tree.RemoveInput(SAY_CHANNEL_MENTOR_MOUSE)
+			client.mob.say_tree.RemoveOutput(SPEECH_OUTPUT_MENTOR_MOUSE)
+			client.mob.listen_tree.RemoveInput(LISTEN_INPUT_MENTOR_MOUSE)
 		return
 
 	if (client.player.cloudSaves.getData("mentorhelp_banner"))
