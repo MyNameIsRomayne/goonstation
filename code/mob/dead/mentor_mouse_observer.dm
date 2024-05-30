@@ -10,7 +10,7 @@
 
 	var/image/ping
 	var/ping_id
-	var/mob/the_guy
+	var/mob/mentee
 	var/mob/living/critter/small_animal/mouse/weak/mentor/my_mouse
 	var/is_admin = 0
 
@@ -20,7 +20,7 @@
 		..()
 		src.is_admin = is_admin
 		if(istype(L, /mob))
-			src.the_guy = L
+			src.mentee = L
 		src.ping = new('icons/effects/64x64.dmi', icon_state="thick_ring")
 		src.ping.color = "#b954e0"
 		if(src.is_admin)
@@ -46,7 +46,7 @@
 		if(!params["ctrl"]) // mouse ping is now ctrl+click
 			return ..()
 
-		src.the_guy << src.ping
+		src.mentee << src.ping
 		src << src.ping
 
 		var/my_id = world.time
@@ -80,7 +80,7 @@
 			A.Attackhand(src)
 
 	say(message as text, flags = 0, list/message_params = null, list/atom/atom_listeners_override = null)
-		atom_listeners_override = list(src, the_guy)
+		atom_listeners_override = list(src, mentee)
 		. = ..()
 	/*
 		if(src.is_admin)
@@ -98,7 +98,7 @@
 		for (var/client/C)
 			if (!C.mob) continue
 			var/mob/M = C.mob
-			if(M == src || M == src.the_guy)
+			if(M == src || M == src.mentee)
 				continue
 			if (C.holder && !C.player_mode)
 				var/thisR = rendered
@@ -107,8 +107,8 @@
 				boutput(M, thisR)
 
 		boutput(src, rendered)
-		boutput(src.the_guy, rendered)
-		src.the_guy.playsound_local_not_inworld('sound/misc/mentorhelp.ogg', 60, flags = SOUND_IGNORE_SPACE | SOUND_SKIP_OBSERVERS, channel = VOLUME_CHANNEL_MENTORPM)
+		boutput(src.mentee, rendered)
+		src.mentee.playsound_local_not_inworld('sound/misc/mentorhelp.ogg', 60, flags = SOUND_IGNORE_SPACE | SOUND_SKIP_OBSERVERS, channel = VOLUME_CHANNEL_MENTORPM)
 	*/
 	emote(act, voluntary=0)
 		..()
@@ -125,7 +125,7 @@
 			src.mind?.transfer_to(src.my_mouse)
 			if(!get_turf(src))
 				src.my_mouse.gib()
-		src.the_guy = null
+		src.mentee = null
 		src.my_mouse = null
 		..()
 
