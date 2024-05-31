@@ -20,6 +20,9 @@
 
 	global.SpeechManager.ProcessMessagePrefix(message, src.parent_tree)
 
+	if (QDELETED(message))
+		return
+
 	. = ..()
 
 /datum/speech_module/output/spoken/proc/format(datum/say_message/message)
