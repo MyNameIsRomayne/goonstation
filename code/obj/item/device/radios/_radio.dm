@@ -174,6 +174,15 @@ TYPEINFO(/obj/item/device/radio)
 		var/datum/say_message/global_message = message.Copy()
 		global_message.output_module_channel = SAY_CHANNEL_GLOBAL_RADIO
 		src.ensure_say_tree().process(global_message)
+		// Meta-Neural Antenna / Radiobrain
+		var/is_protected =  (src.protected_radio || !isnull(src.traitorradio) || (signal_frequency in protected_frequencies))
+		for (var/mob/radiobrain_mob in radio_brains)
+			var/hearing_power = radio_brains[radiobrain_mob]
+			if ((hearing_power == 1) && (signal_frequency != R_FREQ_DEFAULT))
+				continue
+			if (hearing_power <= 3 && is_protected)
+				continue
+			radiobrain_mob.ensure_listen_tree().process(message)
 
 /obj/item/device/radio/receive_signal(datum/signal/signal)
 	if (!src.speaker_enabled || src.bricked || !(src.wires & WIRE_RECEIVE) || !signal.data || !istype(signal.data["message"], /datum/say_message))
