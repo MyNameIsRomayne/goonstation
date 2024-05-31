@@ -141,6 +141,7 @@ TYPEINFO(/obj/item/device/radio)
 			var/frequency = format_frequency(src.secure_frequencies["[sayToken]"])
 			. += "<br>[channel_name]: \[[frequency]\] (Activator: <b>[sayToken]</b>)"
 
+/// This relays the messages the radio HEARS. recieve_signal() is the proc that passes messages from global radio to the listener.
 /obj/item/device/radio/hear(datum/say_message/message)
 	if (src.bricked)
 		return
