@@ -537,7 +537,7 @@
 	OnRemove()
 		radio_brains -= owner
 
-var/list/radio_brains = list()
+var/list/radio_brains = list() /// Associated list of mobs with this bioeffect to the power of the mutation
 
 /datum/bioEffect/hulk
 	name = "Gamma Ray Exposure"
