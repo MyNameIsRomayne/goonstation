@@ -19,7 +19,6 @@
 		message.flags |= SAYFLAG_DELIMITED_CHANNEL_ONLY
 
 	global.SpeechManager.ProcessMessagePrefix(message, src.parent_tree)
-
 	if (QDELETED(message))
 		return
 
