@@ -48,6 +48,7 @@ o+`        `-` ``..-:yooos-..----------..`
 //#define SHUT_UP_AND_GIVE_ME_MEDAL_STUFF // causes has_medal to always return true - good for testing medal rewards etc.
 //#define SHOW_ME_STATUSES // incredibly hacky visible status effects
 //#define ME_AND_MY_40_ALT_ACCOUNTS // Override game mode minimum player requirements for testing revs, nukies etc.
+//#define USE_MY_CHARACTER_SAVE "./debugSave.sav" // Use the character save in this directory. Set this outside this repo for it to carry over with branch changes
 
 //#define STOP_DISTRACTING_ME //All of the below
 

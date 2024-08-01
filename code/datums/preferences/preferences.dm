@@ -1060,7 +1060,12 @@ var/list/removed_jobs = list(
 			while((fdel(fname) == 0) && tries++ < 10)
 				sleep(30 SECONDS)
 
-	proc/profile_import()
+	proc/profile_import(mob/user)
+		#ifdef USE_MY_CHARACTER_SAVE
+		var/savefile/imcoder = new()
+		imcoder.ImportText("/", file2text(file(USE_MY_CHARACTER_SAVE)))
+		savefile_load(user.client, 1, imcoder)
+		#endif
 		var/F = input(usr) as file|null
 		if(!F)
 			return
@@ -1069,12 +1074,16 @@ var/list/removed_jobs = list(
 		var/hash
 		message["hash"] >> hash
 		message["hash"] << null
-		if(hash == sha1("[sha1(message.ExportText("/"))][usr.ckey][CHAR_EXPORT_SECRET]"))
-			var/profilenum_old = profile_number
-			savefile_load(usr.client, 1, message)
-			src.profile_modified = TRUE
-			src.profile_number = profilenum_old
-			src.traitPreferences.traitDataDirty = TRUE
+		// Check only for live servers, breaks on local
+		#ifdef LIVE_SERVER
+		if(hash != sha1("[sha1(message.ExportText("/"))][usr.ckey][CHAR_EXPORT_SECRET]"))
+			return
+		#endif
+		var/profilenum_old = profile_number
+		savefile_load(usr.client, 1, message)
+		src.profile_modified = TRUE
+		src.profile_number = profilenum_old
+		src.traitPreferences.traitDataDirty = TRUE
 
 
 	proc/preview_sound(var/sound/S)

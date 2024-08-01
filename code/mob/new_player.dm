@@ -743,6 +743,9 @@ a.latejoin-card:hover {
 		bank_menu.ui_interact(usr ,null)
 
 	proc/create_character(var/datum/job/J, var/allow_late_antagonist = 0)
+		#ifdef USE_MY_CHARACTER_SAVE // Load savefile preferences *here*
+		client.preferences.profile_import(client.eye)
+		#endif
 		if (!src || !src.mind || !src.client)
 			return null
 		if (!J)
