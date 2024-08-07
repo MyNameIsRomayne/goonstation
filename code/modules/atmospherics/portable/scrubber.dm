@@ -15,7 +15,17 @@ TYPEINFO(/obj/machinery/portable_atmospherics/scrubber)
 	desc = "A device which filters out harmful air from an area."
 	p_class = 1.5
 
-
+	var/recognized_gas_types = list(
+		list( id = "oxygen", 			playername = "O2"),
+		list( id = "nitrogen", 			playername = "N2"),
+		list( id = "carbon_dioxide", 	playername = "CO2"),
+		list( id = "toxins", 			playername = "Plasma"),
+		list( id = "farts", 			playername = "Farts"),
+		list( id = "radgas", 			playername = "Fallout"),
+		list( id = "nitrous_oxide", 	playername = "N20"),
+		list( id = "oxygen_agent_b",	playername = "???"),
+	)
+	var/list/gases_to_exclude
 	//for smoke
 	var/drain_min = 5
 	var/drain_max = 12
@@ -24,6 +34,7 @@ TYPEINFO(/obj/machinery/portable_atmospherics/scrubber)
 
 	New()
 		..()
+		src.gases_to_exclude = list("oxygen", "nitrogen")
 		src.buffer = new(src, 500)
 		src.create_reagents(500)
 
@@ -44,11 +55,10 @@ TYPEINFO(/obj/machinery/portable_atmospherics/scrubber)
 		APPLY_TO_GASES(_FILTER_OUT_GAS)
 		#undef _FILTER_OUT_GAS
 
-		// revert for breathable
-		removed.oxygen = filtered_out.oxygen
-		filtered_out.oxygen = 0
-		removed.nitrogen = filtered_out.nitrogen
-		filtered_out.nitrogen = 0
+		// revert for breathable / blacklisted gases
+		for (var/gas_name in src.gases_to_exclude)
+			removed.vars[gas_name] = filtered_out.vars[gas_name]
+			filtered_out.vars[gas_name] = 0
 
 		//Remix the resulting gases
 		air_contents.merge(filtered_out)
@@ -153,7 +163,8 @@ TYPEINFO(/obj/machinery/portable_atmospherics/scrubber)
 		"pressure" = MIXTURE_PRESSURE(src.air_contents),
 		"on" = src.on,
 		"connected" = !!src.connected_port,
-		"inletFlow" = src.inlet_flow
+		"inletFlow" = src.inlet_flow,
+		"blacklist" = src.gases_to_exclude,
 	)
 
 	.["holding"] = src.holding?.ui_describe()
@@ -163,7 +174,8 @@ TYPEINFO(/obj/machinery/portable_atmospherics/scrubber)
 	. = list(
 		"minFlow" = 0,
 		"maxFlow" = 100,
-		"maxPressure" = src.maximum_pressure
+		"maxPressure" = src.maximum_pressure,
+		"known_gases" = src.recognized_gas_types,
 	)
 
 /obj/machinery/portable_atmospherics/scrubber/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -171,6 +183,11 @@ TYPEINFO(/obj/machinery/portable_atmospherics/scrubber)
 	if(.)
 		return
 	switch(action)
+		if ("toggle-gas")
+			// If we couldn't remove it, we never had it. Add it to the blacklist
+			if (!src.gases_to_exclude.Remove(params["gasID"]))
+				src.gases_to_exclude += params["gasID"]
+			. = TRUE
 		if("toggle-power")
 			src.on = !src.on
 			src.UpdateIcon()
