@@ -22,6 +22,17 @@ interface SimulatorData {
 interface LogMenuProps {
   log_data:Array<string>;
   has_tape:boolean;
+  screen_height:number;
+}
+
+interface MaintenencePanelProps {
+  bits:number;
+  host_id:string;
+  connection:string;
+
+  act_reset:() => void;
+  act_flip_bit:(bit_pos:number) => void;
+  setConnection:(newConnectionName:string) => void;
 }
 
 interface TankData {

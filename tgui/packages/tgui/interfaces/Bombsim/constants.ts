@@ -1,0 +1,3 @@
+
+export const COLOR_TERMINAL_BACKGROUND = "1B1E1B";
+export const COLOR_TERMINAL_TEXT = "#19A319";
