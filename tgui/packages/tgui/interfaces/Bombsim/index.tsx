@@ -56,12 +56,27 @@ const ConfigSwitch = (props, context) => {
   );
 };
 
+const LogMenu = (props:LogMenuProps) => {
+  const { log_data, has_tape } = props;
+
+  return (
+    <Section title="Logs">
+      <Stack vertical>
+        {has_tape ? log_data.map((log_line:string, index:number) => {
+          return <Stack.Item key={index}>{log_line}</Stack.Item>;
+        }) : "No log device detected. Please insert tape."}
+      </Stack>
+    </Section>
+  );
+
+};
+
 export const Bombsim = (_props, context) => {
   const { act, data } = useBackend<SimulatorData>(context);
   let simulationButton = <Button icon="burst" disabled={!data.is_ready} onClick={() => act("simulate")}>Begin Simulation</Button>;
   return (
-    <Window width={400} height={(data.panel_open) ? 400 : 300}>
-      <Window.Content>
+    <Window width={400} height={(data.panel_open) ? 700 : 600}>
+      <Window.Content scrollable>
         <Stack>
           <Stack.Item>
             <TankInfo tank={data.tank_one} tankNum={1} />
@@ -88,6 +103,7 @@ export const Bombsim = (_props, context) => {
           </LabeledList>
         </Section>
         {(data.panel_open) ? <MaintenencePanel /> : ""}
+        <LogMenu log_data={data.log_data} has_tape={data.has_tape} />
       </Window.Content>
     </Window>
   );

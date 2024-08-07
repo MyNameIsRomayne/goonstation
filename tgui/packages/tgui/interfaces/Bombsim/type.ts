@@ -15,6 +15,13 @@ interface SimulatorData {
   cooldown:number;
   panel_open:boolean;
   net_number:number;
+  log_data:Array<string>;
+  has_tape:boolean;
+}
+
+interface LogMenuProps {
+  log_data:Array<string>;
+  has_tape:boolean;
 }
 
 interface TankData {

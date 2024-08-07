@@ -524,7 +524,7 @@ TYPEINFO(/obj/item/device/transfer_valve/briefcase)
 	disposing()
 		processing_items.Remove(src)
 		if(tester)
-			tester.update_bomb_log("VR Bomb deleted.", 1)
+			tester.add_to_log("VR Bomb deleted.", TRUE)
 			tester.vrbomb = null;
 		if(ismob(src.loc))
 			boutput(src.loc, SPAN_ALERT("[src] fades away!"))
@@ -533,7 +533,7 @@ TYPEINFO(/obj/item/device/transfer_valve/briefcase)
 		..()
 
 	toggle_valve()
-		tester?.update_bomb_log("Valve Opened.")
+		tester?.add_to_log("Valve Opened.")
 
 		processing_items |= src
 		..()
@@ -544,27 +544,25 @@ TYPEINFO(/obj/item/device/transfer_valve/briefcase)
 			return
 
 		if(update_counter >= UPDATES_BEFORE_TIMEOUT)
-			tester.update_bomb_log("VR bomb monitor timeout.", 1)
+			tester.add_to_log("VR bomb monitor timeout.", TRUE)
 			processing_items.Remove(src)
 			return
 
 		update_counter++
 
-		tester.update_bomb_log("[time2text(world.timeofday, "mm:ss")]:")
 		var/tank1_pressure = (hasvar(src.tank_one, "air_contents")) ?  MIXTURE_PRESSURE(src.tank_one.air_contents) : 0
 		var/tank2_pressure = (hasvar(src.tank_two, "air_contents")) ?  MIXTURE_PRESSURE(src.tank_two.air_contents) : 0
 
-		tester.update_bomb_log("Tank 1 Pressure:[tank1_pressure] kPa")
-		tester.update_bomb_log("Tank 2 Pressure:[tank2_pressure] kPa")
+		tester.add_to_log("Tank 1 Pressure:[tank1_pressure] kPa")
+		tester.add_to_log("Tank 2 Pressure:[tank2_pressure] kPa")
 
 		// This doesn't really happen as both tanks are usually bound to have the same reaction process due to same volume/contents/temp/etc
 		// so disposing() gets called first
 		if(!tank1_pressure)
-			tester.update_bomb_log("Tank one has no pressure or has been destroyed!")
+			tester.add_to_log("Tank one has no pressure or has been destroyed!")
 		if (!tank2_pressure)
-			tester.update_bomb_log("Tank two has no pressure or has been destroyed!")
+			tester.add_to_log("Tank two has no pressure or has been destroyed!")
 
-		return
 #undef UPDATES_BEFORE_TIMEOUT
 
 /obj/item/pressure_crystal

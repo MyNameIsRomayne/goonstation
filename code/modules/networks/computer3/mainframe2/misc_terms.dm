@@ -672,6 +672,8 @@ TYPEINFO(/obj/machinery/networked/storage)
 			src.post_file(target, "data","command=sync",archive)
 			return
 
+#define MAX_SAVED_LINES_GUI 100 //! Maximum lines allowed to be stored about the VR bomb log information.
+
 /obj/machinery/networked/storage/bomb_tester
 	name = "Explosive Simulator"
 	desc = "A networked device designed to simulate and analyze explosions.  Takes two tanks."
@@ -694,6 +696,10 @@ TYPEINFO(/obj/machinery/networked/storage)
 	var/datum/computer/file/record/results = null
 	/// Our VR TTV to attach tank1 and tank2 to
 	var/obj/item/device/transfer_valve/vr/vrbomb = null
+	// Original and still implemented behavior is to send it to a file in /mnt/mixer/Bomblog
+	/// A personal copy of the log message for use in the GUI
+	var/list/log_data_lines = list()
+
 	power_usage = 200
 	HELP_MESSAGE_OVERRIDE("Simulates the mixture of two tanks of gas.</br>\
 						   You can use the <b>VR Goggles</b> typically found nearby to watch the simulation unfold.</br>\
@@ -868,6 +874,8 @@ TYPEINFO(/obj/machinery/networked/storage)
 			"cooldown" = "[GET_COOLDOWN(global, "bomb_simulator")/10] Second\s",
 			"readiness_dialogue" = simulator_dialogue[2],
 			"net_number" = src.net_number,
+			"log_data" = src.log_data_lines,
+			"has_tape" = !isnull(src.tape),
 		)
 
 	update_icon()
@@ -909,6 +917,36 @@ TYPEINFO(/obj/machinery/networked/storage)
 			return 1
 
 		src.ui_interact(user)
+
+	/// Helper proc to reset the logfiles for new simulations.
+	proc/reset_logs()
+		if (!isnull(src.results))
+			src.results.dispose()
+		src.results = new
+		src.results.name = "Bomblog" // filename for log on dwaine
+
+		src.log_data_lines = list()
+
+	/// Helper proc to add lines to the var on this machine and the bomblog file.
+	proc/add_to_log(content, sync_log = FALSE)
+		if(!src.results || !content || !tape)
+			return
+
+		var/timestamped_content = "[time2text(world.timeofday, "mm:ss")]: [content]"
+		src.log_data_lines += timestamped_content
+		if (length(src.log_data_lines) > MAX_SAVED_LINES_GUI)
+			// theres just like 100 in there it should be fine to do it this way
+			src.log_data_lines.Remove(src.log_data_lines[0])
+
+		src.results.fields += timestamped_content
+
+		if (sync_log)
+			src.sync(src.host_id)
+
+	/// Helper proc to add newlines as the formatting is |n for some reason on dwaine. like really? anyways..
+	proc/add_newline_to_log()
+		src.log_data_lines[-1] += "\n" // dont count it as its own line cos thats dumb
+		src.results.fields += "|n"
 
 	proc/generate_vrbomb()
 		if(!(src.tank1 && src.tank2))
@@ -959,63 +997,53 @@ TYPEINFO(/obj/machinery/networked/storage)
 		return
 
 	proc/new_bomb_log()
+		// Can't store it if there's no tape -- this goes for the GUI too
 		if(!tape)
 			return
 
-		if(src.results)
-			src.results.dispose()
+		src.reset_logs()
 
-		src.results = new
-		src.results.name = "Bomblog"
+		src.add_to_log("Test [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [CURRENT_SPACE_YEAR]")
 
-		src.results.fields += "Test [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [CURRENT_SPACE_YEAR]"
-
-		src.results.fields += "Atmospheric Tank #1:"
+		src.add_to_log("Atmospheric Tank #1:")
 		if(tank1 && tank1?.air_contents)
 			var/datum/gas_mixture/environment = tank1.return_air()
 			var/pressure = MIXTURE_PRESSURE(environment)
 			var/total_moles = TOTAL_MOLES(environment)
 
-			src.results.fields += "Tank Pressure: [round(pressure,0.1)] kPa"
+			src.add_to_log("Tank Pressure: [round(pressure,0.1)] kPa")
 			if(total_moles)
-				LIST_CONCENTRATION_REPORT(environment, src.results.fields)
-				src.results.fields += "|n"
+				var/list/concentration_report = list()
+				LIST_CONCENTRATION_REPORT(environment, concentration_report)
+				src.add_newline_to_log()
 
 			else
-				src.results.fields += "Tank Empty"
+				src.add_to_log("Tank Empty")
 		else
-			src.results.fields += "None. (Sensor Error?)"
+			src.add_to_log("None. (Sensor Error?)")
 
-		src.results.fields += "Atmospheric Tank #2:"
+		src.add_to_log("Atmospheric Tank #2:")
 		if(tank2 && tank1?.air_contents)
 			var/datum/gas_mixture/environment = tank2.return_air()
 			var/pressure = MIXTURE_PRESSURE(environment)
 			var/total_moles = TOTAL_MOLES(environment)
 
-			src.results.fields += "Tank Pressure: [round(pressure,0.1)] kPa"
+			src.add_to_log("Tank Pressure: [round(pressure,0.1)] kPa")
 			if(total_moles)
 				LIST_CONCENTRATION_REPORT(environment, src.results.fields)
-				src.results.fields += "|n"
+				src.add_newline_to_log()
 
 			else
-				src.results.fields += "Tank Empty"
+				src.add_to_log("Tank Empty")
 		else
-			src.results.fields += "None. (Sensor Error?)"
+			src.add_to_log("None. (Sensor Error?)")
 
-		src.results.fields += "VR Bomb Monitor log:|nWaiting for monitor..."
+		src.add_to_log("VR Bomb Monitor log:")
+		src.add_newline_to_log()
+		src.add_to_log("Waiting for monitor...")
 
 		src.tape.root.add_file( src.results )
 		src.sync(src.host_id)
-		return
-
-	///Called by our vrbomb as it heats up (Or doesn't.)
-	proc/update_bomb_log(var/newdata, var/sync_log = 0)
-		if(!src.results || !newdata || !tape)
-			return
-
-		src.results.fields += newdata
-		if (sync_log)
-			src.sync(src.host_id)
 		return
 
 ///Generic disk to hold VR bomb log
@@ -1361,7 +1389,7 @@ TYPEINFO(/obj/machinery/networked/nuclear_charge)
 		SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, status_signal)
 
 #undef DISARM_CUTOFF
-
+#undef MAX_SAVED_LINES_GUI
 
 TYPEINFO(/obj/machinery/networked/radio)
 	mats = 8
