@@ -1027,6 +1027,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 	slot_suit = list(/obj/item/clothing/suit/space/light/engineer)
 	slot_back = list(/obj/item/storage/backpack)
 	slot_mask = list(/obj/item/clothing/mask/gas)
+	slot_lhan = list(/obj/item/tanktest)
 	items_in_backpack = list(
 		/obj/item/rcd/construction/safe/admin_crimes,
 		/obj/item/device/analyzer/atmospheric/upgraded,
