@@ -97,11 +97,15 @@ const GasOverview = (props:GasOverviewProps) => {
 export const DevBombSim = (_, context) => {
   const { act, data } = useBackend<DevBombSimData>(context);
 
-  const adjustPressure = (gasID:string, currentPressure:number, newPressure:number) => {
-    if (currentPressure === newPressure) {
+  const adjustContents = (gasID:string, useContents:typeof USE_MATTER|typeof USE_PRESSURE, newValue:number) => {
+    if (useContents === USE_MATTER) {
+      act("set_matter", { name: gasID, matter: newValue });
       return;
     }
-    act("set_pressure", { name: gasID, pressure: newPressure });
+    if (useContents === USE_PRESSURE) {
+      act("set_pressure", { name: gasID, pressure: newValue });
+      return;
+    }
   };
 
   const setUsedSIUnitContents = (newUnit:string) => {
@@ -230,11 +234,12 @@ export const DevBombSim = (_, context) => {
                   maxValue={maxValue}
                   currentPressure={gas.kPa}
                   currentMoles={gas.moles}
-                  onNewPressure={adjustPressure}
+                  onNewPressure={adjustContents}
                   formatContents={friendlyFormatContents}
                   formatPressure={friendlyFormatPressure}
                   formatMatter={friendlyFormatMatter}
                   unitContents={unitContents}
+                  siUnitContents={data.si_unit_used_contents}
                   advancedMode={data.advanced_mode}
                 />
                 <Divider />

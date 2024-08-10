@@ -88,11 +88,12 @@ interface GasSettingProps {
   maxValue:number;
   currentPressure:number;
   currentMoles:number;
-  onNewPressure:(id:string, usedValue:number, newValue:number) => void;
+  onNewPressure:(gasID:string, unitContents:string, newValue:number) => void;
   formatContents:(value:number) => string;
   formatPressure:(value:number) => string;
   formatMatter:(value:number) => string;
   unitContents:string;
+  siUnitContents:string;
   advancedMode:boolean;
 }
 
@@ -109,6 +110,7 @@ export const GasSetting = (props:GasSettingProps) => {
     formatPressure,
     formatMatter,
     unitContents,
+    siUnitContents,
     advancedMode,
   } = props;
 
@@ -145,7 +147,7 @@ export const GasSetting = (props:GasSettingProps) => {
             value={usedValue}
             minValue={0}
             maxValue={advancedMode ? undefined : maxValue}
-            onChange={(_e:any, value:number) => { onNewPressure(id, usedValue, value); }}
+            onChange={(_e:any, value:number) => { onNewPressure(id, siUnitContents, value); }}
             format={formatContents}
             width={"100%"}
           />
@@ -154,7 +156,7 @@ export const GasSetting = (props:GasSettingProps) => {
             value={usedValue}
             minValue={0}
             maxValue={advancedMode ? undefined : maxValue}
-            onChange={(_e:any, value:number) => { onNewPressure(id, usedValue, value); }}
+            onChange={(_e:any, value:number) => { onNewPressure(id, siUnitContents, value); }}
             format={formatContents}
             step={stepValue}
           />

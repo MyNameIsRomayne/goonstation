@@ -101,18 +101,22 @@ var/static/list/valid_gases = list(
 				return TRUE
 
 			if ("set_temperature")
+				// this assumes kelvin. convert it to that if you pass in anything else
 				src.temperature = params["temperature"]
 				return TRUE
 
 			if ("set_volume")
+				// this assumes liters. convert it to that if you pass in anything else
 				src.volume = params["volume"]
 				return TRUE
 
-			if ("set_moles")
+			if ("set_matter")
+				// you will need to handle each unit here if you choose to add something like grams. i dont know why you would. but i made it easy.
 				src.gas_moles[params["name"]] = params["matter"]
 				return TRUE
 
 			if ("set_pressure")
+				// this assumes pascals. add special params and whatnot if you want other things (any mmHg enjoyers?)
 				src.gas_moles[params["name"]] = KPA_TO_MOLES(params["pressure"], src.temperature, src.volume)
 				return TRUE
 
