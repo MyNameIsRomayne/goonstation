@@ -36,3 +36,7 @@
 // ---- reagents signals ----
 	/// When reagent scanned
 	#define COMSIG_REAGENTS_ANALYZED "reagents_analyzed"
+
+// ----  atmos signals ----
+	/// When logging react()
+	#define COMSIG_ATMOS_REACT "gas_mixture_reacted"

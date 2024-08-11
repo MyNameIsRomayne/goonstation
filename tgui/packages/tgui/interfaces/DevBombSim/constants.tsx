@@ -6,3 +6,5 @@ export const UNIT_PASCALS = 'pascals';
 
 export const USE_PRESSURE = 'pressure';
 export const USE_MATTER = 'matter';
+
+export const SYMBOL_DELTA = 'Δ';

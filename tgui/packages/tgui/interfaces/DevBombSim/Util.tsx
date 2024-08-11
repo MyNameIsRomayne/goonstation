@@ -54,9 +54,9 @@ export const kelvinToFarenheit = value => {
 
 // argh
 
-let formatFunctionsMatter:Record<string, (n:number) => string> = {};
-let formatFunctionsPressure:Record<string, (n:number) => string> = {};
-let formatFunctionsTemperature:Record<string, (n:number) => string> = {};
+export let formatFunctionsMatter:Record<string, (n:number) => string> = {};
+export let formatFunctionsPressure:Record<string, (n:number) => string> = {};
+export let formatFunctionsTemperature:Record<string, (n:number) => string> = {};
 // defines on separate lines because typscript is a fuck
 formatFunctionsMatter[UNIT_MOLES] = formatMoles;
 formatFunctionsPressure[UNIT_PASCALS] = formatPascals;
@@ -65,9 +65,9 @@ formatFunctionsTemperature[UNIT_KELVIN] = formatKelvin;
 formatFunctionsTemperature[UNIT_FARENHEIT] = formatFarenheit;
 
 // *ahem* THESE FUNCTIONS TAKE IN MOLES/PASCALS/KELVIN RESPECTIVELY. thank you.
-let conversionFunctionsMatter:Record<string, (n:number) => number> = {};
-let conversionFunctionsPressure:Record<string, (n:number) => number> = {};
-let conversionFunctionsTemperature:Record<string, (n:number) => number> = {};
+export let conversionFunctionsMatter:Record<string, (n:number) => number> = {};
+export let conversionFunctionsPressure:Record<string, (n:number) => number> = {};
+export let conversionFunctionsTemperature:Record<string, (n:number) => number> = {};
 // defines on separate lines. typescript is a fuck
 conversionFunctionsMatter[UNIT_MOLES] = (moles:number) => { return moles; }; // lol
 conversionFunctionsPressure[UNIT_PASCALS] = (pascals:number) => { return pascals; }; // lmao

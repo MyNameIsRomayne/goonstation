@@ -10,19 +10,6 @@ import { Box, LabeledList, NumberInput, RoundGauge, Slider, Stack } from "../../
 import { toTitleCase } from 'common/string';
 import { USE_PRESSURE } from '../constants';
 
-interface PressureInfoProps {
-  currentPressure:number;
-  maxValue:number;
-  formatContents: (value:number) => string;
-  formatPressure: (value:number) => string;
-  currentMoles:number;
-  formatMatter: (value:number) => string;
-  usePressure:boolean;
-  advancedMode:boolean;
-  width?:any;
-  height?:any;
-}
-
 const PressureInfo = (props:PressureInfoProps) => {
   const {
     currentPressure,
@@ -67,7 +54,7 @@ const PressureInfo = (props:PressureInfoProps) => {
           value={usedValue}
           minValue={0} // vaccuum
           maxValue={maxValue}
-          size={1.75}
+          size={1.25}
           alertAfter={maxValue * 0.70}
           ranges={{
             "good": [0, maxValue * 0.70],
@@ -80,22 +67,6 @@ const PressureInfo = (props:PressureInfoProps) => {
     );
   }
 };
-
-interface GasSettingProps {
-  id:string;
-  name:string;
-  usedValue:number;
-  maxValue:number;
-  currentPressure:number;
-  currentMoles:number;
-  onNewPressure:(gasID:string, unitContents:string, newValue:number) => void;
-  formatContents:(value:number) => string;
-  formatPressure:(value:number) => string;
-  formatMatter:(value:number) => string;
-  unitContents:string;
-  siUnitContents:string;
-  advancedMode:boolean;
-}
 
 export const GasSetting = (props:GasSettingProps) => {
   const {
@@ -136,9 +107,8 @@ export const GasSetting = (props:GasSettingProps) => {
           maxValue={maxValue}
           formatContents={formatContents}
           formatMatter={formatMatter}
-          usePressure={unitContents === USE_PRESSURE}
+          usePressure={siUnitContents === USE_PRESSURE}
           advancedMode={advancedMode}
-          height={4}
         />
       </Stack.Item>
       <Stack.Item grow>

@@ -8,12 +8,6 @@
 import { CenteredText } from "../../Manufacturer/components/CenteredText";
 import { Button } from "../../../components";
 
-interface SwitchProps {
-  enabled:boolean;
-  callback: () => void;
-  forceColor:string;
-}
-
 export const ConditionalSwitch = props => {
   const {
     enabled,

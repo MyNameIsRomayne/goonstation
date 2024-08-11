@@ -68,10 +68,21 @@ What are the archived variables for?
 	graphic_archived = graphic
 
 /// Process all reactions, return bitfield if notable reaction occurs.
-/datum/gas_mixture/proc/react(atom/dump_location, mult=1)
+/datum/gas_mixture/proc/react(atom/dump_location, mult=1, logdata=null)
+	#ifdef LOG_GAS_REACTS
+	if (!isnull(logdata))
+		var/datum/gas_mixture/temp_mix_pre = new /datum/gas_mixture
+		temp_mix_pre.copy_from(src)
+		temp_mix_pre.volume = src.volume
+		logdata += temp_mix_pre
+	#endif
 	. = 0 //(used by pipe_network and hotspots)
 	var/reaction_rate
 	if(src.temperature > 900 && src.oxygen_agent_b > MINIMUM_REACT_QUANTITY && src.toxins > MINIMUM_REACT_QUANTITY && src.carbon_dioxide > MINIMUM_REACT_QUANTITY)
+		#ifdef LOG_GAS_REACTS
+		if (!isnull(logdata))
+			logdata["catalyst_reaction"] = TRUE
+		#endif
 		reaction_rate = min(src.carbon_dioxide*0.75, src.toxins*0.25, src.oxygen_agent_b*0.05)
 		reaction_rate = QUANTIZE(reaction_rate) * mult
 
@@ -86,6 +97,10 @@ What are the archived variables for?
 		. |= REACTION_ACTIVE
 
 	if(src.temperature > 900 && src.farts > MINIMUM_REACT_QUANTITY && src.toxins > MINIMUM_REACT_QUANTITY && src.carbon_dioxide > MINIMUM_REACT_QUANTITY)
+		#ifdef LOG_GAS_REACTS
+		if (!isnull(logdata))
+			logdata["methane_reaction"] = TRUE
+		#endif
 		reaction_rate = min(src.carbon_dioxide*0.75, src.toxins*0.25, src.farts*0.05)
 		reaction_rate = QUANTIZE(reaction_rate) * mult
 
@@ -98,18 +113,40 @@ What are the archived variables for?
 
 	src.fuel_burnt = 0
 	if(src.temperature > FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
+		#ifdef LOG_GAS_REACTS
+		if (!isnull(logdata))
+			logdata["fire_mult"] = mult
+		var/fuel_burnt = src.fire(mult, logdata)
+		if(fuel_burnt)
+			. |= COMBUSTION_ACTIVE
+		if (!isnull(logdata))
+			logdata["fuel_burnt"] = fuel_burnt
+		#else // if LOG_GAS_REACTS not defined, just do the normal shit
 		if(src.fire(mult))
 			. |= COMBUSTION_ACTIVE
+		#endif
+
+	#ifdef LOG_GAS_REACTS
+	if (!isnull(logdata))
+		var/datum/gas_mixture/temp_mix_post = new /datum/gas_mixture
+		temp_mix_post.copy_from(src)
+		temp_mix_post.volume = src.volume
+		logdata += temp_mix_post
+	#endif
 
 /// * Process fire combustion, pretty much just plasma combustion.
 /// * Returns: Rough amount of plasma and oxygen used. Inaccurate due to plasma usage lowering.
-/datum/gas_mixture/proc/fire(mult=1)
+/datum/gas_mixture/proc/fire(mult=1, logdata=null)
 
 	var/energy_released = 0
 	var/old_heat_capacity = HEAT_CAPACITY(src)
 
 	//Handle plasma burning
 	if(src.toxins > MINIMUM_REACT_QUANTITY)
+		#ifdef LOG_GAS_REACTS
+		if (!isnull(logdata))
+			logdata["plasma_reaction"] = TRUE
+		#endif
 		var/plasma_burn_rate = 0
 		var/oxygen_burn_rate = 0
 		//more energy released at higher temperatures
@@ -118,6 +155,10 @@ What are the archived variables for?
 			temperature_scale = 1
 		else
 			temperature_scale = (temperature - PLASMA_MINIMUM_BURN_TEMPERATURE) / (PLASMA_UPPER_TEMPERATURE - PLASMA_MINIMUM_BURN_TEMPERATURE)
+		#ifdef LOG_GAS_REACTS
+		if (!isnull(logdata))
+			logdata["temperature_scale"] = temperature_scale
+		#endif
 		if(temperature_scale > 0)
 			oxygen_burn_rate = 1.4 - temperature_scale
 			if(src.oxygen > src.toxins * PLASMA_OXYGEN_FULLBURN)
@@ -140,7 +181,17 @@ What are the archived variables for?
 		var/new_heat_capacity = HEAT_CAPACITY(src)
 		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
 			src.temperature = (src.temperature * old_heat_capacity + energy_released) / new_heat_capacity
+		#ifdef LOG_GAS_REACTS
+		if (!isnull(logdata))
+			logdata["energy_released"] = energy_released
+		#endif
+	#ifdef LOG_GAS_REACTS
+	else
+		if (!isnull(logdata))
+			logdata["energy_released"] = 0
 
+	logdata["fuel_burnt"] = src.fuel_burnt
+	#endif
 	ASSERT(src.fuel_burnt >= 0)
 	return src.fuel_burnt
 
