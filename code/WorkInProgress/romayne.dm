@@ -133,6 +133,7 @@ var/static/list/valid_gases = list(
 		// a few special vars too to cement this as a different fucking thing because I GUESS.
 		delta_output["heat_capacity"] = HEAT_CAPACITY(mix2) - HEAT_CAPACITY(mix1)
 		delta_output["thermal_energy"] = THERMAL_ENERGY(mix2) - THERMAL_ENERGY(mix1)
+		return delta_output
 
 	proc/format_log_data(list/unformatted_log_data)
 		var/formatted_log_data = list()
@@ -143,6 +144,7 @@ var/static/list/valid_gases = list(
 				current = "post"
 			else if (unformatted_log_data[element])
 				formatted_log_data[element] = unformatted_log_data[element]
+		formatted_log_data["delta"] = src.calculate_mixture_delta(formatted_log_data["post"], formatted_log_data["pre"])
 		return formatted_log_data
 
 	ui_act(action, list/params)
@@ -242,5 +244,31 @@ var/static/list/valid_gases = list(
 			return TRUE
 
 	attack_self(mob/user)
+		/* 'profiler code' by relative results
+		var/total_fuckery = 0
+		var/max_time = 240 SECONDS
+		var/time_started = TIME
+
+		src.volume = 70
+		src.temperature = 700
+		src.gas_moles["oxygen"] = KPA_TO_MOLES(1800, src.temperature, src.volume)
+		src.gas_moles["toxins"] = KPA_TO_MOLES( 200, src.temperature, src.volume)
+
+		while ((TIME-time_started) < max_time)
+			sleep(1/10 SECONDS)
+			total_fuckery += 1
+			var/obj/item/tank/empty/new_tank = new /obj/item/tank/empty
+			src.update_gas_mixture()
+			new_tank.air_contents.merge(src.mix)
+			new_tank.set_loc(get_turf(pick(random_floor_turfs)))
+			// fuckin monke
+			var/mob/living/carbon/human/npc/monkey/stirstir/warcriminal = new /mob/living/carbon/human/npc/monkey/stirstir()
+			warcriminal.set_loc(get_turf(pick(random_floor_turfs)))
+			boutput(world, "Total Tank bombs+stir-stirs spawned: [total_fuckery]")
+			boutput(world, "'''performance''' of tank spawning: [round(total_fuckery/(TIME-time_started), 0.01)] tank bombs per second")
+
+		boutput(world, "Total Tank bombs+stir-stirs spawned: [total_fuckery]")
+		boutput(world, "'''performance''' of tank spawning: [round(total_fuckery/(TIME-time_started), 0.01)] tank bombs per second")
+		*/
 		ui_interact(user)
 		. = ..()

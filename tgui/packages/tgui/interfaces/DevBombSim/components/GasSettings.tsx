@@ -9,6 +9,7 @@ import { CenteredText } from "../../Manufacturer/components/CenteredText";
 import { Box, LabeledList, NumberInput, RoundGauge, Slider, Stack } from "../../../components";
 import { toTitleCase } from 'common/string';
 import { USE_PRESSURE } from '../constants';
+import { GasSettingProps, PressureInfoProps } from '../type';
 
 const PressureInfo = (props:PressureInfoProps) => {
   const {

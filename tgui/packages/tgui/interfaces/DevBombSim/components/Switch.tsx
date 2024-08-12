@@ -7,6 +7,7 @@
 
 import { CenteredText } from "../../Manufacturer/components/CenteredText";
 import { Button } from "../../../components";
+import { SwitchProps } from '../type';
 
 export const ConditionalSwitch = props => {
   const {

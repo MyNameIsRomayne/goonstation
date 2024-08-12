@@ -36,6 +36,7 @@ type LabeledListItemProps = {
   content?: any,
   children?: InfernoNode;
   verticalAlign?: string;
+  key?:any;
 };
 
 const LabeledListItem = (props: LabeledListItemProps) => {
@@ -50,6 +51,7 @@ const LabeledListItem = (props: LabeledListItemProps) => {
     content,
     children,
     verticalAlign = "baseline",
+    key,
   } = props;
   return (
     <tr

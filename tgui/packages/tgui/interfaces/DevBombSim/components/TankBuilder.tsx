@@ -5,6 +5,7 @@ import { AnimatedNumber, Divider, Icon, LabeledList, NumberInput, RoundGauge, Sl
 import { getTemperatureColor, getTemperatureIcon } from '../../common/temperatureUtils';
 import { conversionFunctionsTemperature, formatKelvinAs, formatMolesAs, formatPascalsAs } from '../Util';
 import { UNIT_CELSIUS, UNIT_FARENHEIT, UNIT_KELVIN, USE_MATTER, USE_PRESSURE } from '../constants';
+import { GasData, GasOverviewProps, SubmenuProps, UnitSelectionData } from '../type';
 
 export const TankBuilder = (props:SubmenuProps) => {
   const {

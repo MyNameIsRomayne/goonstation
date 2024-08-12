@@ -24,7 +24,7 @@ export interface DevBombSimData {
   log_data:Array<FormattedLogs>
 }
 
-interface GasData {
+export interface GasData {
   name:string;
   id:string;
   moles:number;
@@ -59,11 +59,26 @@ interface GasDataLogs {
   oxygen_agent_b:number;
   temperature:number;
   volume:number;
+  heat_capacity:number;
+  thermal_energy:number;
 }
 
+interface GasDeltaLogs {
+  oxygen:number;
+  nitrogen:number;
+  carbon_dioxide:number;
+  toxins:number;
+  farts:number;
+  radgas:number;
+  nitrous_oxide:number;
+  oxygen_agent_b:number;
+  heat_capacity:number;
+  thermal_energy:number;
+}
 export interface FormattedLogs {
   pre:GasDataLogs;
   post:GasDataLogs;
+  delta:GasDeltaLogs;
   fire_mult:number;
   plasma_reaction:BooleanLike;
   temperature_scale:number;

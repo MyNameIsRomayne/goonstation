@@ -2,7 +2,7 @@
 import { Button, Collapsible, LabeledList, Section, Stack } from "../../../components";
 import { SubmenuProps } from "../type";
 import { formatKelvinAs, formatMolesAs, formatPascalsAs } from '../Util';
-import { USE_PRESSURE, SYMBOL_DELTA } from '../constants';
+import { SYMBOL_DELTA, USE_PRESSURE } from '../constants';
 
 const log = (act:(action:string, props?:Record<string, string|number|boolean>) => void, data:string|number|boolean) => {
   act("console_log", { data: data });
@@ -22,7 +22,7 @@ const GasPacketData = (props) => {
     <LabeledList>
       {gasIDs.map((id, index) => {
         return (
-          <LabeledList.Item key={index} label={gasNames[index]}>
+          <LabeledList.Item label={gasNames[index]} key={index} >
             {friendlyFormatMatter(packet[id])}
           </LabeledList.Item>
         );
@@ -93,23 +93,11 @@ export const LogOutput = (props:SubmenuProps) => {
               Clear Logs
             </Button>
           </Stack.Item>
-          <Stack.Item width="20%">
-
-          </Stack.Item>
-          <Stack.Item width="20%">
-
-          </Stack.Item>
-          <Stack.Item width="20%">
-
-          </Stack.Item>
-          <Stack.Item width="20%">
-
-          </Stack.Item>
         </Stack>
       </Stack.Item>
       {data.log_data.map((log_entry, index) => {
         return (
-          <Collapsible key={index} title={`Packet ${index}`}>
+          <Collapsible key={index} title={`Packet ${index}, ${SYMBOL_DELTA}SHC: ${log_entry.delta.heat_capacity}`}>
             <Stack.Item>
               <Section>
                 <LogEntryData log_entry={log_entry}
