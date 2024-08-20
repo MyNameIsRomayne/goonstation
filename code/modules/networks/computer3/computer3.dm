@@ -36,6 +36,10 @@
 	var/glow_in_dark_screen = TRUE
 	var/image/screen_image
 
+	var/list/tgui_input_history //! A list of strings representing the terminal's command execution history. New history is appended as commands are executed
+	var/tgui_input_index = 1 //! An index pointing to the position in tgui_input_history to update currentValue with
+	var/currentValue = ""
+
 	power_usage = 250
 
 	generic //Generic computer, standard os and card scanner
@@ -276,6 +280,7 @@
 	light.attach(src)
 
 	src.base_icon_state = src.icon_state
+	src.tgui_input_history = list()
 
 	if(glow_in_dark_screen)
 		src.screen_image = image('icons/obj/computer_screens.dmi', src.icon_state, -1)
@@ -373,6 +378,7 @@
 		"user" = user,
 		"fontColor" = src.setup_font_color, // display monochrome values
 		"bgColor" = src.setup_bg_color,
+		"inputValue" = src.currentValue,
 	)
 
 /obj/machinery/computer3/ui_act(action, params)
@@ -383,12 +389,36 @@
 		if("restart")
 			src.restart()
 			src.updateUsrDialog()
+		if("history")
+			// Pre-check -- bail if no history
+			if (isnull(src.tgui_input_history) || !length(src.tgui_input_history))
+				return
+			// Set to previous command in history
+			if (params["direction"] == "prev")
+				// Allow length+1 to simulate hitting the 'end' of the history and ending up on an empty line
+				if (src.tgui_input_index < length(src.tgui_input_history) + 1)
+					src.tgui_input_index += 1
+				else
+					return
+			else if (params["direction"] == "next")
+				// Allow down to 1 at the lowest for 1-indexed
+				if (src.tgui_input_index > 1)
+					src.tgui_input_index -= 1
+				else
+					return
+			// Update currentValue since some edit has been made
+			if (src.tgui_input_index == length(src.tgui_input_history) + 1)
+				src.currentValue = ""
+				return
+			src.currentValue = src.tgui_input_history[src.tgui_input_index]
 		if("text")
 			if(src.active_program && params["value"]) // haha it fucking works WOOOOOO
 				if(params["value"] == "term_clear")
 					src.temp = "Cleared\n"
 					return
 				src.active_program.input_text(params["value"])
+				src.tgui_input_history += params["value"]
+				src.tgui_input_index = length(src.tgui_input_history)
 				playsound(src.loc, "keyboard", 50, 1, -15)
 				src.updateUsrDialog()
 		if("buttonPressed")
@@ -666,6 +696,9 @@
 		src.processing_programs.len = 0
 		src.processing_programs = null
 
+	if (tgui_input_history)
+		tgui_input_history = null
+
 	active_program = null
 	host_program = null
 
@@ -762,6 +795,8 @@
 		src.processing_programs = new
 		src.temp = ""
 		src.temp_add = "Restarting system...<br>"
+		src.tgui_input_history = list()
+		src.tgui_input_index = 0
 		src.updateUsrDialog()
 		playsound(src.loc, 'sound/machines/keypress.ogg', 50, 1, -15)
 		SPAWN(2 SECONDS)

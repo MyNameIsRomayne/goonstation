@@ -5,40 +5,60 @@
  * @license ISC
  */
 
-import { Button, Flex, Input, Section, Tooltip } from 'tgui-core/components';
+import { useState } from 'react';
+import { Button, Flex, Section, Tooltip } from 'tgui-core/components';
 
 import { useBackend } from '../../backend';
+import { TerminalInput } from './TerminalInput';
 import { TerminalData } from './types';
 
 export const InputAndButtonsSection = () => {
   const { act, data } = useBackend<TerminalData>();
   const { TermActive } = data;
 
+  const [localInputValue, setLocalInputValue] = useState(data.inputValue);
+
   const handleInputEnter = (_e, value) => {
     act('text', { value: value });
   };
-  const handleEnterClick = () => {
-    // Still a tiny bit hacky but it's a manual click on the enter button which already caused me too much grief
-    const domInput = document.querySelector(
+  // Tiny bit hacky but needed to force updates on the input box.
+  const getDOMInput = () => {
+    return document.querySelector(
       ".terminalInput input[class^='_inner']",
     ) as HTMLInputElement;
+  };
+  const handleEnterClick = () => {
+    // Still a tiny bit hacky but it's a manual click on the enter button which already caused me too much grief
+    const domInput = getDOMInput();
     act('text', { value: domInput.value });
     domInput.value = '';
   };
+  const handleHistoryPrevious = () => act('history', { direction: 'prev' });
+  const handleHistoryNext = () => act('history', { direction: 'next' });
   const handleRestartClick = () => act('restart');
+
+  // localInputValue is basically just here to detect changes in passed-in inputValue
+  // done this way because forcible updates in handleHistoryPrev/Next are not quick enough
+  if (localInputValue !== data.inputValue) {
+    getDOMInput().value = data.inputValue;
+    setLocalInputValue(data.inputValue);
+  }
 
   return (
     <Section fitted>
       <Flex align="center">
         <Flex.Item grow>
-          <Input
+          <TerminalInput
+            autoFocus
+            value={data.inputValue}
             className="terminalInput"
             placeholder="Type Here"
             selfClear
             fluid
             mr="0.5rem"
+            onKeyUp={handleHistoryNext}
+            onKeyDown={handleHistoryPrevious}
             onEnter={handleInputEnter}
-            // TODO-REACT: re-implement up/down arrow `history` functionallity
           />
         </Flex.Item>
         <Flex.Item>
