@@ -416,10 +416,10 @@
 				src.active_program.input_text(params["value"])
 				// Handle updating history
 				if (length(src.tgui_input_history) > MAX_INPUT_HISTORY_LENGTH)
-					src.tgui_input_history.Remove(src.tgui_input_history[0])
+					src.tgui_input_history.Remove(src.tgui_input_history[1])
 				src.tgui_input_history += params["value"]
 				src.tgui_input_index = length(src.tgui_input_history) + 1
-				
+
 				playsound(src.loc, "keyboard", 50, 1, -15)
 				src.updateUsrDialog()
 		if("buttonPressed")
