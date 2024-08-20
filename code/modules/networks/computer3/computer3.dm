@@ -430,6 +430,7 @@
 					if((issilicon(usr) || isAI(usr)) && BOUNDS_DIST(src, usr) > 0)
 						boutput(usr, SPAN_ALERT("You cannot press the ejection button."))
 						return
+						// woops
 					for(var/datum/computer/file/terminal_program/P in src.processing_programs)
 						P.disk_ejected(src.diskette)
 					usr.put_in_hand_or_eject(src.diskette)
