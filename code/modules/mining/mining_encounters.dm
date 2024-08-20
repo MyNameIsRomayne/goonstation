@@ -27,7 +27,9 @@
 
 		generated_turfs = Turfspawn_Asteroid_Round(magnetic_center, /turf/simulated/wall/auto/asteroid, size, 0, area_restriction)
 
+		var/quality = rand(-101,101)
 		for (var/turf/simulated/wall/auto/asteroid/AST in generated_turfs)
+			AST.quality = quality
 			AST.space_overlays()
 
 		for (var/turf/simulated/floor/plating/airless/asteroid/AST in generated_turfs)
@@ -71,7 +73,9 @@
 			else
 				generated_turfs = Turfspawn_Asteroid_Round(magnetic_center, /turf/simulated/wall/auto/asteroid, size, 0, area_restriction)
 
+		var/quality = rand(-101,101)
 		for (var/turf/simulated/wall/auto/asteroid/AST in generated_turfs)
+			AST.quality = quality
 			AST.space_overlays()
 
 		for (var/turf/simulated/floor/plating/airless/asteroid/AST in generated_turfs)
@@ -100,7 +104,9 @@
 
 		generated_turfs = Turfspawn_Asteroid_Round(magnetic_center, /turf/simulated/wall/auto/asteroid/ice, size, 0, area_restriction)
 
+		var/quality = rand(-101,101)
 		for (var/turf/simulated/wall/auto/asteroid/AST in generated_turfs)
+			AST.quality = quality
 			AST.space_overlays()
 
 		for (var/turf/simulated/floor/plating/airless/asteroid/AST in generated_turfs)
@@ -132,7 +138,9 @@
 
 		generated_turfs = Turfspawn_Asteroid_Round(magnetic_center, /turf/simulated/wall/auto/asteroid/jean, size, 1, area_restriction)
 
+		var/quality = rand(-101,101)
 		for (var/turf/simulated/wall/auto/asteroid/AST in generated_turfs)
+			AST.quality = quality
 			AST.space_overlays()
 			AST.setMaterial(getMaterial("jean"))
 
@@ -204,7 +212,9 @@
 
 		var/list/generated_turfs = Turfspawn_Asteroid_Round(magnetic_center, /turf/simulated/wall/auto/asteroid/geode, size, 1, area_restriction)
 
+		var/quality = rand(0,101)
 		for (var/turf/simulated/wall/auto/asteroid/AST in generated_turfs)
+			AST.quality = quality
 			AST.space_overlays()
 
 		var/list/floors = list()
@@ -247,6 +257,7 @@
 
 		var/magnetic_center = mining_controls.magnetic_center
 		var/area_restriction = /area/mining/magnet
+		var/quality = rand(-101,101)
 		var/size = 7
 
 		if (target)
@@ -256,6 +267,7 @@
 
 		var/list/generated_turfs = Turfspawn_Asteroid_Round(magnetic_center, /turf/simulated/wall/auto/asteroid/algae, size, TRUE, area_restriction)
 		for (var/turf/simulated/wall/auto/asteroid/AST in generated_turfs)
+			AST.quality = quality
 			AST.space_overlays()
 
 		var/list/floors = list()
@@ -295,7 +307,9 @@
 
 		generated_turfs = Turfspawn_Asteroid_Round(magnetic_center, /turf/simulated/wall/auto/asteroid, size, 0, area_restriction)
 
+		var/quality = rand(-101,101)
 		for (var/turf/simulated/wall/auto/asteroid/AST in generated_turfs)
+			AST.quality = quality
 			AST.space_overlays()
 
 		for (var/turf/simulated/floor/plating/airless/asteroid/AST in generated_turfs)
@@ -323,7 +337,9 @@
 
 		generated_turfs = Turfspawn_Asteroid_Round(magnetic_center, /turf/simulated/wall/auto/asteroid, size, 0, area_restriction)
 
+		var/quality = rand(-101,101)
 		for (var/turf/simulated/wall/auto/asteroid/AST in generated_turfs)
+			AST.quality = quality
 			AST.space_overlays()
 
 		for (var/turf/simulated/floor/plating/airless/asteroid/AST in generated_turfs)
@@ -352,7 +368,9 @@
 
 		generated_turfs = Turfspawn_Asteroid_Round(magnetic_center, /turf/simulated/wall/auto/asteroid, size, 0, area_restriction)
 
+		var/quality = rand(-101,101)
 		for (var/turf/simulated/wall/auto/asteroid/AST in generated_turfs)
+			AST.quality = quality
 			AST.space_overlays()
 
 		for (var/turf/simulated/floor/plating/airless/asteroid/AST in generated_turfs)
@@ -382,7 +400,9 @@
 
 		generated_turfs = Turfspawn_Asteroid_Round(magnetic_center, /turf/simulated/wall/auto/asteroid, size, 0, area_restriction)
 
+		var/quality = rand(-101,101)
 		for (var/turf/simulated/wall/auto/asteroid/AST in generated_turfs)
+			AST.quality = quality
 			AST.space_overlays()
 
 		for (var/turf/simulated/floor/plating/airless/asteroid/AST in generated_turfs)
@@ -411,7 +431,9 @@
 
 		generated_turfs = Turfspawn_Asteroid_Round(magnetic_center, /turf/simulated/wall/auto/asteroid, size, 0, area_restriction)
 
+		var/quality = rand(-101,101)
 		for (var/turf/simulated/wall/auto/asteroid/AST in generated_turfs)
+			AST.quality = quality
 			AST.space_overlays()
 
 		for (var/turf/simulated/floor/plating/airless/asteroid/AST in generated_turfs)
@@ -440,7 +462,9 @@
 
 		generated_turfs = Turfspawn_Asteroid_Round(magnetic_center, /turf/simulated/wall/auto/asteroid, size, 0, area_restriction)
 
+		var/quality = rand(-101,101)
 		for (var/turf/simulated/wall/auto/asteroid/AST in generated_turfs)
+			AST.quality = quality
 			AST.space_overlays()
 
 		for (var/turf/simulated/floor/plating/airless/asteroid/AST in generated_turfs)
@@ -469,7 +493,9 @@
 
 		generated_turfs = Turfspawn_Asteroid_Round(magnetic_center, /turf/simulated/wall/auto/asteroid, size, 0, area_restriction)
 
+		var/quality = rand(-101,101)
 		for (var/turf/simulated/wall/auto/asteroid/AST in generated_turfs)
+			AST.quality = quality
 			AST.space_overlays()
 
 		for (var/turf/simulated/floor/plating/airless/asteroid/AST in generated_turfs)
@@ -498,7 +524,9 @@
 
 		generated_turfs = Turfspawn_Asteroid_Round(magnetic_center, /turf/simulated/wall/auto/asteroid, size, 0, area_restriction)
 
+		var/quality = rand(-101,101)
 		for (var/turf/simulated/wall/auto/asteroid/AST in generated_turfs)
+			AST.quality = quality
 			AST.space_overlays()
 
 		for (var/turf/simulated/floor/plating/airless/asteroid/AST in generated_turfs)
@@ -526,7 +554,9 @@
 
 		generated_turfs = Turfspawn_Asteroid_Round(magnetic_center, /turf/simulated/wall/auto/asteroid, size, 0, area_restriction)
 
+		var/quality = rand(-101,101)
 		for (var/turf/simulated/wall/auto/asteroid/AST in generated_turfs)
+			AST.quality = quality
 			AST.space_overlays()
 
 		for (var/turf/simulated/floor/plating/airless/asteroid/AST in generated_turfs)
@@ -554,7 +584,9 @@
 
 		generated_turfs = Turfspawn_Asteroid_Round(magnetic_center, /turf/simulated/wall/auto/asteroid, size, 0, area_restriction)
 
+		var/quality = rand(-101,101)
 		for (var/turf/simulated/wall/auto/asteroid/AST in generated_turfs)
+			AST.quality = quality
 			AST.space_overlays()
 
 		for (var/turf/simulated/floor/plating/airless/asteroid/AST in generated_turfs)
@@ -582,7 +614,9 @@
 
 		generated_turfs = Turfspawn_Asteroid_Round(magnetic_center, /turf/simulated/wall/auto/asteroid, size, 0, area_restriction)
 
+		var/quality = rand(-101,101)
 		for (var/turf/simulated/wall/auto/asteroid/AST in generated_turfs)
+			AST.quality = quality
 			AST.space_overlays()
 
 		for (var/turf/simulated/floor/plating/airless/asteroid/AST in generated_turfs)
@@ -610,7 +644,9 @@
 
 		generated_turfs = Turfspawn_Asteroid_Round(magnetic_center, /turf/simulated/wall/auto/asteroid, size, 0, area_restriction)
 
+		var/quality = rand(-101,101)
 		for (var/turf/simulated/wall/auto/asteroid/AST in generated_turfs)
+			AST.quality = quality
 			AST.space_overlays()
 
 		for (var/turf/simulated/floor/plating/airless/asteroid/AST in generated_turfs)
@@ -638,7 +674,9 @@
 
 		generated_turfs = Turfspawn_Asteroid_Round(magnetic_center, /turf/simulated/wall/auto/asteroid, size, 0, area_restriction)
 
+		var/quality = rand(-101,101)
 		for (var/turf/simulated/wall/auto/asteroid/AST in generated_turfs)
+			AST.quality = quality
 			AST.space_overlays()
 
 		for (var/turf/simulated/floor/plating/airless/asteroid/AST in generated_turfs)
@@ -672,7 +710,9 @@
 	else
 		generated_turfs = Turfspawn_Asteroid_DegradeFromCenter(src, roidpath, size, 10)
 
+	var/quality = rand(-101,101)
 	for (var/turf/simulated/wall/auto/asteroid/AST in generated_turfs)
+		AST.quality = quality
 		AST.space_overlays()
 
 	Turfspawn_Asteroid_SeedOre(generated_turfs)

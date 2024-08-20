@@ -26360,7 +26360,9 @@
 /turf/simulated/floor/plating/airless,
 /area/station/engine/engineering)
 "fYF" = (
-/obj/displaycase/captain,
+/obj/displaycase{
+	displayed = /obj/item/captaingun
+	},
 /turf/simulated/floor/carpet/arcade,
 /area/station/crew_quarters/captain)
 "gck" = (

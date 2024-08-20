@@ -22379,6 +22379,19 @@
 /obj/machinery/computer/ordercomp,
 /turf/simulated/floor/grime,
 /area/station/routing/security)
+"bqC" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/storage/secure/closet/brig,
+/turf/simulated/floor/grime,
+/area/station/routing/security)
+"bqD" = (
+/obj/machinery/light/small{
+	dir = 1;
+	pixel_y = 21
+	},
+/obj/storage/secure/closet/brig,
+/turf/simulated/floor,
+/area/station/routing/security)
 "bqE" = (
 /obj/mapping_helper/wingrille_spawn/auto/reinforced,
 /turf/simulated/floor/plating,
@@ -34864,7 +34877,8 @@
 /area/station/crew_quarters/captain)
 "bXI" = (
 /obj/table/wood/auto,
-/obj/displaycase/captain{
+/obj/displaycase{
+	displayed = /obj/item/captaingun;
 	pixel_y = 6
 	},
 /obj/cable{
@@ -58028,6 +58042,11 @@
 	},
 /turf/simulated/floor/orangeblack,
 /area/station/maintenance/central)
+"giI" = (
+/obj/vehicle/segway,
+/obj/decal/stripe_caution,
+/turf/simulated/floor/red/side,
+/area/station/security/main)
 "gke" = (
 /obj/stool/chair{
 	dir = 8
@@ -61391,6 +61410,12 @@
 /area/station/medical/research{
 	name = "Genetic Research"
 	})
+"jwl" = (
+/obj/machinery/firealarm/west,
+/obj/table/reinforced/auto,
+/obj/item/hand_labeler,
+/turf/simulated/floor/caution/south,
+/area/station/routing/security)
 "jwG" = (
 /obj/machinery/light{
 	dir = 1;
@@ -62049,12 +62074,6 @@
 /obj/mapping_helper/wingrille_spawn/auto/reinforced/crystal,
 /turf/simulated/floor/plating,
 /area/station/maintenance/southeast)
-"jYq" = (
-/obj/machinery/firealarm/west,
-/obj/table/reinforced/auto,
-/obj/item/hand_labeler,
-/turf/simulated/floor/caution/south,
-/area/station/routing/security)
 "jYG" = (
 /obj/machinery/atmospherics/unary/portables_connector,
 /obj/machinery/portable_atmospherics/canister/oxygen,
@@ -64554,11 +64573,6 @@
 	},
 /turf/simulated/floor/orangeblack,
 /area/station/maintenance/central)
-"mtX" = (
-/obj/disposalpipe/segment/mail/vertical,
-/obj/storage/secure/closet/brig,
-/turf/simulated/floor/grime,
-/area/station/routing/security)
 "muC" = (
 /obj/disposalpipe/segment/transport,
 /turf/simulated/floor/green/side{
@@ -66484,6 +66498,19 @@
 	dir = 10
 	},
 /area/station/com_dish/auxdish)
+"owh" = (
+/obj/machinery/door/airlock/pyro/command{
+	dir = 4
+	},
+/obj/mapping_helper/firedoor_spawn,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/overfloor{
+	dir = 4
+	},
+/obj/decal/stripe_delivery,
+/obj/mapping_helper/access/armory,
+/obj/mapping_helper/airlock/aiDisabler,
+/turf/simulated/floor,
+/area/station/ai_monitored/armory)
 "owx" = (
 /turf/simulated/floor/carpet/blue/fancy/innercorner/east,
 /area/station/medical/medbay/psychiatrist)
@@ -68813,19 +68840,6 @@
 	dir = 5
 	},
 /area/station/catwalk/south)
-"qRd" = (
-/obj/machinery/door/airlock/pyro/weapons/secure{
-	dir = 4
-	},
-/obj/mapping_helper/firedoor_spawn,
-/obj/mapping_helper/access/armory,
-/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/overfloor{
-	dir = 4
-	},
-/obj/decal/stripe_delivery,
-/obj/mapping_helper/airlock/aiDisabler,
-/turf/simulated/floor,
-/area/station/ai_monitored/armory)
 "qRB" = (
 /obj/decal/poster/wallsign/stencil/right/y{
 	pixel_x = 12
@@ -72073,11 +72087,6 @@
 	icon_state = "blue5"
 	},
 /area/station/crew_quarters/arcade/dungeon)
-"tWr" = (
-/obj/vehicle/segway,
-/obj/decal/stripe_caution,
-/turf/simulated/floor/red/side,
-/area/station/security/main)
 "tWt" = (
 /obj/table/auto,
 /obj/item/device/analyzer/atmospheric,
@@ -75818,14 +75827,6 @@
 /obj/mapping_helper/firedoor_spawn,
 /turf/simulated/floor/sanitary,
 /area/station/crew_quarters/toilets)
-"ylV" = (
-/obj/machinery/light/small{
-	dir = 1;
-	pixel_y = 21
-	},
-/obj/storage/secure/closet/brig,
-/turf/simulated/floor,
-/area/station/routing/security)
 "ylW" = (
 /obj/grille/catwalk{
 	dir = 10
@@ -129163,7 +129164,7 @@ blO
 bno
 boR
 bqA
-jYq
+jwl
 xxx
 bqz
 bxT
@@ -129766,7 +129767,7 @@ bkk
 blQ
 bnp
 boT
-mtX
+bqC
 bsq
 buh
 iBg
@@ -130068,7 +130069,7 @@ bkl
 bkm
 bnq
 boU
-ylV
+bqD
 bsr
 bui
 oGS
@@ -131587,7 +131588,7 @@ bzK
 bBn
 bBn
 bFi
-qRd
+owh
 bIX
 xWI
 bMx
@@ -133395,7 +133396,7 @@ bsB
 bur
 bwb
 byg
-tWr
+giI
 bBs
 bDk
 bFo

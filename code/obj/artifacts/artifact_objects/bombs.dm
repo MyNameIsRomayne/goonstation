@@ -378,6 +378,7 @@ ABSTRACT_TYPE(/datum/artifact/bomb)
 					100;"silver",
 					100;"cobryl",
 					50;"miracle",
+					50;"soulsteel",
 					50;"hauntium",
 					50;"ectoplasm",
 					10;"ectofibre",

@@ -28,7 +28,6 @@
 	New()
 		..()
 		BLOCK_SETUP(BLOCK_KNIFE)
-		setItemSpecial(/datum/item_special/jab)
 
 	suicide(var/mob/user as mob)
 		if (!src.user_can_suicide(user))

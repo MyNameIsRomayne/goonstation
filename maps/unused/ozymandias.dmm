@@ -89785,7 +89785,8 @@
 /area/ghostdrone_factory)
 "wXS" = (
 /obj/table/wood/auto,
-/obj/displaycase/captain{
+/obj/displaycase{
+	displayed = /obj/item/captaingun;
 	pixel_y = 6
 	},
 /obj/machinery/light/small{

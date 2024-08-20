@@ -54977,7 +54977,9 @@
 /turf/simulated/floor,
 /area/station/crew_quarters/locker)
 "fdV" = (
-/obj/displaycase/captain,
+/obj/displaycase{
+	displayed = /obj/item/captaingun
+	},
 /obj/window/reinforced{
 	dir = 2
 	},

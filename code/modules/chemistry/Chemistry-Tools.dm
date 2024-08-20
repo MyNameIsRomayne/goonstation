@@ -218,14 +218,13 @@ proc/ui_describe_reagents(atom/A)
 	New()
 		. = ..()
 		src.container_style ||= src.icon_state
-		if (src.fluid_overlay_states > 0)
-			src.AddComponent( \
-				/datum/component/reagent_overlay, \
-				reagent_overlay_icon = src.container_icon, \
-				reagent_overlay_icon_state = src.container_style, \
-				reagent_overlay_states = src.fluid_overlay_states, \
-				reagent_overlay_scaling = src.fluid_overlay_scaling, \
-			)
+		src.AddComponent( \
+			/datum/component/reagent_overlay, \
+			reagent_overlay_icon = src.container_icon, \
+			reagent_overlay_icon_state = src.container_style, \
+			reagent_overlay_states = src.fluid_overlay_states, \
+			reagent_overlay_scaling = src.fluid_overlay_scaling, \
+		)
 
 	// this proc is a mess ow
 	afterattack(obj/target, mob/user , flag)

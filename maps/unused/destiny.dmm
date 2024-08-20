@@ -526,7 +526,8 @@
 	})
 "ack" = (
 /obj/table/wood/auto,
-/obj/displaycase/captain{
+/obj/displaycase{
+	displayed = /obj/item/captaingun;
 	pixel_y = 8
 	},
 /obj/machinery/light/incandescent{

@@ -1180,8 +1180,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 
 	on_launch(obj/projectile/O)
 		if(length(O.special_data))
-			if(O.special_data["speed_mult"])
-				O.internal_speed = src.projectile_speed * O.special_data["speed_mult"]
+			O.internal_speed = src.projectile_speed * O.special_data["speed_mult"]
 			src.color_icon = O.special_data["proj_color"]
 		O.AddComponent(/datum/component/gaseous_projectile) // Pierce anything that doesn't block LoS - if you can see it you can burn it
 

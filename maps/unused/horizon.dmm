@@ -6030,7 +6030,16 @@
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/station/hangar/arrivals)
 "ask" = (
-/turf/simulated/shuttle/wall/escape,
+/turf/simulated/shuttle/wall/escape{
+	dir = 4;
+	icon_state = "walldir"
+	},
+/area/station/hangar/arrivals)
+"asl" = (
+/turf/simulated/shuttle/wall/escape{
+	dir = 8;
+	icon_state = "walldir"
+	},
 /area/station/hangar/arrivals)
 "asm" = (
 /obj/machinery/light,
@@ -8733,13 +8742,28 @@
 	},
 /area/station/crew_quarters/quartersB)
 "aAx" = (
-/obj/indestructible/shuttle_corner{
-	dir = 0
+/turf/simulated/shuttle/wall{
+	dir = 8;
+	icon_state = "wall_trans"
 	},
-/turf/space,
 /area/shuttle/arrival/station)
 "aAy" = (
-/turf/simulated/wall/auto/shuttle,
+/turf/simulated/shuttle/wall/escape{
+	dir = 4;
+	icon_state = "walldir"
+	},
+/area/shuttle/arrival/station)
+"aAz" = (
+/turf/simulated/shuttle/wall/escape{
+	dir = 5;
+	icon_state = "walldir"
+	},
+/area/shuttle/arrival/station)
+"aAA" = (
+/turf/simulated/shuttle/wall/escape{
+	dir = 8;
+	icon_state = "walldir"
+	},
 /area/shuttle/arrival/station)
 "aAB" = (
 /turf/simulated/shuttle/wall/cockpit/window{
@@ -8754,6 +8778,9 @@
 	icon_state = "alt_propulsion"
 	},
 /turf/space,
+/area/shuttle/arrival/station)
+"aAD" = (
+/turf/simulated/shuttle/wall,
 /area/shuttle/arrival/station)
 "aAE" = (
 /turf/space,
@@ -8873,7 +8900,11 @@
 	dir = 8;
 	icon_state = "alt_heater-L"
 	},
-/turf/unsimulated/floor/shuttle,
+/turf/unsimulated/floor{
+	desc = "";
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "floor"
+	},
 /area/shuttle/arrival/station)
 "aBl" = (
 /obj/machinery/light{
@@ -8881,19 +8912,34 @@
 	},
 /obj/table/reinforced/auto,
 /obj/item/storage/firstaid/regular,
-/turf/unsimulated/floor/shuttle,
+/turf/unsimulated/floor{
+	desc = "";
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "floor"
+	},
 /area/shuttle/arrival/station)
 "aBm" = (
 /obj/table/reinforced/auto,
-/turf/unsimulated/floor/shuttle,
+/turf/unsimulated/floor{
+	desc = "";
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "floor"
+	},
 /area/shuttle/arrival/station)
 "aBn" = (
 /obj/mapping_helper/wingrille_spawn/auto/reinforced,
-/turf/unsimulated/floor/shuttle,
+/turf/simulated/floor/shuttle,
 /area/shuttle/arrival/station)
 "aBo" = (
 /obj/machinery/door/airlock/pyro/reinforced/arrivals,
-/turf/unsimulated/floor/shuttle,
+/turf/unsimulated/floor{
+	desc = "";
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "floor"
+	},
+/area/shuttle/arrival/station)
+"aBp" = (
+/turf/simulated/shuttle/wall/escape,
 /area/shuttle/arrival/station)
 "aBq" = (
 /obj/machinery/door/airlock/pyro/external{
@@ -9026,27 +9072,47 @@
 	dir = 8;
 	icon_state = "alt_heater-M"
 	},
-/turf/unsimulated/floor/shuttle,
+/turf/unsimulated/floor{
+	desc = "";
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "floor"
+	},
 /area/shuttle/arrival/station)
 "aBS" = (
-/turf/unsimulated/floor/shuttle,
+/turf/unsimulated/floor{
+	desc = "";
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "floor"
+	},
 /area/shuttle/arrival/station)
 "aBT" = (
 /obj/cryotron,
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 8
 	},
-/turf/unsimulated/floor/shuttle,
+/turf/unsimulated/floor{
+	desc = "";
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "floor"
+	},
 /area/shuttle/arrival/station)
 "aBU" = (
 /obj/landmark/start/latejoin,
-/turf/unsimulated/floor/shuttle,
+/turf/unsimulated/floor{
+	desc = "";
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "floor"
+	},
 /area/shuttle/arrival/station)
 "aBV" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
 	},
-/turf/unsimulated/floor/shuttle,
+/turf/unsimulated/floor{
+	desc = "";
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "floor"
+	},
 /area/shuttle/arrival/station)
 "aBW" = (
 /obj/machinery/light{
@@ -9056,7 +9122,11 @@
 /obj/item/clothing/head/emerg,
 /obj/item/clothing/suit/space/emerg,
 /obj/item/clothing/mask/breath,
-/turf/unsimulated/floor/shuttle,
+/turf/unsimulated/floor{
+	desc = "";
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "floor"
+	},
 /area/shuttle/arrival/station)
 "aBY" = (
 /obj/stool/chair/comfy/shuttle{
@@ -9067,20 +9137,32 @@
 	pixel_x = -1
 	},
 /obj/landmark/start/job/assistant,
-/turf/unsimulated/floor/shuttle,
+/turf/unsimulated/floor{
+	desc = "";
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "floor"
+	},
 /area/shuttle/arrival/station)
 "aBZ" = (
 /obj/stool/chair/comfy/shuttle{
 	dir = 4
 	},
 /obj/landmark/start/job/assistant,
-/turf/unsimulated/floor/shuttle,
+/turf/unsimulated/floor{
+	desc = "";
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "floor"
+	},
 /area/shuttle/arrival/station)
 "aCa" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/unsimulated/floor/shuttle,
+/turf/unsimulated/floor{
+	desc = "";
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "floor"
+	},
 /area/shuttle/arrival/station)
 "aCb" = (
 /obj/mapping_helper/wingrille_spawn/auto/reinforced,
@@ -9177,7 +9259,11 @@
 /obj/item/clothing/head/emerg,
 /obj/item/clothing/suit/space/emerg,
 /obj/item/clothing/mask/breath,
-/turf/unsimulated/floor/shuttle,
+/turf/unsimulated/floor{
+	desc = "";
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "floor"
+	},
 /area/shuttle/arrival/station)
 "aCq" = (
 /obj/cable{
@@ -9241,13 +9327,21 @@
 	dir = 8;
 	icon_state = "alt_heater-R"
 	},
-/turf/unsimulated/floor/shuttle,
+/turf/unsimulated/floor{
+	desc = "";
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "floor"
+	},
 /area/shuttle/arrival/station)
 "aCz" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 10
 	},
-/turf/unsimulated/floor/shuttle,
+/turf/unsimulated/floor{
+	desc = "";
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "floor"
+	},
 /area/shuttle/arrival/station)
 "aCA" = (
 /obj/decal/tile_edge/stripe{
@@ -9255,13 +9349,21 @@
 	icon_state = "bot2";
 	tag = ""
 	},
-/turf/unsimulated/floor/shuttle,
+/turf/unsimulated/floor{
+	desc = "";
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "floor"
+	},
 /area/shuttle/arrival/station)
 "aCB" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 6
 	},
-/turf/unsimulated/floor/shuttle,
+/turf/unsimulated/floor{
+	desc = "";
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "floor"
+	},
 /area/shuttle/arrival/station)
 "aCD" = (
 /obj/table/reinforced/auto,
@@ -9435,7 +9537,11 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/unsimulated/floor/shuttle,
+/turf/unsimulated/floor{
+	desc = "";
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "floor"
+	},
 /area/shuttle/arrival/station)
 "aDf" = (
 /obj/machinery/door/airlock/pyro/command{
@@ -9653,7 +9759,11 @@
 /obj/machinery/sleeper/compact{
 	dir = 8
 	},
-/turf/unsimulated/floor/shuttle,
+/turf/unsimulated/floor{
+	desc = "";
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "floor"
+	},
 /area/shuttle/arrival/station)
 "aDI" = (
 /obj/stool/chair/comfy/shuttle/brown{
@@ -9930,7 +10040,11 @@
 /area/station/hallway/secondary/west)
 "aEk" = (
 /obj/machinery/light,
-/turf/unsimulated/floor/shuttle,
+/turf/unsimulated/floor{
+	desc = "";
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "floor"
+	},
 /area/shuttle/arrival/station)
 "aEl" = (
 /obj/stool/chair/comfy/shuttle{
@@ -9938,7 +10052,11 @@
 	},
 /obj/machinery/light,
 /obj/landmark/start/job/assistant,
-/turf/unsimulated/floor/shuttle,
+/turf/unsimulated/floor{
+	desc = "";
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "floor"
+	},
 /area/shuttle/arrival/station)
 "aEm" = (
 /obj/table/reinforced/auto,
@@ -10048,7 +10166,11 @@
 "aEy" = (
 /obj/table/reinforced/auto,
 /obj/machinery/recharger,
-/turf/unsimulated/floor/shuttle,
+/turf/unsimulated/floor{
+	desc = "";
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "floor"
+	},
 /area/shuttle/arrival/station)
 "aEz" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
@@ -10115,7 +10237,11 @@
 /obj/machinery/sleeper/compact{
 	dir = 8
 	},
-/turf/unsimulated/floor/shuttle,
+/turf/unsimulated/floor{
+	desc = "";
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "floor"
+	},
 /area/shuttle/arrival/station)
 "aEJ" = (
 /obj/machinery/door_control/podbay/research/new_walls/west,
@@ -10351,16 +10477,14 @@
 /turf/simulated/floor/plating/random,
 /area/space)
 "aFz" = (
-/obj/indestructible/shuttle_corner{
-	dir = 4
+/turf/simulated/shuttle/wall{
+	icon_state = "wall_trans"
 	},
-/turf/space,
 /area/shuttle/arrival/station)
 "aFA" = (
-/obj/indestructible/shuttle_corner{
-	dir = 8
+/turf/simulated/shuttle/wall/corner{
+	dir = 4
 	},
-/turf/space,
 /area/shuttle/arrival/station)
 "aFB" = (
 /obj/securearea{
@@ -10395,7 +10519,11 @@
 	},
 /obj/decal/poster/wallsign/stencil/left/p,
 /obj/decal/poster/wallsign/stencil/right/o,
-/turf/unsimulated/floor/shuttle,
+/turf/unsimulated/floor{
+	desc = "";
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "floor"
+	},
 /area/shuttle/arrival/station)
 "aFH" = (
 /obj/machinery/light{
@@ -11698,11 +11826,22 @@
 	},
 /turf/simulated/floor/plating/random,
 /area/station/mining/refinery)
+"aJx" = (
+/turf/simulated/shuttle/wall/escape{
+	dir = 4;
+	icon_state = "walldir"
+	},
+/area/station/hallway/secondary/exit)
 "aJz" = (
 /turf/simulated/floor/airless/plating/catwalk{
 	dir = 4
 	},
 /area/station/solar/small_backup2)
+"aJB" = (
+/turf/simulated/shuttle/wall/escape{
+	icon_state = "walldir"
+	},
+/area/station/hallway/secondary/exit)
 "aJE" = (
 /obj/machinery/door/airlock/pyro/external,
 /turf/simulated/floor/shuttle,
@@ -12075,7 +12214,11 @@
 	},
 /obj/decal/poster/wallsign/stencil/left/d,
 /obj/decal/poster/wallsign/stencil/right/s,
-/turf/unsimulated/floor/shuttle,
+/turf/unsimulated/floor{
+	desc = "";
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "floor"
+	},
 /area/shuttle/arrival/station)
 "aKx" = (
 /obj/machinery/portable_reclaimer,
@@ -12417,7 +12560,10 @@
 /turf/simulated/floor/plating/random,
 /area/station/maintenance/northeast)
 "aLl" = (
-/turf/simulated/shuttle/wall/escape,
+/turf/simulated/shuttle/wall/escape{
+	dir = 1;
+	icon_state = "walldir"
+	},
 /area/station/hallway/secondary/exit)
 "aLn" = (
 /obj/stool/chair/comfy/shuttle{
@@ -12945,7 +13091,11 @@
 /obj/decal/poster/wallsign/stencil/right/x{
 	pixel_x = 14
 	},
-/turf/unsimulated/floor/shuttle,
+/turf/unsimulated/floor{
+	desc = "";
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "floor"
+	},
 /area/shuttle/arrival/station)
 "aMN" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold{
@@ -12986,6 +13136,18 @@
 	},
 /turf/simulated/floor/black,
 /area/station/science/lobby)
+"aMT" = (
+/turf/simulated/shuttle/wall/escape{
+	dir = 8;
+	icon_state = "walldir"
+	},
+/area/station/hallway/secondary/exit)
+"aMU" = (
+/turf/simulated/shuttle/wall/escape{
+	dir = 6;
+	icon_state = "walldir"
+	},
+/area/station/hallway/secondary/exit)
 "aMV" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -16793,7 +16955,11 @@
 	},
 /obj/decal/poster/wallsign/stencil/left/i,
 /obj/decal/poster/wallsign/stencil/right/t,
-/turf/unsimulated/floor/shuttle,
+/turf/unsimulated/floor{
+	desc = "";
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "floor"
+	},
 /area/shuttle/arrival/station)
 "aXg" = (
 /obj/machinery/atmospherics/unary/outlet_injector/active{
@@ -48527,12 +48693,6 @@
 /obj/decal/cleanable/dirt,
 /turf/simulated/floor,
 /area/station/storage/tools)
-"gmF" = (
-/obj/indestructible/shuttle_corner{
-	dir = 0
-	},
-/turf/unsimulated/floor/shuttle,
-/area/shuttle/arrival/station)
 "gnj" = (
 /obj/disposalpipe/segment/morgue,
 /turf/simulated/floor/bluewhite,
@@ -49064,7 +49224,9 @@
 /area/station/engine/hotloop)
 "hpM" = (
 /obj/table/wood/auto,
-/obj/displaycase/captain,
+/obj/displaycase{
+	displayed = /obj/item/captaingun
+	},
 /turf/simulated/floor/carpet/blue/fancy/innercorner/south,
 /area/station/bridge/captain)
 "hpO" = (
@@ -51886,7 +52048,9 @@
 /area/station/crew_quarters/bar)
 "lYW" = (
 /obj/decal/poster/wallsign/space,
-/turf/simulated/shuttle/wall/escape,
+/turf/simulated/shuttle/wall/escape{
+	icon_state = "walldir"
+	},
 /area/station/hallway/secondary/exit)
 "lZf" = (
 /obj/cable{
@@ -55567,12 +55731,6 @@
 	},
 /turf/simulated/floor/wood/two,
 /area/station/crew_quarters/bar)
-"rOi" = (
-/obj/indestructible/shuttle_corner{
-	dir = 1
-	},
-/turf/space,
-/area/shuttle/arrival/station)
 "rOA" = (
 /obj/machinery/door/airlock/pyro/medical/alt{
 	dir = 4;
@@ -56461,12 +56619,6 @@
 /obj/disposalpipe/segment/ejection,
 /turf/simulated/floor/plating,
 /area/station/maintenance/disposal)
-"tnN" = (
-/obj/indestructible/shuttle_corner{
-	dir = 8
-	},
-/turf/space,
-/area/space)
 "tow" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -57946,12 +58098,6 @@
 	},
 /turf/simulated/floor/blueblack,
 /area/station/medical/robotics)
-"vLm" = (
-/obj/indestructible/shuttle_corner{
-	dir = 4
-	},
-/turf/unsimulated/floor/shuttle,
-/area/shuttle/arrival/station)
 "vLY" = (
 /obj/machinery/plantpot{
 	anchored = 1
@@ -92353,7 +92499,7 @@ aaa
 aaa
 aaa
 aaa
-tnN
+aaa
 aaa
 aaa
 aaa
@@ -94500,11 +94646,11 @@ aaa
 aaa
 aaa
 aaa
-ask
+asl
 bCn
 auL
 auL
-ask
+asl
 aaa
 aaa
 aaa
@@ -95718,7 +95864,7 @@ aAx
 aAC
 aAC
 aAC
-aAy
+aAz
 aAC
 aAC
 aAC
@@ -96020,7 +96166,7 @@ aAy
 aBk
 aBR
 aCy
-aAy
+aAz
 aBk
 aBR
 aCy
@@ -96318,15 +96464,15 @@ awX
 ayf
 atb
 aaa
-aAy
+aAz
 aBl
 aBS
 aBS
-aAy
+aAA
 aDG
 aBS
 aEI
-aAy
+aAz
 aaa
 aaa
 uav
@@ -96620,7 +96766,7 @@ awX
 ayf
 atb
 aai
-aAy
+aAA
 aBm
 aBT
 aCz
@@ -96628,7 +96774,7 @@ aDe
 aBS
 aBS
 aBS
-aAy
+aAA
 aai
 aai
 usY
@@ -96922,14 +97068,14 @@ awX
 ayf
 atb
 aaa
-rOi
-vLm
+aAB
+aAy
 aBU
 aCA
 aBS
 aBS
 aBS
-gmF
+aAy
 aFA
 aaa
 aaa
@@ -97225,13 +97371,13 @@ ayf
 atE
 aaa
 aaa
-aAy
+aAA
 aBV
 aCB
 aBS
 aBS
 aBS
-aAy
+aAA
 aaa
 aaa
 aaa
@@ -97829,13 +97975,13 @@ ayg
 atE
 atb
 atE
-aAy
+aAD
 aBW
 aCp
 aCp
 aBS
 aEk
-aAy
+aAD
 atE
 aGN
 iDo
@@ -98735,13 +98881,13 @@ awb
 atE
 atb
 atE
-aAy
+aAD
 aBY
 aBZ
 aBS
 aBZ
 aEl
-aAy
+aAD
 atE
 aGN
 iDo
@@ -99640,15 +99786,15 @@ aaa
 aal
 aaa
 aaa
-aAy
-aAy
+aAD
+aBp
 aCa
 aBZ
 aBS
 aBZ
 aEk
-aAy
-aAy
+aBp
+aAD
 aaa
 uav
 aJL
@@ -99942,14 +100088,14 @@ aaa
 aal
 aaa
 aaa
-rOi
-aAy
+aAB
+aBp
 aCb
-aAy
+aBp
 aDf
-aAy
+aBp
 aCb
-aAy
+aBp
 aFA
 aaa
 ipu
@@ -100251,7 +100397,7 @@ aCT
 aCd
 aDI
 aEm
-aAy
+aAD
 aaa
 aaa
 usY
@@ -100547,13 +100693,13 @@ aad
 aaa
 aaa
 aaa
-rOi
+aAB
 aCD
 aCT
 aCT
 aCT
 aEn
-aFA
+aDJ
 aaa
 aaa
 ipu
@@ -100850,11 +100996,11 @@ aaa
 aaa
 aaa
 aaa
-rOi
+aAB
 aCE
 aCE
 aCE
-aFA
+aDJ
 aaa
 aaa
 aaa
@@ -105724,8 +105870,8 @@ aaa
 aad
 aLv
 aKJ
-aLl
-aLl
+aJB
+aMU
 aLl
 aKJ
 aKJ
@@ -131046,9 +131192,9 @@ jje
 jje
 jje
 lYW
-aLl
-aLl
-aLl
+aMU
+aMU
+aMU
 aLl
 gyU
 rQe
@@ -131649,7 +131795,7 @@ jje
 jje
 jje
 jje
-aLl
+aJx
 aLp
 aLp
 aLp
@@ -131951,7 +132097,7 @@ jje
 jje
 jje
 jje
-aLl
+aMT
 aLp
 aLp
 aLp
@@ -132556,9 +132702,9 @@ jje
 jje
 jje
 lYW
-aLl
-aLl
-aLl
+aMU
+aMU
+aMU
 aLl
 cbm
 cbm

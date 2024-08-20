@@ -19,7 +19,6 @@ ADMIN_INTERACT_PROCS(/obj/machinery/light_switch, proc/trigger)
 	icon = 'icons/obj/power.dmi'
 	icon_state = "light1"
 	anchored = ANCHORED
-	deconstruct_flags = DECON_SCREWDRIVER | DECON_MULTITOOL | DECON_WIRECUTTERS
 	plane = PLANE_NOSHADOW_ABOVE
 	text = ""
 	var/on = 1
@@ -98,12 +97,7 @@ ADMIN_INTERACT_PROCS(/obj/machinery/light_switch, proc/trigger)
 
 /obj/machinery/light_switch/was_deconstructed_to_frame(mob/user)
 	. = ..()
-	// Might be the last light switch in the area, ensure lights stay on
-	if (!src.on)
-		src.on = TRUE
-		src.area.lightswitch = TRUE
-		src.area.power_change()
-	src.area.machines -= src
+	area.machines -= src
 	REMOVE_SWITCHED_OBJ(SWOB_LIGHTS)
 
 /obj/machinery/light_switch/update_icon()

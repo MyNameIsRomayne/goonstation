@@ -128,12 +128,13 @@ TYPEINFO_NEW(/datum/component/barber/shave)
 
 	var/non_murderous_failure = 0
 	var/mob/living/carbon/human/H = M
+	var/datum/appearanceHolder/AH = M.bioHolder.mobAppearance
 	if(ishuman(M) && ((H.head && H.head.c_flags & COVERSEYES) || (H.wear_mask && H.wear_mask.c_flags & COVERSEYES) || (H.glasses && H.glasses.c_flags & COVERSEYES)))
 		// you can't stab someone in the eyes wearing a mask!
 		boutput(user, SPAN_NOTICE("You're going to need to remove that mask/helmet/glasses first."))
 		non_murderous_failure = BARBERY_FAILURE
 
-	if(H.is_bald())
+	if(istype(AH.customization_first,/datum/customization_style/none) && istype(AH.customization_second,/datum/customization_style/none) && istype(AH.customization_third,/datum/customization_style/none))
 		boutput(user, SPAN_ALERT("There is nothing to cut!"))
 		non_murderous_failure = BARBERY_FAILURE
 
@@ -166,6 +167,7 @@ TYPEINFO_NEW(/datum/component/barber/shave)
 
 	var/non_murderous_failure = 0
 	var/mob/living/carbon/human/H = M
+	var/datum/appearanceHolder/AH = M.bioHolder.mobAppearance
 	if(ishuman(M) && ((H.head && H.head.c_flags & COVERSEYES) || (H.wear_mask && H.wear_mask.c_flags & COVERSEYES) || (H.glasses && H.glasses.c_flags & COVERSEYES)))
 		// you can't stab someone in the eyes wearing a mask!
 		boutput(user, SPAN_NOTICE("You're going to need to remove that mask/helmet/glasses first."))
@@ -195,7 +197,7 @@ TYPEINFO_NEW(/datum/component/barber/shave)
 			M.organHolder.head.UpdateIcon()
 		return ATTACK_PRE_DONT_ATTACK // gottem
 
-	if(H.is_bald())
+	if(istype(AH.customization_first,/datum/customization_style/none) && istype(AH.customization_second,/datum/customization_style/none) && istype(AH.customization_third,/datum/customization_style/none))
 		boutput(user, SPAN_ALERT("There is nothing to cut!"))
 		non_murderous_failure = BARBERY_FAILURE
 
@@ -581,7 +583,9 @@ TYPEINFO_NEW(/datum/component/barber/shave)
 			if (!barber || !barbee) // If either don't exist anymore, it's safe to say we have been disposed of.
 				return
 
-			if(barbee.is_bald())
+			if(istype(barbee.bioHolder.mobAppearance.customization_first,/datum/customization_style/none) && \
+			istype(barbee.bioHolder.mobAppearance.customization_second,/datum/customization_style/none) && \
+			istype(barbee.bioHolder.mobAppearance.customization_third,/datum/customization_style/none))
 				src.ui_close(src.barber) // There is nothing more to cut.
 
 			if (!barber || !barbee)
@@ -703,7 +707,9 @@ ABSTRACT_TYPE(/datum/action/bar/barber)
 					SPAN_ALERT("You [cut] all of [M]'s hair off!"))
 				var/obj/item/wig = M.create_wig()
 				wig.set_loc(M.loc)
-
+				M.bioHolder.mobAppearance.customization_first = new /datum/customization_style/none
+				M.bioHolder.mobAppearance.customization_second = new /datum/customization_style/none
+				M.bioHolder.mobAppearance.customization_third = new /datum/customization_style/none
 				M.TakeDamage("head", rand(5,10), 0)
 				take_bleeding_damage(M, user, 1, DAMAGE_CUT, 1)
 				M.emote("scream")
@@ -731,6 +737,9 @@ ABSTRACT_TYPE(/datum/action/bar/barber)
 						SPAN_NOTICE("You [cut] all of [M]'s hair off and make it into a wig."))
 					var/obj/item/wig = M.create_wig()
 					wig.set_loc(M.loc)
+					M.bioHolder.mobAppearance.customization_first = new /datum/customization_style/none
+					M.bioHolder.mobAppearance.customization_second = new /datum/customization_style/none
+					M.bioHolder.mobAppearance.customization_third = new /datum/customization_style/none
 				else
 					logTheThing(LOG_COMBAT, user, "cuts [constructTarget(M,"combat")]'s hair at [log_loc(user)].")
 					M.tri_message(user, "[user] [cuts] [M]'s hair.",\

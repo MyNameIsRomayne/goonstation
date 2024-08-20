@@ -19695,7 +19695,9 @@
 /turf/simulated/floor/white,
 /area/zeta/patients)
 "Wp" = (
-/obj/displaycase/captain,
+/obj/displaycase{
+	displayed = /obj/item/captaingun
+	},
 /turf/simulated/floor,
 /area/crew_quarters/captain)
 "Wq" = (
