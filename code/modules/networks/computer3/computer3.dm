@@ -37,8 +37,8 @@
 	var/image/screen_image
 
 	var/list/tgui_input_history //! A list of strings representing the terminal's command execution history. New history is appended as commands are executed
-	var/tgui_input_index = 1 //! An index pointing to the position in tgui_input_history to update currentValue with
-	var/currentValue = ""
+	var/tgui_input_index = 1 //! An index pointing to the position in tgui_input_history to update tgui_last_accessed with
+	var/tgui_last_accessed = "" //! The most recently accessed command from the console
 
 	power_usage = 250
 
@@ -378,8 +378,10 @@
 		"user" = user,
 		"fontColor" = src.setup_font_color, // display monochrome values
 		"bgColor" = src.setup_bg_color,
-		"inputValue" = src.currentValue,
+		"inputValue" = src.tgui_last_accessed,
 	)
+
+#define MAX_INPUT_HISTORY_LENGTH 100 //! Maximum amount of things some nerd can put in here until we've had enough
 
 /obj/machinery/computer3/ui_act(action, params)
 	. = ..()
@@ -390,35 +392,34 @@
 			src.restart()
 			src.updateUsrDialog()
 		if("history")
-			// Pre-check -- bail if no history
 			if (isnull(src.tgui_input_history) || !length(src.tgui_input_history))
 				return
-			// Set to previous command in history
-			if (params["direction"] == "next")
+			if (params["direction"] == "prev")
 				// Allow down to 1 at the lowest for 1-indexed
 				if (src.tgui_input_index > 1)
 					src.tgui_input_index -= 1
-				else
-					return
-			else if (params["direction"] == "prev")
+			else if (params["direction"] == "next")
 				// Allow length+1 to simulate hitting the 'end' of the history and ending up on an empty line
 				if (src.tgui_input_index < length(src.tgui_input_history) + 1)
 					src.tgui_input_index += 1
-				else
-					return
-			// Update currentValue since some edit has been made
+			// Handle aforementioned empty line
 			if (src.tgui_input_index == length(src.tgui_input_history) + 1)
-				src.currentValue = ""
+				src.tgui_last_accessed = ""
 				return
-			src.currentValue = src.tgui_input_history[src.tgui_input_index]
+			// Finally, actually just update the current value
+			src.tgui_last_accessed = src.tgui_input_history[src.tgui_input_index]
 		if("text")
 			if(src.active_program && params["value"]) // haha it fucking works WOOOOOO
 				if(params["value"] == "term_clear")
 					src.temp = "Cleared\n"
 					return
 				src.active_program.input_text(params["value"])
+				// Handle updating history
+				if (length(src.tgui_input_history) > MAX_INPUT_HISTORY_LENGTH)
+					src.tgui_input_history.Remove(src.tgui_input_history[0])
 				src.tgui_input_history += params["value"]
-				src.tgui_input_index = length(src.tgui_input_history)
+				src.tgui_input_index = length(src.tgui_input_history) + 1
+				
 				playsound(src.loc, "keyboard", 50, 1, -15)
 				src.updateUsrDialog()
 		if("buttonPressed")
@@ -497,6 +498,8 @@
 						playsound(src.loc, 'sound/machines/cheget_grumpbloop.ogg', 30, 1)
 					update_static_data(usr)
 	. = TRUE
+
+#undef MAX_INPUT_HISTORY_LENGTH
 
 /obj/machinery/computer3/updateUsrDialog()
 	..()
