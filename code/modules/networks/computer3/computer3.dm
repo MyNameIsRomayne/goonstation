@@ -394,16 +394,16 @@
 			if (isnull(src.tgui_input_history) || !length(src.tgui_input_history))
 				return
 			// Set to previous command in history
-			if (params["direction"] == "prev")
-				// Allow length+1 to simulate hitting the 'end' of the history and ending up on an empty line
-				if (src.tgui_input_index < length(src.tgui_input_history) + 1)
-					src.tgui_input_index += 1
-				else
-					return
-			else if (params["direction"] == "next")
+			if (params["direction"] == "next")
 				// Allow down to 1 at the lowest for 1-indexed
 				if (src.tgui_input_index > 1)
 					src.tgui_input_index -= 1
+				else
+					return
+			else if (params["direction"] == "prev")
+				// Allow length+1 to simulate hitting the 'end' of the history and ending up on an empty line
+				if (src.tgui_input_index < length(src.tgui_input_history) + 1)
+					src.tgui_input_index += 1
 				else
 					return
 			// Update currentValue since some edit has been made
