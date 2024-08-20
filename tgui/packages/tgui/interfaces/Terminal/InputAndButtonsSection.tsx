@@ -56,8 +56,8 @@ export const InputAndButtonsSection = () => {
             selfClear
             fluid
             mr="0.5rem"
-            onKeyUp={handleHistoryNext}
-            onKeyDown={handleHistoryPrevious}
+            onKeyUp={handleHistoryPrevious}
+            onKeyDown={handleHistoryNext}
             onEnter={handleInputEnter}
           />
         </Flex.Item>
