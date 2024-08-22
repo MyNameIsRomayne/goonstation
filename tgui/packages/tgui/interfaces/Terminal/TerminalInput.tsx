@@ -1,7 +1,8 @@
 /**
  * @file
- * @copyright 2020 Aleksej Komarov
- * @license MIT
+ * @copyright 2024
+ * @author Romayne (https://github.com/MyNameIsRomayne)
+ * @license ISC
  */
 
 import { KEY } from 'common/keys';
