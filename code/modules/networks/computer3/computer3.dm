@@ -1,4 +1,5 @@
 
+#define MAX_INPUT_HISTORY_LENGTH 100 //! Maximum amount of things some nerd can put in here until we've had enough
 
 /obj/machinery/computer3
 	name = "computer"
@@ -36,9 +37,10 @@
 	var/glow_in_dark_screen = TRUE
 	var/image/screen_image
 
-	var/list/tgui_input_history //! A list of strings representing the terminal's command execution history. New history is appended as commands are executed
-	var/tgui_input_index = 1 //! An index pointing to the position in tgui_input_history to update tgui_last_accessed with
-	var/tgui_last_accessed = "" //! The most recently accessed command from the console
+	// Vars for command history
+	var/list/list/tgui_input_history //! (Keyed by CKEY) A list of strings representing the terminal's command execution history. New history is appended as commands are executed
+	var/list/tgui_input_index //! (Keyed by CKEY)  An index pointing to the position in tgui_input_history to update tgui_last_accessed with
+	var/list/tgui_last_accessed //! (Keyed by CKEY)  The most recently accessed command from the console
 
 	power_usage = 250
 
@@ -281,6 +283,8 @@
 
 	src.base_icon_state = src.icon_state
 	src.tgui_input_history = list()
+	src.tgui_input_index = list()
+	src.tgui_last_accessed = list()
 
 	if(glow_in_dark_screen)
 		src.screen_image = image('icons/obj/computer_screens.dmi', src.icon_state, -1)
@@ -350,14 +354,16 @@
 		ui.open()
 
 /obj/machinery/computer3/ui_static_data(mob/user)
-	. = list()
+	. = list(
+		"ckey" = user.ckey,
+	)
 	if(src.setup_has_internal_disk) // the magic internal floppy drive is in here
 		. += list("peripherals" = list(list(
 		"icon" = "save",
 		"card" = "internal",
 		"color" = src.diskette,
 		"contents" = src.diskette,
-		"label" = "Disk"
+		"label" = "Disk",
 		)))
 	for (var/i in 1 to length(src.peripherals)) // originally i had all this stuff in static data, but the buttons didnt update.
 		var/obj/item/peripheral/periph = src.peripherals[i]
@@ -370,6 +376,7 @@
 				.["peripherals"] += list(pdata)
 
 /obj/machinery/computer3/ui_data(mob/user)
+	src.tgui_last_accessed[user.ckey] ||= ""
 	. = list(
 		"displayHTML" = src.temp, // display data
 		"TermActive" = src.active_program, // is the terminal running or restarting
@@ -378,10 +385,44 @@
 		"user" = user,
 		"fontColor" = src.setup_font_color, // display monochrome values
 		"bgColor" = src.setup_bg_color,
-		"inputValue" = src.tgui_last_accessed,
+		"inputValue" = src.tgui_last_accessed[user.ckey],
 	)
 
-#define MAX_INPUT_HISTORY_LENGTH 100 //! Maximum amount of things some nerd can put in here until we've had enough
+/// Get the history entry at a certain index. Returns null if the index is out of bounds or the ckey is null. Will return an empty string for length+1
+/obj/machinery/computer3/proc/get_history(ckey, index)
+	if (isnull(ckey))
+		return
+	// Allow length+1 to simulate hitting the 'end' of the history and ending up on an empty line
+	if (index == length(src.tgui_input_history[ckey]) + 1)
+		return ""
+	// Ensure index with key exists
+	src.tgui_input_history[ckey] ||= list()
+	// Ensure we can return a value
+	if (index < 1 || length(src.tgui_input_history[ckey]) < index)
+		return
+	return src.tgui_input_history[ckey][index]
+
+/obj/machinery/computer3/proc/add_history(ckey, new_history)
+	// Ensure index with key exists
+	src.tgui_input_history[ckey] ||= list()
+	src.tgui_input_history[ckey].Add(new_history)
+	// Ensure not over limit after adding new entry
+	if (length(src.tgui_input_history) > MAX_INPUT_HISTORY_LENGTH)
+		src.tgui_input_history[ckey].Remove(src.tgui_input_history[ckey][1])
+	// After typing something else in the console, history is always most recent entry
+	src.tgui_input_index[ckey] = length(src.tgui_input_history[ckey])
+
+/// Traverse the current history by some amount. Returns true if different history was accessed, false otherwise (usually if new index OOB)
+/obj/machinery/computer3/proc/traverse_history(ckey, amount)
+	// Most recent entry in history if first time accessing
+	src.tgui_input_index[ckey] ||= length(src.tgui_input_history[ckey])
+	// Ensure previous history exists
+	var/result = src.get_history(ckey, src.tgui_input_index[ckey] + amount)
+	if (isnull(result))
+		return FALSE
+	src.tgui_input_index[ckey] = src.tgui_input_index[ckey] + amount
+	src.tgui_last_accessed[ckey] = result
+	return TRUE
 
 /obj/machinery/computer3/ui_act(action, params)
 	. = ..()
@@ -392,34 +433,17 @@
 			src.restart()
 			src.updateUsrDialog()
 		if("history")
-			if (isnull(src.tgui_input_history) || !length(src.tgui_input_history))
-				return
 			if (params["direction"] == "prev")
-				// Allow down to 1 at the lowest for 1-indexed
-				if (src.tgui_input_index > 1)
-					src.tgui_input_index -= 1
-			else if (params["direction"] == "next")
-				// Allow length+1 to simulate hitting the 'end' of the history and ending up on an empty line
-				if (src.tgui_input_index < length(src.tgui_input_history) + 1)
-					src.tgui_input_index += 1
-			// Handle aforementioned empty line
-			if (src.tgui_input_index == length(src.tgui_input_history) + 1)
-				src.tgui_last_accessed = ""
-				return
-			// Finally, actually just update the current value
-			src.tgui_last_accessed = src.tgui_input_history[src.tgui_input_index]
+				return src.traverse_history(params["ckey"], -1)
+			if (params["direction"] == "next")
+				return src.traverse_history(params["ckey"],  1)
 		if("text")
 			if(src.active_program && params["value"]) // haha it fucking works WOOOOOO
 				if(params["value"] == "term_clear")
 					src.temp = "Cleared\n"
 					return
 				src.active_program.input_text(params["value"])
-				// Handle updating history
-				if (length(src.tgui_input_history) > MAX_INPUT_HISTORY_LENGTH)
-					src.tgui_input_history.Remove(src.tgui_input_history[1])
-				src.tgui_input_history += params["value"]
-				src.tgui_input_index = length(src.tgui_input_history) + 1
-
+				src.add_history(params["ckey"], params["value"])
 				playsound(src.loc, "keyboard", 50, 1, -15)
 				src.updateUsrDialog()
 		if("buttonPressed")
@@ -498,8 +522,6 @@
 						playsound(src.loc, 'sound/machines/cheget_grumpbloop.ogg', 30, 1)
 					update_static_data(usr)
 	. = TRUE
-
-#undef MAX_INPUT_HISTORY_LENGTH
 
 /obj/machinery/computer3/updateUsrDialog()
 	..()
@@ -1086,3 +1108,5 @@
 		src.set_loc(src.case)
 		src.deployed = 0
 		return
+
+#undef MAX_INPUT_HISTORY_LENGTH

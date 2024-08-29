@@ -25,4 +25,5 @@ export type TerminalData = {
   peripherals: Array<PeripheralData>;
   inputValue: string;
   loadTimestamp: number;
+  ckey: string;
 };

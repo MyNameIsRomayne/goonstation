@@ -19,7 +19,7 @@ export const InputAndButtonsSection = () => {
   const [localInputValue, setLocalInputValue] = useState(data.inputValue);
 
   const handleInputEnter = (_e, value) => {
-    act('text', { value: value });
+    act('text', { value: value, ckey: data.ckey });
   };
   // Tiny bit hacky but needed to force updates on the input box.
   const getDOMInput = () => {
@@ -30,11 +30,13 @@ export const InputAndButtonsSection = () => {
   const handleEnterClick = () => {
     // Still a tiny bit hacky but it's a manual click on the enter button which already caused me too much grief
     const domInput = getDOMInput();
-    act('text', { value: domInput.value });
+    act('text', { value: domInput.value, ckey: data.ckey });
     domInput.value = '';
   };
-  const handleHistoryPrevious = () => act('history', { direction: 'prev' });
-  const handleHistoryNext = () => act('history', { direction: 'next' });
+  const handleHistoryPrevious = () =>
+    act('history', { direction: 'prev', ckey: data.ckey });
+  const handleHistoryNext = () =>
+    act('history', { direction: 'next', ckey: data.ckey });
   const handleRestartClick = () => act('restart');
 
   // localInputValue is basically just here to detect changes in passed-in inputValue
