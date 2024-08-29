@@ -167,6 +167,18 @@ var/static/list/valid_gases = list(
 					new_tank.set_loc(get_turf(src))
 				return TRUE
 
+			if ("reaction_steps_until_stable")
+				var/previous_pressure = MIXTURE_PRESSURE(src.mix)
+				for (var/i in 1 to 10000)
+					src.update_gas_mixture()
+					src.mix.react()
+					src.load_from_gas_mixture()
+					if (MIXTURE_PRESSURE(src.mix) == previous_pressure)
+						break
+				src.update_gas_mixture()
+				src.load_from_gas_mixture()
+				return TRUE
+
 			if ("do_reaction_step")
 				// load src into mix
 				src.update_gas_mixture()

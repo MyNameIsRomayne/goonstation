@@ -44,6 +44,10 @@ export const TankBuilder = (props:SubmenuProps) => {
     act("do_reaction_step");
   };
 
+  const doMaxReactionSteps = () => {
+    act("reaction_steps_until_stable");
+  };
+
   const makeTank = (setloc:boolean) => {
     act("copy_into_tank", { set_loc: setloc });
   };
@@ -133,6 +137,13 @@ export const TankBuilder = (props:SubmenuProps) => {
               <LabeledList.Item label="Do reaction step">
                 <Switch
                   callback={() => doReactionStep()}
+                  forceColor={"none"}
+                  enabled
+                />
+              </LabeledList.Item>
+              <LabeledList.Item label="React until inert">
+                <Switch
+                  callback={() => doMaxReactionSteps()}
                   forceColor={"none"}
                   enabled
                 />
