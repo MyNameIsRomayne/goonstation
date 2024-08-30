@@ -18,12 +18,22 @@ export const InputAndButtonsSection = () => {
 
   const [localInputValue, setLocalInputValue] = useState(inputValue);
 
-  const handleInputEnter = (_e, value) => {
-    act('text', { value: value, ckey: ckey });
-    setLocalInputValue('');
+  const setDOMInputValue = (value) => {
+    // In theory, only calling setLocalInputValue(...) should work, but it doesn't, and requires the below hack to work.
+    // I think the cause of this is the useEffect() in tgui's Input.tsx. I couldn't find a workaround.
+    const domInput = document.querySelector(
+      ".terminalInput input[class^='_inner']",
+    ) as HTMLInputElement;
+    domInput.value = value;
   };
-  const handleEnterClick = () =>
+
+  const handleInputEnter = (_e, value) =>
+    act('text', { value: value, ckey: ckey });
+  const handleEnterClick = () => {
     act('text', { value: localInputValue, ckey: ckey });
+    setLocalInputValue('');
+    setDOMInputValue('');
+  };
   const handleHistoryPrevious = () =>
     act('history', { direction: 'prev', ckey: ckey });
   const handleHistoryNext = () =>
@@ -34,6 +44,7 @@ export const InputAndButtonsSection = () => {
   // When inputValue changes, it means a history event happened, so only then should we erase local input value with what was received from the server.
   useEffect(() => {
     setLocalInputValue(inputValue);
+    setDOMInputValue(inputValue);
   }, [inputValue]);
 
   return (
