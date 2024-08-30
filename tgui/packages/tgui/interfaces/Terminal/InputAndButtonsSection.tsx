@@ -5,7 +5,7 @@
  * @license ISC
  */
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, Flex, Section, Tooltip } from 'tgui-core/components';
 
 import { useBackend } from '../../backend';
@@ -14,37 +14,27 @@ import { TerminalData } from './types';
 
 export const InputAndButtonsSection = () => {
   const { act, data } = useBackend<TerminalData>();
-  const { TermActive } = data;
+  const { TermActive, inputValue, ckey } = data;
 
-  const [localInputValue, setLocalInputValue] = useState(data.inputValue);
+  const [localInputValue, setLocalInputValue] = useState(inputValue);
 
   const handleInputEnter = (_e, value) => {
-    act('text', { value: value, ckey: data.ckey });
+    act('text', { value: value, ckey: ckey });
+    setLocalInputValue('');
   };
-  // Tiny bit hacky but needed to force updates on the input box.
-  const getDOMInput = () => {
-    return document.querySelector(
-      ".terminalInput input[class^='_inner']",
-    ) as HTMLInputElement;
-  };
-  const handleEnterClick = () => {
-    // Still a tiny bit hacky but it's a manual click on the enter button which already caused me too much grief
-    const domInput = getDOMInput();
-    act('text', { value: domInput.value, ckey: data.ckey });
-    domInput.value = '';
-  };
+  const handleEnterClick = () =>
+    act('text', { value: localInputValue, ckey: ckey });
   const handleHistoryPrevious = () =>
-    act('history', { direction: 'prev', ckey: data.ckey });
+    act('history', { direction: 'prev', ckey: ckey });
   const handleHistoryNext = () =>
-    act('history', { direction: 'next', ckey: data.ckey });
+    act('history', { direction: 'next', ckey: ckey });
+  const handleInputChange = (_e, value) => setLocalInputValue(value);
   const handleRestartClick = () => act('restart');
 
-  // localInputValue is basically just here to detect changes in passed-in inputValue
-  // done this way because forcible updates in handleHistoryPrev/Next are not quick enough
-  if (localInputValue !== data.inputValue) {
-    getDOMInput().value = data.inputValue;
-    setLocalInputValue(data.inputValue);
-  }
+  // When inputValue changes, it means a history event happened, so only then should we erase local input value with what was received from the server.
+  useEffect(() => {
+    setLocalInputValue(inputValue);
+  }, [inputValue]);
 
   return (
     <Section fitted>
@@ -52,7 +42,7 @@ export const InputAndButtonsSection = () => {
         <Flex.Item grow>
           <TerminalInput
             autoFocus
-            value={data.inputValue}
+            value={localInputValue}
             className="terminalInput"
             placeholder="Type Here"
             selfClear
@@ -61,6 +51,7 @@ export const InputAndButtonsSection = () => {
             onKeyUp={handleHistoryPrevious}
             onKeyDown={handleHistoryNext}
             onEnter={handleInputEnter}
+            onChange={handleInputChange}
           />
         </Flex.Item>
         <Flex.Item>
