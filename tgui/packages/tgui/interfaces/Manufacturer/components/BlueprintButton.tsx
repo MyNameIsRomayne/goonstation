@@ -5,6 +5,7 @@
  * @license ISC (https://choosealicense.com/licenses/isc/)
  */
 
+import { memo } from 'react';
 import {
   Button,
   Icon,
@@ -76,7 +77,7 @@ const getProductionSatisfaction = (
   return patterns_satisfied;
 };
 
-export const BlueprintButton = (props: BlueprintButtonProps) => {
+export const BlueprintButtonView = (props: BlueprintButtonProps) => {
   const {
     actionRemoveBlueprint,
     actionVendProduct,
@@ -216,3 +217,22 @@ export const BlueprintButton = (props: BlueprintButtonProps) => {
     </Stack>
   );
 };
+
+export const BlueprintButton = memo(
+  BlueprintButtonView,
+  (prevProps: BlueprintButtonProps, nextProps: BlueprintButtonProps) => {
+    // just a shallow comparison for props
+    if (
+      prevProps.actionRemoveBlueprint !== nextProps.actionRemoveBlueprint ||
+      prevProps.actionVendProduct !== nextProps.actionVendProduct ||
+      prevProps.blueprintData !== nextProps.blueprintData ||
+      prevProps.deleteAllowed !== nextProps.deleteAllowed ||
+      prevProps.hasPower !== nextProps.hasPower ||
+      prevProps.manufacturerSpeed !== nextProps.manufacturerSpeed ||
+      prevProps.materialData !== nextProps.materialData
+    ) {
+      return false;
+    }
+    return true;
+  },
+);
