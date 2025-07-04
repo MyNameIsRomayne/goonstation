@@ -43,7 +43,6 @@ proc/singularity_containment_check(turf/center)
 	pixel_x = -16
 	pixel_y = -16
 
-	var/has_moved
 	var/active = 0 //determines if the singularity is contained
 	var/energy = 10
 	var/lastT = 0
