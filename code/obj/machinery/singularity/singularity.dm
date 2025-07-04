@@ -45,7 +45,6 @@ proc/singularity_containment_check(turf/center)
 
 	var/active = 0 //determines if the singularity is contained
 	var/energy = 10
-	var/lastT = 0
 	var/Dtime = null
 	var/Wtime = 0
 	var/dieot = 0
