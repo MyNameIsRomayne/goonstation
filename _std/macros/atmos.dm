@@ -357,7 +357,7 @@ proc/gas_text_color(gas_id)
 	var/image/pipe_image = mutable_appearance(pipe_cached); \
 	pipe_image.color = COLOUR ? COLOUR : "#B4B4B4"; \
 	pipe_image.layer = src.layer - 0.001; \
-	pipe_image.appearance_flags |= RESET_TRANSFORM | RESET_COLOR | KEEP_APART; \
+	pipe_image.appearance_flags |= RESET_TRANSFORM | RESET_COLOR | KEEP_TOGETHER; \
 	src.AddOverlays(pipe_image, "[DIR]"); \
 	} while(0)
 
@@ -372,7 +372,7 @@ proc/gas_text_color(gas_id)
 	var/image/pipe_image = mutable_appearance(pipe_cached); \
 	pipe_image.color = src.color; \
 	pipe_image.layer = src.layer - 0.001; \
-	pipe_image.appearance_flags |= RESET_TRANSFORM | RESET_COLOR | KEEP_APART; \
+	pipe_image.appearance_flags |= RESET_TRANSFORM | RESET_COLOR | KEEP_TOGETHER; \
 	src.AddOverlays(pipe_image, "[DIR]"); \
 	} while(0)
 
