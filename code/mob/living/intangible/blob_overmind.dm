@@ -457,12 +457,14 @@ TYPEINFO(/mob/living/intangible/blob_overmind)
 #define MAPTEXT_TEST1 1
 #define MAPTEXT_TEST2 2
 #define MAPTEXT_TEST3 3
+// text shadow with vertical align on bottom, right-aligned text, press start to play font
+#define MAPTEXT_FORMATTING(x) "<span class='sh vb r ps2p'>[text]</span>"
 
 	proc/setup_maptext()
 		src.status_maptext = list()
-		src.status_maptext[MAPTEXT_1] = "test1"
-		src.status_maptext[MAPTEXT_2] = "test2"
-		src.status_maptext[MAPTEXT_3] = "test3"
+		src.status_maptext[MAPTEXT_1] = MAPTEXT_FORMATTING("test1")
+		src.status_maptext[MAPTEXT_2] = MAPTEXT_FORMATTING("test2")
+		src.status_maptext[MAPTEXT_3] = MAPTEXT_FORMATTING("test3")
 
 	proc/update_maptext()
 		if(!src.client)
@@ -474,6 +476,7 @@ TYPEINFO(/mob/living/intangible/blob_overmind)
 #undef MAPTEXT_TEST1
 #undef MAPTEXT_TEST2
 #undef MAPTEXT_TEST3
+#undef MAPTEXT_FORMATTING
 
 	proc/update_buttons()
 		if(!src.client)
