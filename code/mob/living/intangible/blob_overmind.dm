@@ -37,6 +37,7 @@ TYPEINFO(/mob/living/intangible/blob_overmind)
 	var/viewing_upgrades = 1
 	var/help_mode = 0
 	var/list/abilities = list()
+	var/list/status_maptext = null
 	var/list/blobs = list()
 	var/started = 0
 	var/starter_buff = 1
@@ -452,6 +453,27 @@ TYPEINFO(/mob/living/intangible/blob_overmind)
 			if (A.type == upgrade_type)
 				return A
 		return null
+
+#define MAPTEXT_TEST1 1
+#define MAPTEXT_TEST2 2
+#define MAPTEXT_TEST3 3
+
+	proc/setup_maptext()
+		src.status_maptext = list()
+		src.status_maptext[MAPTEXT_1] = "test1"
+		src.status_maptext[MAPTEXT_2] = "test2"
+		src.status_maptext[MAPTEXT_3] = "test3"
+
+	proc/update_maptext()
+		if(!src.client)
+			return
+
+		if(isnull(src.status_maptext))
+			src.setup_maptext()
+
+#undef MAPTEXT_TEST1
+#undef MAPTEXT_TEST2
+#undef MAPTEXT_TEST3
 
 	proc/update_buttons()
 		if(!src.client)
