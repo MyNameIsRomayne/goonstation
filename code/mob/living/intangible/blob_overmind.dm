@@ -37,7 +37,7 @@ TYPEINFO(/mob/living/intangible/blob_overmind)
 	var/viewing_upgrades = 1
 	var/help_mode = 0
 	var/list/abilities = list()
-	var/list/status_maptext = null
+	var/list/atom/movable/screen/status_maptext = null
 	var/list/blobs = list()
 	var/started = 0
 	var/starter_buff = 1
@@ -119,6 +119,8 @@ TYPEINFO(/mob/living/intangible/blob_overmind)
 		src.nucleus_overlay = image('icons/mob/blob.dmi', null, "reflective_overlay")
 		src.nucleus_overlay.alpha = 0
 		src.nucleus_overlay.appearance_flags = RESET_COLOR | PIXEL_SCALE
+
+		src.setup_maptext()
 
 		SPAWN(0)
 			while (src)
@@ -461,17 +463,36 @@ TYPEINFO(/mob/living/intangible/blob_overmind)
 #define MAPTEXT_FORMATTING(x) "<span class='sh vb r ps2p'>[text]</span>"
 
 	proc/setup_maptext()
-		src.status_maptext = list()
-		src.status_maptext[MAPTEXT_1] = MAPTEXT_FORMATTING("test1")
-		src.status_maptext[MAPTEXT_2] = MAPTEXT_FORMATTING("test2")
-		src.status_maptext[MAPTEXT_3] = MAPTEXT_FORMATTING("test3")
+		src.status_maptext = new /list(3)
+		src.status_maptext[MAPTEXT_TEST1] = MAPTEXT_FORMATTING("test1")
+		src.status_maptext[MAPTEXT_TEST2] = MAPTEXT_FORMATTING("test2")
+		src.status_maptext[MAPTEXT_TEST3] = MAPTEXT_FORMATTING("test3")
 
-	proc/update_maptext()
+		var/i = 1
+		for (var/maptext_html in src.status_maptext)
+			var/atom/movable/screen/hud_maptext = new
+			hud_maptext.maptext = src.status_maptext[i]
+			hud_maptext.maptext_x = 24
+			hud_maptext.maptext_y = 15 - i
+			src.huds += hud_maptext
+			i++
+
+	proc/update_maptext(var/maptext_id)
 		if(!src.client)
 			return
 
 		if(isnull(src.status_maptext))
-			src.setup_maptext()
+			src.setup_maptext() // temp note: screens are 15 height 21 width flag in review and u get 1 cookie if i left this in when pr is opened
+
+		var/new_value = null
+		switch(maptext_id)
+			if(MAPTEXT_TEST1)
+				new_value = src.status_maptext[MAPTEXT_TEST1]
+			if(MAPTEXT_TEST2)
+				new_value = src.status_maptext[MAPTEXT_TEST2]
+			if(MAPTEXT_TEST3)
+				new_value = src.status_maptext[MAPTEXT_TEST3]
+		return MAPTEXT_FORMATTING(new_value)
 
 #undef MAPTEXT_TEST1
 #undef MAPTEXT_TEST2
